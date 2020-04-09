@@ -83,5 +83,3 @@ void updateObjects();
 void drawGoose();
 void drawHuman();
 void drawObjects();
-void animateGoose();
-void animateHuman();
