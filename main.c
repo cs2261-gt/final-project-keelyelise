@@ -1,7 +1,11 @@
 #include "myLib.h"
 #include "game.h"
+#include "gooseLib.h"
+#include "objectLib.h"
+#include "humanLib.h"
 #include "startScreen.h"
 #include "goose.h"
+#include "gardener.h"
 #include "garden.h"
 #include "PauseScreen.h"
 #include "WinScreen.h"
@@ -126,7 +130,7 @@ void goToGame() {
     //Add game sprite palette and tiles to memory
     DMANow(3, goosePal, SPRITEPALETTE, 256);
     DMANow(3, gooseTiles, &CHARBLOCK[4], gooseTilesLen / 2);
-    // DMANow(3, spritesTiles, &CHARBLOCK[5], spritesTilesLen / 2);
+    //DMANow(3, gardenerTiles, &CHARBLOCK[5], gardenerTilesLen / 2);
     state = GAME;
 }
 

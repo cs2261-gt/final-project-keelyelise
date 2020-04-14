@@ -8,21 +8,21 @@
 	.eabi_attribute 30, 2
 	.eabi_attribute 34, 0
 	.eabi_attribute 18, 4
-	.file	"goose.c"
+	.file	"gardener.c"
 	.text
-	.global	goosePal
-	.global	gooseTiles
+	.global	gardenerPal
+	.global	gardenerTiles
 	.section	.rodata
 	.align	2
-	.type	goosePal, %object
-	.size	goosePal, 512
-goosePal:
+	.type	gardenerPal, %object
+	.size	gardenerPal, 512
+gardenerPal:
 	.short	32736
-	.short	32767
-	.short	703
-	.short	31710
-	.short	1024
-	.short	19808
+	.short	0
+	.short	0
+	.short	0
+	.short	0
+	.short	0
 	.short	16159
 	.short	14045
 	.short	31571
@@ -273,9 +273,9 @@ goosePal:
 	.short	0
 	.short	0
 	.short	0
-	.type	gooseTiles, %object
-	.size	gooseTiles, 32768
-gooseTiles:
+	.type	gardenerTiles, %object
+	.size	gardenerTiles, 32768
+gardenerTiles:
 	.short	0
 	.short	0
 	.short	0
@@ -295,11 +295,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -335,11 +359,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -375,11 +423,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -561,9 +633,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	8704
-	.short	5137
 	.short	0
 	.short	0
 	.short	0
@@ -576,9 +645,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -625,9 +692,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	8704
-	.short	5137
 	.short	0
 	.short	0
 	.short	0
@@ -640,9 +704,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -689,9 +751,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	8704
-	.short	5137
 	.short	0
 	.short	0
 	.short	0
@@ -704,9 +763,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -747,15 +804,40 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	8704
-	.short	5137
 	.short	0
 	.short	0
 	.short	0
@@ -768,9 +850,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -788,9 +868,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
@@ -824,9 +932,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
@@ -873,7 +1009,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -886,7 +1024,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -933,7 +1073,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -946,7 +1088,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -993,7 +1137,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -1006,7 +1152,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -1060,11 +1208,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8736
-	.short	4369
-	.short	8192
 	.short	0
-	.short	512
 	.short	0
 	.short	0
 	.short	0
@@ -1073,24 +1217,14 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -1124,8 +1258,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8736
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -1137,24 +1269,14 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -1187,38 +1309,60 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
-	.short	8736
-	.short	4369
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	26224
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1894
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
+	.short	8
 	.short	0
-	.short	4369
+	.short	136
 	.short	0
-	.short	4369
+	.short	136
 	.short	0
-	.short	4369
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -1229,15 +1373,45 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	26224
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1894
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
 	.short	0
 	.short	0
@@ -1246,14 +1420,16 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
-	.short	8736
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -1261,36 +1437,60 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
-	.short	4096
+	.short	26224
 	.short	0
-	.short	4096
-	.short	273
+	.short	30576
 	.short	0
-	.short	273
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1894
 	.short	0
-	.short	273
+	.short	1911
 	.short	0
-	.short	273
+	.short	-30584
 	.short	0
-	.short	273
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -1300,14 +1500,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
-	.short	4642
-	.short	4417
-	.short	4640
-	.short	4369
-	.short	34
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -1316,20 +1508,42 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1337,41 +1551,12 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4096
-	.short	4369
-	.short	4642
-	.short	4417
-	.short	4640
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -1380,62 +1565,55 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4096
-	.short	4369
-	.short	4642
-	.short	4417
-	.short	4640
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -1444,20 +1622,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1465,41 +1633,44 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	26112
+	.short	26214
+	.short	26112
+	.short	30310
+	.short	26112
+	.short	30310
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
+	.short	26214
+	.short	102
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4096
-	.short	4369
-	.short	4642
-	.short	4417
-	.short	4640
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -1508,20 +1679,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1529,33 +1690,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -1573,9 +1712,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1588,38 +1725,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
 	.short	0
-	.short	17
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -1637,9 +1744,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1652,38 +1757,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
 	.short	0
-	.short	17
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -1701,9 +1776,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -1716,38 +1789,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
 	.short	0
 	.short	0
-	.short	17
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -1765,114 +1808,211 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17511
+	.short	-26216
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-26181
+	.short	-30311
+	.short	-26213
+	.short	-30311
+	.short	136
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	17
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17511
+	.short	-26216
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-26181
+	.short	-30311
+	.short	-26213
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17511
+	.short	-26216
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-26181
+	.short	-30311
+	.short	-26213
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	4368
-	.short	4369
+	.short	136
 	.short	0
-	.short	4369
+	.short	136
 	.short	0
-	.short	4352
+	.short	136
 	.short	0
-	.short	4608
+	.short	136
 	.short	0
-	.short	34
+	.short	136
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -1880,15 +2020,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
+	.short	26224
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
+	.short	1894
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -1908,44 +2070,51 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4608
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
-	.short	2
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
+	.short	26224
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
+	.short	1894
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -1972,37 +2141,44 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4384
-	.short	8192
-	.short	4098
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	30310
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
-	.short	4369
-	.short	1
-	.short	4369
+	.short	26224
 	.short	0
-	.short	273
+	.short	30576
 	.short	0
-	.short	17
+	.short	-30584
+	.short	26215
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
-	.short	2
+	.short	1638
 	.short	0
-	.short	32
+	.short	1894
 	.short	0
-	.short	512
+	.short	1911
 	.short	0
-	.short	34
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -2036,35 +2212,19 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
 	.short	0
 	.short	0
-	.short	8192
 	.short	0
-	.short	512
 	.short	0
-	.short	34
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	34
 	.short	0
-	.short	512
 	.short	0
-	.short	32
 	.short	0
 	.short	0
 	.short	0
@@ -2100,35 +2260,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4608
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -2164,169 +2309,404 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4608
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
-	.short	2
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
-	.short	4352
-	.short	4369
+	.short	-30720
 	.short	0
-	.short	4369
+	.short	-30720
 	.short	0
-	.short	4384
-	.short	8192
-	.short	4098
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	4369
-	.short	1
-	.short	4369
+	.short	136
 	.short	0
-	.short	273
+	.short	136
 	.short	0
-	.short	17
+	.short	136
 	.short	0
-	.short	2
+	.short	136
 	.short	0
-	.short	32
 	.short	0
-	.short	512
 	.short	0
-	.short	34
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	4352
-	.short	4369
+	.short	136
 	.short	0
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	4096
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
-	.short	8192
+	.short	-30720
 	.short	0
-	.short	512
-	.short	8192
-	.short	34
-	.short	4369
-	.short	1
-	.short	4369
+	.short	-30720
 	.short	0
-	.short	273
+	.short	-30720
 	.short	0
-	.short	17
+	.short	-30720
 	.short	0
-	.short	34
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
-	.short	512
 	.short	0
-	.short	32
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -2457,8 +2837,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
 	.short	0
 	.short	0
@@ -2469,8 +2852,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -2483,8 +2901,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
 	.short	0
 	.short	0
@@ -2495,8 +2916,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -2509,8 +2965,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
 	.short	0
 	.short	0
@@ -2521,8 +2980,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -2535,52 +3029,196 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17511
+	.short	-26216
+	.short	-18023
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-26181
+	.short	-30311
+	.short	-26213
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-32768
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26232
+	.short	-17511
+	.short	-26232
+	.short	-18023
+	.short	-26488
+	.short	-26215
+	.short	-30584
+	.short	-26215
+	.short	-30584
+	.short	-26216
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-26181
+	.short	-30311
+	.short	-26213
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17479
+	.short	-26216
+	.short	-17511
+	.short	-26216
+	.short	-18023
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30311
+	.short	-25669
+	.short	-30567
+	.short	-26181
+	.short	-30567
+	.short	-26213
+	.short	-30583
+	.short	-26215
+	.short	-30583
+	.short	-26215
+	.short	-30584
+	.short	-30311
+	.short	-30584
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	8
 	.short	0
+	.short	8
 	.short	0
 	.short	0
 	.short	0
@@ -2609,9 +3247,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -2624,10 +3260,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	273
 	.short	0
-	.short	4417
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -2673,9 +3306,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -2688,10 +3319,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	273
 	.short	0
-	.short	4417
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -2736,10 +3364,40 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
 	.short	0
-	.short	4096
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -2752,10 +3410,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	273
 	.short	0
-	.short	4417
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -2773,6 +3428,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26192
+	.short	2969
+	.short	-17488
+	.short	3003
+	.short	-17488
+	.short	3003
+	.short	-17488
+	.short	3003
+	.short	-17488
+	.short	187
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -2801,12 +3488,42 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26192
+	.short	2969
+	.short	-17488
+	.short	3003
+	.short	-17488
+	.short	3003
+	.short	-17488
+	.short	3003
+	.short	-17664
+	.short	3003
 	.short	0
 	.short	0
 	.short	0
@@ -2816,10 +3533,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	273
 	.short	0
-	.short	4417
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -2827,20 +3541,68 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -2858,22 +3620,102 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
+	.short	-26232
+	.short	-30592
+	.short	-26488
+	.short	-30576
+	.short	26248
+	.short	-30320
+	.short	26216
+	.short	-26224
+	.short	26217
+	.short	-26224
+	.short	26265
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26218
+	.short	-30311
+	.short	-26266
+	.short	-30311
+	.short	-26218
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	27033
+	.short	-26218
+	.short	27033
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-18023
+	.short	-30567
+	.short	-30584
+	.short	-30583
+	.short	-30584
+	.short	-30615
+	.short	2184
+	.short	-31130
+	.short	2440
+	.short	26214
+	.short	2456
+	.short	26214
+	.short	2457
+	.short	-27034
+	.short	2457
+	.short	-26261
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -3034,6 +3876,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -3066,12 +3940,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-17664
+	.short	187
+	.short	-17664
+	.short	187
+	.short	-22016
+	.short	170
+	.short	-22016
+	.short	170
+	.short	-24576
+	.short	10
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -3104,41 +4004,53 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-17664
+	.short	187
+	.short	-17664
+	.short	187
+	.short	-22016
+	.short	170
+	.short	-22016
+	.short	170
+	.short	-24576
+	.short	10
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	546
 	.short	0
-	.short	2
 	.short	0
-	.short	32
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3156,6 +4068,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-18023
+	.short	-26218
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
+	.short	-26213
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
 	.short	0
 	.short	0
 	.short	0
@@ -3173,23 +4117,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	546
 	.short	0
 	.short	0
 	.short	0
@@ -3198,11 +4132,41 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
+	.short	-26213
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3232,28 +4196,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-18023
+	.short	-26218
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	-18023
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26213
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26368
+	.short	153
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	546
 	.short	0
 	.short	0
 	.short	0
@@ -3264,9 +4250,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3301,23 +4285,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	546
 	.short	0
 	.short	0
 	.short	0
@@ -3328,9 +4302,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3353,57 +4325,17 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
-	.short	4096
 	.short	0
-	.short	4368
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	17
-	.short	17
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	1
-	.short	5137
-	.short	8737
-	.short	4369
-	.short	545
-	.short	17
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
@@ -3417,56 +4349,17 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
-	.short	4096
 	.short	0
-	.short	4368
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	17
-	.short	17
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	1
-	.short	5137
-	.short	8737
-	.short	4369
-	.short	545
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -3481,120 +4374,66 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
-	.short	4096
 	.short	0
-	.short	4368
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	17
-	.short	17
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	1
-	.short	5137
-	.short	8737
-	.short	4369
-	.short	545
-	.short	17
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
-	.short	4096
 	.short	0
-	.short	4368
-	.short	4368
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	17
-	.short	17
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	1
-	.short	5137
-	.short	8737
-	.short	4369
-	.short	545
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -3606,39 +4445,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3648,11 +4455,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
 	.short	0
 	.short	0
 	.short	0
@@ -3670,39 +4501,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3720,11 +4519,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
 	.short	0
 	.short	0
 	.short	0
@@ -3734,39 +4557,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3798,39 +4589,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	17
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -3860,37 +4619,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	33
 	.short	0
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -3924,37 +4668,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	33
 	.short	0
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -3988,30 +4717,15 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	512
 	.short	0
-	.short	32
 	.short	0
-	.short	8704
-	.short	4369
-	.short	273
-	.short	4369
 	.short	0
-	.short	529
 	.short	0
-	.short	8193
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -4052,37 +4766,21 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8704
 	.short	0
-	.short	32
 	.short	0
-	.short	512
 	.short	0
 	.short	0
-	.short	4369
-	.short	273
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
-	.short	2
 	.short	0
-	.short	32
 	.short	0
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
@@ -4116,37 +4814,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	33
 	.short	0
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -4180,37 +4863,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
-	.short	8192
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	33
 	.short	0
-	.short	8704
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	34
 	.short	0
 	.short	0
 	.short	0
@@ -4232,9 +4900,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
+	.short	30576
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
+	.short	1911
 	.short	0
 	.short	0
 	.short	0
@@ -4244,30 +4940,15 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8192
 	.short	0
-	.short	512
 	.short	0
-	.short	32
 	.short	0
-	.short	8704
-	.short	4369
-	.short	17
-	.short	4369
 	.short	0
-	.short	529
 	.short	0
-	.short	8193
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -4283,9 +4964,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
+	.short	30576
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
+	.short	1911
 	.short	0
 	.short	0
 	.short	0
@@ -4308,38 +5017,49 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
 	.short	0
-	.short	8704
 	.short	0
-	.short	32
 	.short	0
-	.short	512
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	1
 	.short	0
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
-	.short	2
+	.short	30576
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
-	.short	32
+	.short	1911
 	.short	0
-	.short	8704
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -4385,7 +5105,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4398,7 +5120,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4445,7 +5169,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4458,7 +5184,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4505,7 +5233,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4518,7 +5248,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -4655,11 +5387,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
 	.short	0
 	.short	0
@@ -4670,24 +5399,51 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
 	.short	0
 	.short	0
@@ -4696,9 +5452,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -4709,51 +5469,109 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
 	.short	0
 	.short	0
 	.short	0
@@ -4762,9 +5580,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -4782,12 +5604,41 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
 	.short	0
 	.short	0
@@ -4798,11 +5649,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
 	.short	0
 	.short	0
@@ -4820,6 +5668,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
 	.short	0
 	.short	0
 	.short	0
@@ -4847,14 +5727,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-22016
+	.short	-21846
+	.short	28672
+	.short	30583
+	.short	-12288
+	.short	30685
+	.short	-12288
+	.short	-8739
+	.short	-10496
+	.short	-8739
+	.short	30464
+	.short	-8739
+	.short	30464
+	.short	-8745
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	170
+	.short	30583
+	.short	7
+	.short	-8841
+	.short	13
+	.short	-8739
+	.short	13
+	.short	-8739
+	.short	125
+	.short	-8739
+	.short	119
+	.short	32221
+	.short	119
 	.short	0
 	.short	0
 	.short	0
@@ -4862,11 +5771,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
 	.short	0
 	.short	0
@@ -4907,30 +5813,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -4971,30 +5867,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5023,62 +5909,196 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	12288
+	.short	136
 	.short	0
-	.short	13056
+	.short	136
 	.short	0
-	.short	13056
+	.short	136
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
-	.short	3
+	.short	-30720
 	.short	0
-	.short	51
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
-	.short	51
+	.short	136
 	.short	0
-	.short	51
+	.short	136
 	.short	0
-	.short	819
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -5096,33 +6116,45 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
+	.short	30576
 	.short	0
-	.short	12288
+	.short	30576
 	.short	0
-	.short	13056
+	.short	30576
 	.short	0
-	.short	13056
+	.short	-30584
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
-	.short	13056
+	.short	1911
 	.short	0
-	.short	13104
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5148,45 +6180,51 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
-	.short	13056
+	.short	-30584
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
-	.short	51
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5206,51 +6244,57 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
+	.short	28672
+	.short	30583
 	.short	0
+	.short	30583
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	30576
 	.short	0
+	.short	-30584
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
+	.short	7
+	.short	30583
 	.short	0
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	1911
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
-	.short	51
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5285,36 +6329,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
-	.short	51
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5349,36 +6377,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
-	.short	51
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	819
 	.short	0
 	.short	0
 	.short	0
@@ -5409,190 +6421,388 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
-	.short	13104
+	.short	-30720
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
+	.short	-30720
 	.short	0
-	.short	13105
+	.short	-30720
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
-	.short	13104
+	.short	136
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
+	.short	136
 	.short	0
-	.short	13105
+	.short	136
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
 	.short	0
-	.short	13104
+	.short	8
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
+	.short	136
 	.short	0
-	.short	13105
+	.short	136
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-30584
+	.short	-30312
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -5605,37 +6815,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
 	.short	0
-	.short	13105
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -5669,37 +6851,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
 	.short	0
-	.short	13105
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -5733,37 +6887,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
 	.short	0
-	.short	13105
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -5797,37 +6923,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
 	.short	0
-	.short	13105
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -5835,8 +6933,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
 	.short	0
 	.short	0
@@ -5847,8 +6948,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -5861,37 +6997,12 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13104
+	.short	24576
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	819
+	.short	24576
 	.short	0
-	.short	13105
+	.short	24576
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -5901,8 +7012,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -5915,8 +7061,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
 	.short	0
 	.short	0
@@ -5924,37 +7073,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26224
+	.short	27033
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	6
 	.short	0
-	.short	32
+	.short	6
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
+	.short	6
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -5963,74 +7125,196 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-32768
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
+	.short	136
 	.short	0
-	.short	17
+	.short	136
 	.short	0
-	.short	32
+	.short	136
 	.short	0
-	.short	32
+	.short	136
 	.short	0
-	.short	32
+	.short	136
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
+	.short	136
 	.short	0
-	.short	512
 	.short	0
-	.short	512
+	.short	-30720
 	.short	0
-	.short	512
+	.short	-30720
 	.short	0
-	.short	8736
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	8
 	.short	0
+	.short	8
 	.short	0
 	.short	0
 	.short	0
@@ -6052,37 +7336,17 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	546
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -6116,33 +7380,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -6180,37 +7424,15 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -6238,43 +7460,53 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -6292,6 +7524,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-13168
+	.short	2508
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-21824
+	.short	3274
+	.short	-21856
+	.short	170
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -6308,42 +7572,54 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	546
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-13168
+	.short	2508
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-13120
+	.short	3276
+	.short	-21312
+	.short	3242
+	.short	-22016
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -6361,44 +7637,72 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	273
+	.short	136
 	.short	0
-	.short	17
+	.short	6
 	.short	0
-	.short	32
+	.short	6
 	.short	0
-	.short	32
+	.short	6
 	.short	0
-	.short	32
 	.short	0
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4368
-	.short	1
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -6412,22 +7716,102 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26216
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	27033
+	.short	-26215
+	.short	27033
+	.short	-26213
+	.short	27033
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	136
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
 	.short	0
+	.short	24576
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-26215
+	.short	-26218
+	.short	-18023
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	-30311
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	2457
+	.short	-26213
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -6588,6 +7972,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -6620,12 +8036,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
+	.short	170
+	.short	-21856
+	.short	170
+	.short	-21856
+	.short	170
+	.short	-21856
+	.short	170
+	.short	-22016
+	.short	10
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -6658,6 +8100,32 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-26224
+	.short	2457
+	.short	-22016
+	.short	170
+	.short	-21856
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	2730
+	.short	-22016
+	.short	2730
+	.short	-22016
+	.short	2730
+	.short	-22016
+	.short	2730
+	.short	-24576
+	.short	170
 	.short	0
 	.short	0
 	.short	0
@@ -6696,6 +8164,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26218
+	.short	-18023
+	.short	-21866
+	.short	-18006
+	.short	-21872
+	.short	-18006
+	.short	-21856
+	.short	-18006
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
+	.short	-26213
+	.short	27033
+	.short	-21861
+	.short	27050
+	.short	-21861
+	.short	2474
+	.short	-21861
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
 	.short	0
 	.short	0
 	.short	0
@@ -6703,11 +8203,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
 	.short	0
 	.short	0
 	.short	0
@@ -6718,11 +8214,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -6735,6 +8228,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26224
+	.short	-18023
+	.short	-21872
+	.short	-18006
+	.short	-21872
+	.short	-18006
+	.short	-21856
+	.short	-18006
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
+	.short	-26213
+	.short	27033
+	.short	-21861
+	.short	27050
+	.short	-21861
+	.short	2474
+	.short	-21861
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
 	.short	0
 	.short	0
 	.short	0
@@ -6767,11 +8292,39 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
+	.short	-26218
+	.short	-18023
+	.short	-21866
+	.short	-18006
+	.short	-21872
+	.short	-18006
+	.short	-21856
+	.short	-18006
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	-17750
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
+	.short	-26213
+	.short	2457
+	.short	-21861
+	.short	2474
+	.short	-21861
+	.short	2474
+	.short	-21861
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21845
+	.short	2730
+	.short	-21856
+	.short	2730
+	.short	-22016
+	.short	170
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
 	.short	0
 	.short	0
 	.short	0
@@ -6782,11 +8335,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -6831,11 +8381,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
 	.short	0
 	.short	0
 	.short	0
@@ -6846,11 +8392,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -6895,11 +8438,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
 	.short	0
 	.short	0
 	.short	0
@@ -6910,11 +8449,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -6951,19 +8487,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -6976,9 +8531,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -6998,14 +8551,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -7025,9 +8599,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -7040,19 +8612,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -7089,9 +8680,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -7104,9 +8693,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7153,9 +8740,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -7168,9 +8753,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7204,37 +8787,19 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4354
-	.short	8192
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7268,37 +8833,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7332,37 +8880,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7396,37 +8927,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	49
 	.short	0
 	.short	0
 	.short	0
@@ -7461,37 +8975,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4915
-	.short	12544
-	.short	4401
-	.short	4368
-	.short	16689
-	.short	4368
-	.short	4641
-	.short	4368
-	.short	4642
-	.short	4368
-	.short	12817
-	.short	4368
-	.short	4385
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	12593
-	.short	1
-	.short	4401
-	.short	17
-	.short	4401
-	.short	273
-	.short	4371
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7511,11 +8997,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
@@ -7525,37 +9036,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4915
-	.short	12544
-	.short	4401
-	.short	4368
-	.short	16689
-	.short	4368
-	.short	4641
-	.short	4368
-	.short	4642
-	.short	4368
-	.short	13073
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	12593
-	.short	1
-	.short	4401
-	.short	17
-	.short	4401
-	.short	273
-	.short	4371
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7578,48 +9061,45 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4915
-	.short	12544
-	.short	4401
-	.short	4368
-	.short	16689
-	.short	4368
-	.short	4641
-	.short	4368
-	.short	4642
-	.short	4368
-	.short	13073
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	12593
-	.short	1
-	.short	4401
-	.short	17
-	.short	4401
-	.short	273
-	.short	4371
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7645,45 +9125,42 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
+	.short	28672
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
+	.short	6
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4915
-	.short	12544
-	.short	4401
-	.short	4368
-	.short	16689
-	.short	4368
-	.short	4641
-	.short	4368
-	.short	4642
-	.short	4368
-	.short	13073
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	12593
-	.short	1
-	.short	4401
-	.short	17
-	.short	4401
-	.short	273
-	.short	4371
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7717,40 +9194,16 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	13073
-	.short	1
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
+	.short	-21846
+	.short	-21846
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -7765,6 +9218,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -7781,37 +9235,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	13073
-	.short	1
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7838,6 +9264,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
+	.short	-21846
+	.short	-21846
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -7845,41 +9275,14 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	13073
-	.short	1
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -7909,37 +9312,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4400
 	.short	0
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	13105
 	.short	0
-	.short	13105
 	.short	0
-	.short	13073
-	.short	1
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -7953,6 +9328,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21856
+	.short	-21846
+	.short	-21846
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -7967,43 +9346,21 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	10
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -8036,38 +9393,15 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -8100,38 +9434,17 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -8164,34 +9477,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -8217,49 +9509,42 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	30566
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	119
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
+	.short	2184
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
+	.short	2457
 	.short	0
-	.short	17
+	.short	2440
 	.short	0
-	.short	32
+	.short	-30584
 	.short	0
-	.short	32
+	.short	-30584
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
-	.short	4352
 	.short	0
-	.short	512
 	.short	0
-	.short	512
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
-	.short	2
 	.short	0
 	.short	0
 	.short	0
@@ -8288,43 +9573,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	30566
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30592
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
+	.short	-26224
 	.short	0
-	.short	17
+	.short	-30576
 	.short	0
-	.short	32
+	.short	-30584
 	.short	0
-	.short	32
+	.short	-30584
+	.short	119
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
+	.short	119
 	.short	0
-	.short	4352
+	.short	136
 	.short	0
-	.short	512
+	.short	2184
 	.short	0
-	.short	512
+	.short	2457
 	.short	0
-	.short	8704
+	.short	2440
 	.short	0
-	.short	8736
-	.short	2
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -8356,44 +9634,39 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
 	.short	0
+	.short	30566
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
+	.short	-30592
 	.short	0
-	.short	4352
+	.short	-26224
 	.short	0
-	.short	512
+	.short	-30576
 	.short	0
-	.short	512
+	.short	-30584
 	.short	0
-	.short	8704
+	.short	-30584
+	.short	119
 	.short	0
-	.short	8736
-	.short	2
+	.short	119
 	.short	0
+	.short	136
 	.short	0
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -8414,44 +9687,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	17
 	.short	0
-	.short	32
 	.short	0
-	.short	32
+	.short	28672
 	.short	0
-	.short	34
-	.short	8192
-	.short	546
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
+	.short	28672
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	10
 	.short	0
-	.short	4352
+	.short	10
 	.short	0
-	.short	8704
+	.short	6
 	.short	0
-	.short	8736
-	.short	2
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -8472,6 +9751,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
 	.short	0
 	.short	0
 	.short	0
@@ -8481,14 +9761,40 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
 	.short	0
+	.short	28672
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	10
 	.short	0
+	.short	10
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -8509,6 +9815,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
 	.short	0
 	.short	0
 	.short	0
@@ -8518,14 +9825,40 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
 	.short	0
+	.short	28672
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	10
 	.short	0
+	.short	10
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -8688,20 +10021,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -8736,26 +10085,41 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	12288
 	.short	0
 	.short	0
 	.short	0
@@ -8770,7 +10134,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	3
 	.short	0
 	.short	0
 	.short	0
@@ -8786,20 +10149,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -8818,8 +10197,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
 	.short	0
-	.short	12288
 	.short	0
 	.short	0
 	.short	0
@@ -8833,9 +10212,27 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	1638
+	.short	30566
+	.short	119
+	.short	30464
+	.short	119
+	.short	-30720
+	.short	136
+	.short	6
 	.short	0
-	.short	3
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -8864,6 +10261,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
 	.short	0
 	.short	0
 	.short	0
@@ -8878,12 +10276,30 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	1638
+	.short	30566
+	.short	119
+	.short	30464
+	.short	119
+	.short	-30720
+	.short	136
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -8898,7 +10314,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -8910,6 +10325,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	28672
 	.short	0
 	.short	0
 	.short	0
@@ -8924,8 +10340,27 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	26214
+	.short	1638
+	.short	30566
+	.short	119
+	.short	30464
+	.short	119
+	.short	-30720
+	.short	136
+	.short	6
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -8947,7 +10382,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
 	.short	0
 	.short	0
 	.short	0
@@ -8962,7 +10396,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -8983,35 +10416,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
 	.short	0
-	.short	8192
 	.short	0
-	.short	512
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	1
-	.short	5137
-	.short	17
-	.short	4369
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -9047,9 +10465,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	8704
 	.short	0
-	.short	8736
 	.short	0
 	.short	0
 	.short	0
@@ -9060,22 +10476,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	1
-	.short	5137
-	.short	17
-	.short	4369
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	273
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -9128,43 +10533,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
-	.short	21760
-	.short	5
+	.short	-26488
 	.short	0
-	.short	4369
-	.short	4096
-	.short	5137
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4368
-	.short	1
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
-	.short	545
+	.short	-26488
 	.short	0
-	.short	8737
+	.short	-26488
 	.short	0
-	.short	32
 	.short	0
-	.short	512
 	.short	0
 	.short	0
 	.short	0
@@ -9197,37 +10597,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
-	.short	4369
-	.short	4096
-	.short	5137
-	.short	4352
-	.short	4369
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4352
-	.short	1
-	.short	4368
-	.short	1
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
-	.short	545
+	.short	-26488
 	.short	0
-	.short	8737
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -9253,45 +10652,45 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
-	.short	51
 	.short	0
-	.short	51
 	.short	0
-	.short	51
+	.short	-30583
 	.short	0
-	.short	3
+	.short	-30583
 	.short	0
-	.short	3
+	.short	-30583
 	.short	0
-	.short	3
+	.short	-30583
 	.short	0
-	.short	51
+	.short	-30583
 	.short	0
-	.short	51
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -9317,36 +10716,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	12288
 	.short	0
-	.short	13056
 	.short	0
-	.short	13056
-	.short	51
 	.short	0
-	.short	51
+	.short	-30592
+	.short	2184
+	.short	-26224
+	.short	2457
+	.short	-30576
+	.short	2440
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
 	.short	0
-	.short	51
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	3
 	.short	0
-	.short	51
 	.short	0
-	.short	51
 	.short	0
 	.short	0
 	.short	0
@@ -9381,36 +10780,33 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4354
-	.short	8192
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
+	.short	-30592
+	.short	2184
+	.short	-26224
+	.short	2457
+	.short	-30576
+	.short	2440
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -9445,37 +10841,34 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	16656
-	.short	8192
-	.short	4370
-	.short	8704
-	.short	4370
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
 	.short	0
-	.short	4352
-	.short	17
 	.short	0
-	.short	17
 	.short	0
-	.short	17
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
 	.short	0
-	.short	1
+	.short	-30592
+	.short	2184
+	.short	-26224
+	.short	2457
+	.short	-30576
+	.short	2440
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30584
 	.short	0
-	.short	1
-	.short	85
 	.short	0
 	.short	0
 	.short	0
@@ -9505,56 +10898,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	20480
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	4369
-	.short	4096
-	.short	4369
 	.short	0
-	.short	4369
-	.short	5
-	.short	4369
-	.short	5
-	.short	4369
 	.short	0
-	.short	4368
-	.short	20480
-	.short	21845
 	.short	0
-	.short	20480
-	.short	17
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
-	.short	85
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -9563,110 +10920,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	20480
 	.short	0
-	.short	1280
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4369
-	.short	4176
-	.short	4369
-	.short	4181
-	.short	4369
-	.short	4101
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4369
 	.short	0
-	.short	4368
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	17
 	.short	0
-	.short	4369
-	.short	17
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
-	.short	1280
 	.short	0
-	.short	21760
-	.short	4096
-	.short	20480
-	.short	4369
-	.short	20480
-	.short	4369
-	.short	21760
-	.short	4369
-	.short	1280
-	.short	273
-	.short	1360
 	.short	0
-	.short	20480
 	.short	0
-	.short	1280
 	.short	0
 	.short	0
 	.short	0
-	.short	16
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4352
-	.short	1365
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	17
-	.short	4368
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
-	.short	1
-	.short	4369
-	.short	1
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
@@ -9675,63 +10960,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
-	.short	5
-	.short	20480
-	.short	5
 	.short	0
-	.short	21840
 	.short	0
-	.short	85
 	.short	0
 	.short	0
 	.short	0
-	.short	16
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
 	.short	0
-	.short	4368
-	.short	20480
-	.short	4352
-	.short	21845
-	.short	85
 	.short	0
 	.short	0
 	.short	0
-	.short	4096
-	.short	4096
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4369
-	.short	4368
-	.short	17
-	.short	4368
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	17
-	.short	4369
-	.short	1
-	.short	4369
-	.short	1
-	.short	4369
-	.short	1
-	.short	4369
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
@@ -9740,24 +10982,17 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	80
 	.short	0
-	.short	85
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	21760
 	.short	0
-	.short	80
 	.short	0
 	.short	0
 	.short	0
@@ -9765,37 +11000,12 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
-	.short	85
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12288
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	51
 	.short	0
-	.short	819
 	.short	0
-	.short	819
 	.short	0
-	.short	13105
 	.short	0
-	.short	12561
-	.short	3
-	.short	4369
-	.short	20483
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -9808,9 +11018,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -9823,43 +11031,12 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	1280
 	.short	0
-	.short	1280
 	.short	0
-	.short	13056
 	.short	0
-	.short	13104
 	.short	0
-	.short	13104
 	.short	0
-	.short	4915
-	.short	12293
-	.short	4371
-	.short	12288
-	.short	4369
-	.short	4864
-	.short	4369
-	.short	4352
-	.short	4369
-	.short	51
-	.short	85
-	.short	819
-	.short	1360
-	.short	819
-	.short	21760
-	.short	13105
-	.short	20480
-	.short	12561
-	.short	3
-	.short	4369
-	.short	3
-	.short	4369
-	.short	49
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
@@ -9868,24 +11045,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26218
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
-	.short	20480
 	.short	0
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
@@ -9893,37 +11084,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	1280
-	.short	4352
-	.short	1365
-	.short	4400
-	.short	5
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	1
 	.short	0
-	.short	49
 	.short	0
-	.short	13105
 	.short	0
-	.short	13105
-	.short	20480
-	.short	13073
-	.short	20481
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
@@ -9932,13 +11095,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	85
 	.short	0
-	.short	80
 	.short	0
-	.short	80
 	.short	0
-	.short	80
 	.short	0
 	.short	0
 	.short	0
@@ -9949,53 +11108,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	21760
+	.short	26265
 	.short	0
-	.short	1280
+	.short	26265
 	.short	0
-	.short	1280
+	.short	26265
 	.short	0
-	.short	4352
+	.short	26265
 	.short	0
-	.short	4352
+	.short	-26215
 	.short	0
-	.short	4400
+	.short	-26215
 	.short	0
-	.short	4403
-	.short	12544
-	.short	4371
-	.short	4368
-	.short	4371
-	.short	4368
-	.short	4369
-	.short	4368
-	.short	4369
-	.short	1
-	.short	21840
-	.short	49
-	.short	20480
-	.short	13105
+	.short	-26215
 	.short	0
-	.short	13105
+	.short	-26215
+	.short	-26266
 	.short	0
-	.short	13073
-	.short	1
-	.short	4881
-	.short	17
-	.short	4369
-	.short	273
-	.short	4369
-	.short	273
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26218
 	.short	0
+	.short	-26215
 	.short	0
-	.short	5
+	.short	-26215
 	.short	0
-	.short	5
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -10005,7 +11148,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
@@ -10020,11 +11162,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	5
-	.short	4368
-	.short	85
 	.short	0
-	.short	1360
 	.short	0
 	.short	0
 	.short	0
@@ -10035,32 +11173,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
 	.short	0
-	.short	4369
-	.short	4369
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
-	.short	21760
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26218
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
-	.short	17
-	.short	1280
+	.short	-26215
 	.short	0
-	.short	1360
 	.short	0
-	.short	85
-	.short	21760
-	.short	5
-	.short	1365
 	.short	0
 	.short	0
 	.short	0
@@ -10085,30 +11229,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	80
 	.short	0
-	.short	21760
 	.short	0
 	.short	0
-	.short	21845
 	.short	0
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
+	.short	-30584
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10116,12 +11268,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	17
-	.short	80
 	.short	0
-	.short	85
-	.short	21760
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10132,12 +11279,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1280
-	.short	4096
-	.short	20480
-	.short	85
 	.short	0
-	.short	21840
 	.short	0
 	.short	0
 	.short	0
@@ -10145,16 +11287,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-32768
 	.short	0
+	.short	-32768
 	.short	0
-	.short	4369
-	.short	4369
+	.short	-30720
 	.short	0
+	.short	-30720
 	.short	0
-	.short	85
+	.short	-30720
 	.short	0
-	.short	1360
+	.short	-30592
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-26488
+	.short	-30584
+	.short	-26232
+	.short	-30584
+	.short	-26216
+	.short	-30584
+	.short	-26216
+	.short	-30584
+	.short	-26215
+	.short	-30584
+	.short	-26215
+	.short	-26488
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -10164,14 +11325,12 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	21840
 	.short	0
 	.short	0
 	.short	0
@@ -10180,11 +11339,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	21760
 	.short	0
-	.short	85
 	.short	0
 	.short	0
 	.short	0
@@ -10195,14 +11351,35 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-32768
 	.short	0
-	.short	20480
-	.short	4101
+	.short	-30720
 	.short	0
-	.short	1365
+	.short	-30720
 	.short	0
-	.short	21760
+	.short	-30592
 	.short	0
+	.short	-30584
+	.short	-32768
+	.short	-30584
+	.short	-30720
+	.short	-30584
+	.short	-30584
+	.short	-30584
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -10212,13 +11389,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	4369
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10228,14 +11401,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	21760
 	.short	0
-	.short	1360
 	.short	0
-	.short	85
-	.short	20480
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10263,9 +11430,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	20480
 	.short	0
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
@@ -10276,12 +11441,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
 	.short	0
 	.short	0
-	.short	21845
-	.short	21845
 	.short	0
 	.short	0
 	.short	0
@@ -10292,12 +11453,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
 	.short	0
-	.short	20480
-	.short	5
-	.short	21760
 	.short	0
 	.short	0
 	.short	0
@@ -10308,9 +11464,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10325,11 +11479,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1280
 	.short	0
-	.short	1280
 	.short	0
-	.short	21760
 	.short	0
 	.short	0
 	.short	0
@@ -10340,13 +11491,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4352
-	.short	4369
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	85
 	.short	0
 	.short	0
 	.short	0
@@ -10356,14 +11503,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	17
 	.short	0
 	.short	0
 	.short	0
-	.short	21760
-	.short	21845
-	.short	1365
 	.short	0
 	.short	0
 	.short	0
@@ -10372,11 +11514,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	85
 	.short	0
-	.short	5
 	.short	0
-	.short	5
 	.short	0
 	.short	0
 	.short	0
@@ -10391,11 +11530,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	1280
 	.short	0
-	.short	1280
 	.short	0
-	.short	21760
 	.short	0
 	.short	0
 	.short	0
@@ -10404,58 +11540,60 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	5
 	.short	0
-	.short	21845
-	.short	21845
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
 	.short	0
-	.short	21760
 	.short	0
-	.short	1280
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
-	.short	80
+	.short	-26215
 	.short	0
-	.short	85
+	.short	-26215
+	.short	-26215
 	.short	0
-	.short	5
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	21760
 	.short	0
-	.short	20480
 	.short	0
 	.short	0
 	.short	0
@@ -10468,11 +11606,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4368
-	.short	4369
-	.short	5
 	.short	0
-	.short	1365
 	.short	0
 	.short	0
 	.short	0
@@ -10484,29 +11618,43 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	4369
-	.short	273
 	.short	0
 	.short	0
-	.short	1280
 	.short	0
-	.short	21760
-	.short	21845
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	11
+	.short	-26215
+	.short	11
+	.short	-26215
+	.short	187
+	.short	-26215
+	.short	187
+	.short	-26215
+	.short	3003
+	.short	-26215
+	.short	3003
 	.short	0
-	.short	1280
 	.short	0
-	.short	1360
 	.short	0
-	.short	85
 	.short	0
 	.short	0
 	.short	0
@@ -10516,38 +11664,6 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	21845
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
-	.short	13107
 	.short	0
 	.short	0
 	.short	0
@@ -10569,14 +11685,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26213
 	.short	0
+	.short	-26181
 	.short	0
+	.short	-26181
 	.short	0
+	.short	-25669
 	.short	0
+	.short	-25669
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	9
+	.short	-26215
+	.short	153
+	.short	-26215
+	.short	153
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	2457
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -10609,6 +11748,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	26265
+	.short	-26266
+	.short	26265
+	.short	-26266
+	.short	26265
+	.short	-26266
 	.short	0
 	.short	0
 	.short	0
@@ -10642,12 +11797,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30586
+	.short	24576
+	.short	-31130
+	.short	24576
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
+	.short	1632
 	.short	0
 	.short	0
+	.short	-26488
+	.short	-26215
+	.short	-26232
+	.short	-26215
+	.short	-26232
+	.short	-26215
+	.short	-26216
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -10680,6 +11860,15 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26112
+	.short	-30584
+	.short	26208
+	.short	2182
+	.short	26214
+	.short	6
+	.short	26208
+	.short	6
+	.short	26112
 	.short	0
 	.short	0
 	.short	0
@@ -10687,6 +11876,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	-30583
+	.short	-26488
+	.short	26265
+	.short	-26266
+	.short	26265
+	.short	-26266
+	.short	26265
+	.short	-26266
 	.short	0
 	.short	0
 	.short	0
@@ -10864,18 +12069,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-22016
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	2730
 	.short	0
+	.short	2730
 	.short	0
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
@@ -10910,18 +12133,46 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-22016
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-26215
+	.short	-17477
+	.short	-26215
+	.short	-21573
+	.short	-26215
+	.short	-21845
+	.short	-26215
+	.short	-21846
+	.short	-26215
+	.short	-21846
+	.short	-21846
+	.short	2730
+	.short	-21846
+	.short	10
+	.short	2730
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	10
 	.short	0
+	.short	10
 	.short	0
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -10946,16 +12197,48 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-22016
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-26213
+	.short	-26215
+	.short	-26213
+	.short	-26215
+	.short	-26181
+	.short	-26215
+	.short	-26181
+	.short	-21863
+	.short	-25669
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	2730
+	.short	9
 	.short	0
+	.short	9
 	.short	0
+	.short	170
 	.short	0
+	.short	2730
 	.short	0
+	.short	2730
 	.short	0
+	.short	170
 	.short	0
 	.short	0
 	.short	0
@@ -10977,9 +12260,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
+	.short	-26218
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26224
+	.short	-26215
 	.short	0
 	.short	0
+	.short	-26368
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-22007
 	.short	0
+	.short	-22016
 	.short	0
 	.short	0
 	.short	0
@@ -11012,9 +12324,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26224
+	.short	-26215
 	.short	0
 	.short	0
+	.short	-26368
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-22007
 	.short	0
+	.short	-22016
 	.short	0
 	.short	0
 	.short	0
@@ -11047,9 +12388,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
+	.short	-26218
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26224
+	.short	-26215
 	.short	0
 	.short	0
+	.short	-26368
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-21847
+	.short	-26215
+	.short	-22007
 	.short	0
+	.short	-22016
 	.short	0
 	.short	0
 	.short	0
@@ -11213,13 +12583,34 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11256,13 +12647,34 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11299,13 +12711,34 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11659,12 +13092,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11698,12 +13156,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11737,12 +13220,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
 	.short	0
 	.short	0
@@ -11789,6 +13297,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -11801,7 +13312,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -11848,6 +13361,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -11860,7 +13376,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -11907,6 +13425,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -11919,7 +13440,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	2730
 	.short	0
+	.short	-21846
 	.short	0
 	.short	0
 	.short	0
@@ -12082,20 +13605,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -12130,20 +13669,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -12178,20 +13733,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -12225,11 +13796,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
 	.short	0
 	.short	0
 	.short	0
@@ -12262,11 +13860,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
 	.short	0
 	.short	0
 	.short	0
@@ -12299,11 +13924,38 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
+	.short	-21846
+	.short	-24576
+	.short	-21846
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	-21846
 	.short	0
+	.short	-21846
+	.short	10
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
+	.short	7
+	.short	26214
+	.short	7
 	.short	0
 	.short	0
 	.short	0
@@ -12465,20 +14117,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -12513,20 +14181,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -12561,20 +14245,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -12608,17 +14308,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -12652,17 +14372,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -12696,17 +14436,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
+	.short	24576
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26208
 	.short	0
+	.short	30464
 	.short	0
+	.short	30464
 	.short	0
+	.short	-30720
+	.short	26214
+	.short	7
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26214
 	.short	0
+	.short	26231
 	.short	0
+	.short	119
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -12869,20 +14629,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -12917,20 +14693,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -12965,20 +14757,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -13013,20 +14821,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -13061,20 +14885,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -13109,20 +14949,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30592
 	.short	0
+	.short	-26224
 	.short	0
+	.short	-30576
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	2184
 	.short	0
+	.short	2457
 	.short	0
+	.short	2440
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -13285,20 +15141,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	27033
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13333,20 +15205,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	27033
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13381,20 +15269,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	27033
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13429,14 +15333,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-26488
+	.short	8
+	.short	-26488
+	.short	136
+	.short	-26488
+	.short	136
+	.short	-26488
+	.short	2184
+	.short	-26488
+	.short	-30584
+	.short	-26488
+	.short	-30584
+	.short	-26488
+	.short	-30584
 	.short	0
 	.short	0
 	.short	0
@@ -13449,7 +15376,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	8
 	.short	0
+	.short	136
 	.short	0
 	.short	0
 	.short	0
@@ -13468,14 +15397,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30567
 	.short	0
+	.short	-30311
 	.short	0
+	.short	-30311
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-30584
 	.short	0
+	.short	-30584
+	.short	8
+	.short	-30584
+	.short	8
+	.short	-30584
+	.short	8
+	.short	-30584
+	.short	136
+	.short	-30584
+	.short	136
+	.short	-30584
+	.short	136
+	.short	-30583
+	.short	2184
 	.short	0
 	.short	0
 	.short	0
@@ -13509,20 +15461,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30584
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
+	.short	-30584
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
 	.short	0
 	.short	0
@@ -13685,20 +15653,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13733,14 +15717,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-20480
+	.short	-26215
+	.short	-20480
+	.short	-26215
+	.short	-17664
+	.short	-26215
+	.short	-17664
+	.short	-26215
+	.short	-17488
+	.short	-26215
+	.short	-17488
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13775,13 +15781,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
+	.short	-28672
+	.short	-26215
+	.short	-26368
+	.short	-26215
+	.short	-26368
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26224
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-18023
 	.short	0
+	.short	-17511
 	.short	0
+	.short	-17511
 	.short	0
+	.short	-17479
 	.short	0
+	.short	-17479
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
 	.short	0
 	.short	0
@@ -13816,21 +15845,46 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
+	.short	-26488
+	.short	-30584
+	.short	-26488
+	.short	26752
+	.short	-26488
+	.short	24576
+	.short	-26488
+	.short	24576
+	.short	-26488
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	102
 	.short	0
+	.short	1638
 	.short	0
+	.short	26214
 	.short	0
+	.short	1638
 	.short	0
+	.short	102
 	.short	0
 	.short	0
 	.short	0
@@ -13855,13 +15909,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-30583
+	.short	2184
+	.short	-30567
+	.short	-30584
+	.short	-30567
+	.short	26760
+	.short	-30311
+	.short	26216
+	.short	-26215
+	.short	26214
+	.short	-26215
+	.short	26208
+	.short	-26215
+	.short	1632
+	.short	-26215
 	.short	0
 	.short	0
 	.short	0
@@ -13869,7 +15946,9 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	6
 	.short	0
+	.short	6
 	.short	0
 	.short	0
 	.short	0
@@ -13894,20 +15973,36 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	-30583
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
 	.short	0
+	.short	26265
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26488
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
+	.short	-26266
 	.short	0
 	.short	0
 	.short	0
@@ -14070,19 +16165,37 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21856
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	170
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -14104,21 +16217,49 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-24576
 	.short	0
+	.short	-24576
 	.short	0
+	.short	-24576
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-17477
+	.short	-26215
+	.short	-17478
+	.short	-26215
+	.short	-17750
+	.short	-26215
+	.short	-21846
+	.short	-26215
+	.short	-21846
+	.short	-26215
+	.short	-21856
+	.short	-21846
+	.short	-24576
+	.short	-21846
 	.short	0
+	.short	-21856
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	170
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -14136,21 +16277,53 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-28672
 	.short	0
+	.short	-28672
 	.short	0
+	.short	-22016
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-21856
 	.short	0
+	.short	-22016
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	-26215
+	.short	-18023
+	.short	-26215
+	.short	-18023
+	.short	-26215
+	.short	-17511
+	.short	-26198
+	.short	-17511
+	.short	-21846
+	.short	-17479
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21846
+	.short	-21856
+	.short	-21846
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	-17477
 	.short	0
+	.short	170
 	.short	0
+	.short	-21846
+	.short	10
+	.short	-21846
+	.short	10
 	.short	0
 	.short	0
 	.short	0
@@ -14170,21 +16343,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-28502
 	.short	0
+	.short	170
 	.short	0
+	.short	27033
+	.short	153
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -14205,21 +16407,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-28502
 	.short	0
+	.short	170
 	.short	0
+	.short	-26215
+	.short	153
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	2457
 	.short	0
 	.short	0
 	.short	0
@@ -14240,2281 +16471,50 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-25942
 	.short	0
+	.short	-28502
 	.short	0
+	.short	170
 	.short	0
+	.short	27033
+	.short	153
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
+	.short	-26215
 	.short	0
+	.short	-26215
+	.short	-26266
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
+	.short	-26215
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	2457
 	.short	0
 	.short	0
 	.short	0

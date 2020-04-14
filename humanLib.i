@@ -1,7 +1,102 @@
-# 1 "game.c"
+# 1 "humanLib.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "game.c"
+# 1 "humanLib.c"
+# 1 "gooseLib.h" 1
+
+typedef struct {
+    int worldRow;
+    int worldCol;
+    int screenRow;
+    int screenCol;
+    int width;
+    int height;
+    int grabbing;
+    int state;
+    int anistate;
+    int aninum;
+    int dir;
+    int rdel;
+    int cdel;
+    int index;
+    int beakX;
+    int beakY;
+} GOOSE;
+
+
+extern GOOSE goose;
+
+
+enum {LEFT, RIGHT, BACK, FORWARD};
+enum {HONK, IDLE, WALK};
+enum {DUCK, STAND, SWIM};
+
+
+void initGoose();
+void updateGoose();
+void drawGoose();
+# 2 "humanLib.c" 2
+# 1 "objectLib.h" 1
+
+typedef struct {
+    int type;
+    int worldRow;
+    int worldCol;
+    int screenRow;
+    int screenCol;
+    int permRow;
+    int permCol;
+    int width;
+    int height;
+    int level;
+    int index;
+    int grabbed;
+    int hoff;
+} OBJECT;
+
+
+
+
+
+extern OBJECT objects[2];
+
+
+enum {BLOCK};
+
+
+void initObjects();
+void updateObjects();
+void drawObjects();
+# 3 "humanLib.c" 2
+# 1 "humanLib.h" 1
+
+typedef struct {
+    int worldRow;
+    int worldCol;
+    int screenRow;
+    int screenCol;
+    int bubbleDel;
+    int bubbleWidth;
+    int bubbleHeight;
+    int state;
+    int anistate;
+    int index;
+    int dir;
+} HUMAN;
+
+
+extern HUMAN human;
+
+
+enum {FORWARDH, BACKH, LEFTH, RIGHTH};
+enum {IDLEH, WALKH};
+enum {STANDH, KNEELH};
+
+
+void initHuman();
+void updateHuman();
+void drawHuman();
+# 4 "humanLib.c" 2
 # 1 "game.h" 1
 
 
@@ -22,7 +117,7 @@ extern int overallHoff;
 void initGame();
 void updateGame();
 void drawGame();
-# 2 "game.c" 2
+# 5 "humanLib.c" 2
 # 1 "myLib.h" 1
 
 
@@ -130,161 +225,24 @@ typedef struct{
 
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
-# 3 "game.c" 2
+# 6 "humanLib.c" 2
 # 1 "tempCollision.h" 1
 # 20 "tempCollision.h"
 extern const unsigned short tempCollisionBitmap[262144];
-# 4 "game.c" 2
-# 1 "gooseLib.h" 1
-
-typedef struct {
-    int worldRow;
-    int worldCol;
-    int screenRow;
-    int screenCol;
-    int width;
-    int height;
-    int grabbing;
-    int state;
-    int anistate;
-    int aninum;
-    int dir;
-    int rdel;
-    int cdel;
-    int index;
-    int beakX;
-    int beakY;
-} GOOSE;
+# 7 "humanLib.c" 2
 
 
-extern GOOSE goose;
-
-
-enum {LEFT, RIGHT, BACK, FORWARD};
-enum {HONK, IDLE, WALK};
-enum {DUCK, STAND, SWIM};
-
-
-void initGoose();
-void updateGoose();
-void drawGoose();
-# 5 "game.c" 2
-# 1 "objectLib.h" 1
-
-typedef struct {
-    int type;
-    int worldRow;
-    int worldCol;
-    int screenRow;
-    int screenCol;
-    int permRow;
-    int permCol;
-    int width;
-    int height;
-    int level;
-    int index;
-    int grabbed;
-    int hoff;
-} OBJECT;
-
-
-
-
-
-extern OBJECT objects[2];
-
-
-enum {BLOCK};
-
-
-void initObjects();
-void updateObjects();
-void drawObjects();
-# 6 "game.c" 2
-# 1 "humanLib.h" 1
-
-typedef struct {
-    int worldRow;
-    int worldCol;
-    int screenRow;
-    int screenCol;
-    int bubbleDel;
-    int bubbleWidth;
-    int bubbleHeight;
-    int state;
-    int anistate;
-    int index;
-    int dir;
-} HUMAN;
-
-
-extern HUMAN human;
-
-
-enum {FORWARDH, BACKH, LEFTH, RIGHTH};
-enum {IDLEH, WALKH};
-enum {STANDH, KNEELH};
-
-
-void initHuman();
-void updateHuman();
-void drawHuman();
-# 7 "game.c" 2
-
-
-GOOSE goose;
-HUMAN human;
-OBJECT objects[2];
-int tasks;
-int cheat;
-int voff;
-int hoff;
-int sb;
-int anicounter;
-int gooseHoff;
-int overallHoff;
-
-
-
-void initGame() {
-    initGoose();
-    initHuman();
-    initObjects();
-    tasks = 5;
-    cheat = 0;
-    voff = 0;
-    hoff = 0;
-    sb = 16;
-    anicounter = 0;
-    gooseHoff = 0;
-    overallHoff = 0;
+void initHuman() {
+# 19 "humanLib.c"
 }
 
-void updateGame() {
-    updateGoose();
-    updateHuman();
-    updateObjects();
+void updateHuman() {
 
-    if (hoff > 256 && sb < 18) {
-        hoff -= 256;
-        sb++;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (0<<7);
-    } else if (hoff <= 0 && sb > 16) {
-        hoff += 256;
-        sb--;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (0<<7);
-    }
-    if (gooseHoff > 512) {
-        gooseHoff -= 512;
-    } else if (gooseHoff < 0) {
-        gooseHoff += 512;
-    }
+
 }
 
-void drawGame() {
-    drawGoose();
-    drawHuman();
-    drawObjects();
-    (*(volatile unsigned short *)0x04000012) = voff;
-    (*(volatile unsigned short *)0x04000010) = hoff;
+void drawHuman() {
+
+
+
 }

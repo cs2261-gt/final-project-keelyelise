@@ -112,6 +112,27 @@ int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, i
 # 2 "main.c" 2
 # 1 "game.h" 1
 
+
+
+
+
+extern int tasks;
+extern int cheat;
+extern int voff;
+extern int hoff;
+extern int sb;
+extern int anicounter;
+extern int gooseHoff;
+extern int overallHoff;
+
+
+
+void initGame();
+void updateGame();
+void drawGame();
+# 3 "main.c" 2
+# 1 "gooseLib.h" 1
+
 typedef struct {
     int worldRow;
     int worldCol;
@@ -132,16 +153,19 @@ typedef struct {
 } GOOSE;
 
 
-typedef struct {
-    int worldRow;
-    int worldCol;
-    int screenRow;
-    int screenCol;
-    int state;
-    int anistate;
-    int index;
-} HUMAN;
+extern GOOSE goose;
 
+
+enum {LEFT, RIGHT, BACK, FORWARD};
+enum {HONK, IDLE, WALK};
+enum {DUCK, STAND, SWIM};
+
+
+void initGoose();
+void updateGoose();
+void drawGoose();
+# 4 "main.c" 2
+# 1 "objectLib.h" 1
 
 typedef struct {
     int type;
@@ -156,49 +180,52 @@ typedef struct {
     int level;
     int index;
     int grabbed;
+    int hoff;
 } OBJECT;
 
 
-enum {LEFT, RIGHT, BACK, FORWARD};
-enum {HONK, IDLE, WALK};
-enum {DUCK, STAND, SWIM};
+
+
+
+extern OBJECT objects[2];
+
+
 enum {BLOCK};
 
 
-
-
-
-
-
-extern GOOSE goose;
-extern HUMAN human;
-extern OBJECT objects[2];
-extern int tasks;
-extern int cheat;
-extern int voff;
-extern int hoff;
-extern int sb;
-extern int anicounter;
-extern int gooseHoff;
-extern int overallHoff;
-
-
-
-void initGame();
-void updateGame();
-void drawGame();
-void initGoose();
-void initHuman();
 void initObjects();
-void updateGoose();
-void updateHuman();
 void updateObjects();
-void drawGoose();
-void drawHuman();
 void drawObjects();
-void animateGoose();
-void animateHuman();
-# 3 "main.c" 2
+# 5 "main.c" 2
+# 1 "humanLib.h" 1
+
+typedef struct {
+    int worldRow;
+    int worldCol;
+    int screenRow;
+    int screenCol;
+    int bubbleDel;
+    int bubbleWidth;
+    int bubbleHeight;
+    int state;
+    int anistate;
+    int index;
+    int dir;
+} HUMAN;
+
+
+extern HUMAN human;
+
+
+enum {FORWARDH, BACKH, LEFTH, RIGHTH};
+enum {IDLEH, WALKH};
+enum {STANDH, KNEELH};
+
+
+void initHuman();
+void updateHuman();
+void drawHuman();
+# 6 "main.c" 2
 # 1 "startScreen.h" 1
 # 22 "startScreen.h"
 extern const unsigned short startScreenTiles[2080];
@@ -208,14 +235,21 @@ extern const unsigned short startScreenMap[1024];
 
 
 extern const unsigned short startScreenPal[256];
-# 4 "main.c" 2
+# 7 "main.c" 2
 # 1 "goose.h" 1
 # 21 "goose.h"
 extern const unsigned short gooseTiles[16384];
 
 
 extern const unsigned short goosePal[256];
-# 5 "main.c" 2
+# 8 "main.c" 2
+# 1 "gardener.h" 1
+# 21 "gardener.h"
+extern const unsigned short gardenerTiles[16384];
+
+
+extern const unsigned short gardenerPal[256];
+# 9 "main.c" 2
 # 1 "garden.h" 1
 # 22 "garden.h"
 extern const unsigned short gardenTiles[2736];
@@ -225,7 +259,7 @@ extern const unsigned short gardenMap[16384];
 
 
 extern const unsigned short gardenPal[256];
-# 6 "main.c" 2
+# 10 "main.c" 2
 # 1 "PauseScreen.h" 1
 # 22 "PauseScreen.h"
 extern const unsigned short PauseScreenTiles[1568];
@@ -235,7 +269,7 @@ extern const unsigned short PauseScreenMap[1024];
 
 
 extern const unsigned short PauseScreenPal[256];
-# 7 "main.c" 2
+# 11 "main.c" 2
 # 1 "WinScreen.h" 1
 # 22 "WinScreen.h"
 extern const unsigned short WinScreenTiles[784];
@@ -245,7 +279,7 @@ extern const unsigned short WinScreenMap[1024];
 
 
 extern const unsigned short WinScreenPal[256];
-# 8 "main.c" 2
+# 12 "main.c" 2
 # 1 "instructionsScreen.h" 1
 # 22 "instructionsScreen.h"
 extern const unsigned short instructionsScreenTiles[1072];
@@ -255,7 +289,7 @@ extern const unsigned short instructionsScreenMap[1024];
 
 
 extern const unsigned short instructionsScreenPal[256];
-# 9 "main.c" 2
+# 13 "main.c" 2
 # 1 "sprites.h" 1
 # 22 "sprites.h"
 extern const unsigned short spritesTiles[48];
@@ -265,7 +299,7 @@ extern const unsigned short spritesMap[1024];
 
 
 extern const unsigned short spritesPal[256];
-# 10 "main.c" 2
+# 14 "main.c" 2
 # 1 "TaskList.h" 1
 # 22 "TaskList.h"
 extern const unsigned short TaskListTiles[544];
@@ -275,7 +309,7 @@ extern const unsigned short TaskListMap[1024];
 
 
 extern const unsigned short TaskListPal[256];
-# 11 "main.c" 2
+# 15 "main.c" 2
 # 1 "temp.h" 1
 # 22 "temp.h"
 extern const unsigned short tempTiles[1920];
@@ -285,11 +319,11 @@ extern const unsigned short tempMap[4096];
 
 
 extern const unsigned short tempPal[256];
-# 12 "main.c" 2
+# 16 "main.c" 2
 # 1 "tempCollision.h" 1
 # 20 "tempCollision.h"
 extern const unsigned short tempCollisionBitmap[262144];
-# 13 "main.c" 2
+# 17 "main.c" 2
 
 
 void initialize();

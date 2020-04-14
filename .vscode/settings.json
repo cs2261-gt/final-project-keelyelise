@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "startscreen.h": "c",
+        "humanlib.h": "c",
+        "instructionsscreen.h": "c",
+        "mylib.h": "c"
+    }
+}
