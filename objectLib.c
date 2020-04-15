@@ -5,24 +5,222 @@
 #include "myLib.h"
 #include "tempCollision.h"
 
+int shadowCount;
+
 
 void initObjects() {
-    for (int i = 0; i < OBJECTCOUNT; i++) {
-        objects[i].type = BLOCK;
-        objects[i].width = 8;
-        objects[i].height = 8;
-        objects[i].index = i + 2;
-    }
-    objects[0].worldRow = 70;
-    objects[0].worldCol = 230;
-    objects[0].permRow = 70;
-    objects[0].permCol = 230;
-    objects[0].level = 0; //Blue block is on the ground
-    objects[1].worldRow = 140;
-    objects[1].worldCol = 340;
-    objects[1].permRow = 140;
-    objects[1].permCol = 340;
-    objects[1].level = 1; //White block is higher up
+
+    shadowCount = 14;
+
+    //Fertilizer
+    objects[0].type = FERTILIZER;
+    objects[0].width = 32;
+    objects[0].height = 16;
+    //objects[0].index = 2;
+    objects[0].worldRow = 170;
+    objects[0].worldCol = 380;
+    objects[0].permRow = 170;
+    objects[0].permCol = 380;
+    objects[0].level = 0;
+    objects[0].shape = ATTR0_WIDE;
+    objects[0].size = ATTR1_MEDIUM;
+    objects[0].spriteCol = 24;
+    objects[0].spriteRow = 0;
+
+    //Sprinkler
+    objects[1].type = SPRINKLER;
+    objects[1].width = 8;
+    objects[1].height = 8;
+    //objects[1].index = 3;
+    objects[1].worldRow = 130;
+    objects[1].worldCol = 590;
+    objects[1].permRow = 130;
+    objects[1].permCol = 590;
+    objects[1].level = 0;
+    objects[1].shape = ATTR0_SQUARE;
+    objects[1].size = ATTR1_TINY;
+    objects[1].spriteCol = 28;
+    objects[1].spriteRow = 1;
+
+    //Hat
+    objects[2].type = HAT;
+    objects[2].width = 16;
+    objects[2].height = 8;
+    //objects[2].index = 4;
+    objects[2].worldRow = human.worldRow - 1;
+    objects[2].worldCol = human.worldCol;
+    objects[2].permRow = human.worldRow - 1;
+    objects[2].permCol = human.worldCol;
+    objects[2].level = 1;
+    objects[2].shape = ATTR0_WIDE;
+    objects[2].size = ATTR1_TINY;
+    objects[2].spriteCol = 28;
+    objects[2].spriteRow = 0;
+
+    //Sun hat
+    objects[3].type = SUNHAT;
+    objects[3].width = 16;
+    objects[3].height = 8;
+    //objects[3].index = 5;
+    objects[3].worldRow = 80;
+    objects[3].worldCol = 880;
+    objects[3].permRow = 80;
+    objects[3].permCol = 880;
+    objects[3].level = 1;
+    objects[3].shape = ATTR0_WIDE;
+    objects[3].size = ATTR1_TINY;
+    objects[3].spriteCol = 30;
+    objects[3].spriteRow = 0;
+
+    //Carrot
+    objects[4].type = CARROT;
+    objects[4].width = 8;
+    objects[4].height = 8;
+    //objects[4].index = 6;
+    objects[4].worldRow = 120;
+    objects[4].worldCol = 500;
+    objects[4].permRow = 120;
+    objects[4].permCol = 500;
+    objects[4].level = 0;
+    objects[4].shape = ATTR0_SQUARE;
+    objects[4].size = ATTR1_TINY;
+    objects[4].spriteCol = 29;
+    objects[4].spriteRow = 1;
+
+    //Sandwich
+    objects[5].type = SANDWICH;
+    objects[5].width = 8;
+    objects[5].height = 8;
+    //objects[5].index = 7;
+    objects[5].worldRow = 150;
+    objects[5].worldCol = 215;
+    objects[5].permRow = 150;
+    objects[5].permCol = 215;
+    objects[5].level = 1;
+    objects[5].shape = ATTR0_SQUARE;
+    objects[5].size = ATTR1_TINY;
+    objects[5].spriteCol = 27;
+    objects[5].spriteRow = 2;
+
+    //Thermos
+    objects[6].type = THERMOS;
+    objects[6].width = 8;
+    objects[6].height = 16;
+    //objects[6].index = 8;
+    objects[6].worldRow = 100;
+    objects[6].worldCol = 880;
+    objects[6].permRow = 100;
+    objects[6].permCol = 880;
+    objects[6].level = 1;
+    objects[6].shape = ATTR0_TALL;
+    objects[6].size = ATTR1_TINY;
+    objects[6].spriteCol = 28;
+    objects[6].spriteRow = 2;
+
+    //Apple
+    objects[7].type = APPLE;
+    objects[7].width = 8;
+    objects[7].height = 8;
+    //objects[7].index = 9;
+    objects[7].worldRow = 170;
+    objects[7].worldCol = 230;
+    objects[7].permRow = 170;
+    objects[7].permCol = 230;
+    objects[7].level = 1;
+    objects[7].shape = ATTR0_SQUARE;
+    objects[7].size = ATTR1_TINY;
+    objects[7].spriteCol = 27;
+    objects[7].spriteRow = 3;
+
+    //Jam
+    objects[8].type = JAM;
+    objects[8].width = 8;
+    objects[8].height = 8;
+    //objects[8].index = 10;
+    objects[8].worldRow = 120;
+    objects[8].worldCol = 880;
+    objects[8].permRow = 120;
+    objects[8].permCol = 880;
+    objects[8].level = 1;
+    objects[8].shape = ATTR0_SQUARE;
+    objects[8].size = ATTR1_TINY;
+    objects[8].spriteCol = 29;
+    objects[8].spriteRow = 2;
+
+    //Keys
+    objects[9].type = KEYS;
+    objects[9].width = 8;
+    objects[9].height = 8;
+    //objects[9].index = 11;
+    objects[9].worldRow = human.worldRow + 40;
+    objects[9].worldCol = human.worldCol + 19;
+    objects[9].permRow = human.worldRow + 40;
+    objects[9].permCol = human.worldCol + 19;
+    objects[9].level = 1;
+    objects[9].shape = ATTR0_SQUARE;
+    objects[9].size = ATTR1_TINY;
+    objects[9].spriteCol = 29;
+    objects[9].spriteRow = 3;
+
+    //Front gate
+    objects[10].type = FRONTGATE;
+    objects[10].width = 8;
+    objects[10].height = 32;
+    //objects[10].index = 12;
+    objects[10].worldRow = 112;
+    objects[10].worldCol = 416;
+    objects[10].permRow = 112;
+    objects[10].permCol = 416;
+    objects[10].level = 0;
+    objects[10].shape = ATTR0_TALL;
+    objects[10].size = ATTR1_SMALL;
+    objects[10].spriteCol = 24;
+    objects[10].spriteRow = 2;
+
+    //Back gate
+    objects[11].type = BACKGATE;
+    objects[11].width = 8;
+    objects[11].height = 32;
+    //objects[11].index = 13;
+    objects[11].worldRow = 0;
+    objects[11].worldCol = 621;
+    objects[11].permRow = 0;
+    objects[11].permCol = 621;
+    objects[11].level = 0;
+    objects[11].shape = ATTR0_TALL;
+    objects[11].size = ATTR1_SMALL;
+    objects[11].spriteCol = 24;
+    objects[11].spriteRow = 2;
+
+    //Bread
+    objects[12].type = BREAD;
+    objects[12].width = 16;
+    objects[12].height = 8;
+    //objects[12].index = 14;
+    objects[12].worldRow = 140;
+    objects[12].worldCol = 880;
+    objects[12].permRow = 140;
+    objects[12].permCol = 880;
+    objects[12].level = 1;
+    objects[12].shape = ATTR0_WIDE;
+    objects[12].size = ATTR1_TINY;
+    objects[12].spriteCol = 30;
+    objects[12].spriteRow = 2;
+
+    //Pen
+    objects[13].type = PEN;
+    objects[13].width = 8;
+    objects[13].height = 8;
+    //objects[13].index = 15;
+    objects[13].worldRow = 160;
+    objects[13].worldCol = 880;
+    objects[13].permRow = 160;
+    objects[13].permCol = 880;
+    objects[13].level = 1;
+    objects[13].shape = ATTR0_SQUARE;
+    objects[13].size = ATTR1_TINY;
+    objects[13].spriteCol = 30;
+    objects[13].spriteRow = 3;
 }
 
 void updateObjects() {
@@ -38,23 +236,21 @@ void updateObjects() {
     for (int i = 0; i < OBJECTCOUNT; i++) {
         //If the object is not currently grabbed
         if (objects[i].grabbed == 0) {
-            objects[i].screenRow = objects[i].worldRow - voff;
-            objects[i].screenCol = objects[i].worldCol - hoff;
-            if (BUTTON_HELD(BUTTON_R)) {
-                if ((BUTTON_HELD(BUTTON_L)) && (objects[i].level == 0)) { //If the object is on the ground and the goose has ducked
-                    if (collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX - 5), (goose.worldRow + goose.beakY), beakWidth + 5, beakHeight)) {
+            int coll = collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX - 5), (goose.worldRow + goose.beakY), beakWidth + 5, beakHeight);
+            if (coll) {
+                drawCollision(&(objects[i]));
+                if (BUTTON_HELD(BUTTON_R)) {
+                    if ((BUTTON_HELD(BUTTON_L)) && (objects[i].level == 0)) {
                         goose.grabbing = 1;
                         objects[i].grabbed = 1;
-                    }
-                } else if ((goose.state == STAND) && (objects[i].level == 1)) { //If the object is higher up and the goose is standing
-                    if (collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX), (goose.worldRow + goose.beakY), beakWidth, beakHeight)) {
+                    }  else if ((goose.state == STAND) && (objects[i].level == 1)) {
                         goose.grabbing = 1;
                         objects[i].grabbed = 1;
                     }
                 }
             }
             objects[i].screenRow = objects[i].worldRow - voff;
-            objects[i].screenCol = objects[i].worldCol - hoff;
+            objects[i].screenCol = objects[i].worldCol - gooseHoff;
         } else { //If the object is currently grabbed
             if (BUTTON_HELD(BUTTON_R)) { //Drop the object
                 objects[i].grabbed = 0;
@@ -74,18 +270,36 @@ void updateObjects() {
             }
             
         }
+
+        if ((objects[i].type == PEN) && (objects[i].grabbed)) {
+            tasks = -1;
+        }
     }
 }
 
 
 void drawObjects() {
     for (int i = 0; i < OBJECTCOUNT; i++) {
-        if ((overallHoff > objects[i].hoff) && (overallHoff > hoff) && (objects[i].grabbed == 0)) {
-            shadowOAM[objects[i].index].attr0 =ATTR0_HIDE;
-        } else {
-            shadowOAM[objects[i].index].attr0 = objects[i].screenRow | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_SQUARE;
-        }
-        shadowOAM[objects[i].index].attr1 = objects[i].screenCol | ATTR1_TINY;
-        shadowOAM[objects[i].index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(i, 20);
+        // if ((overallHoff > objects[i].hoff) && (overallHoff > hoff) && (objects[i].grabbed == 0)) {
+        //     shadowOAM[objects[i].index].attr0 = ATTR0_HIDE;
+        // } else {
+        //     shadowOAM[objects[i].index].attr0 = (ROWMASK & objects[i].screenRow) | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_SQUARE;
+        // }
+        shadowOAM[i + 2].attr0 = (ROWMASK & objects[i].screenRow) | ATTR0_REGULAR | ATTR0_4BPP | objects[i].shape;
+        shadowOAM[i + 2].attr1 = (COLMASK & objects[i].screenCol) | objects[i].size;
+        shadowOAM[i + 2].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(objects[i].spriteCol, objects[i].spriteRow);
     }
+}
+
+void drawCollision(OBJECT* o) {
+    int row = (o -> worldRow) + ((o -> height) / 2 - 4);
+    int col = (o -> worldCol) + ((o -> width) / 2 - 4);
+    shadowOAM[shadowCount].attr0 = row | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_SQUARE;
+    shadowOAM[shadowCount].attr1 = col | ATTR1_TINY;
+    shadowOAM[shadowCount].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(31, 3);
+    shadowCount++;
+}
+
+void checkTasks() {
+
 }

@@ -1,28 +1,28 @@
 
-//{{BLOCK(goose)
+//{{BLOCK(taskSprites)
 
 //======================================================================
 //
-//	goose, 256x256@4, 
+//	taskSprites, 256x256@4, 
 //	+ palette 256 entries, not compressed
 //	+ 1024 tiles not compressed
 //	Total size: 512 + 32768 = 33280
 //
-//	Time-stamp: 2020-04-14, 16:57:03
+//	Time-stamp: 2020-04-14, 22:05:19
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
 
-#ifndef GRIT_GOOSE_H
-#define GRIT_GOOSE_H
+#ifndef GRIT_TASKSPRITES_H
+#define GRIT_TASKSPRITES_H
 
-#define gooseTilesLen 32768
-extern const unsigned short gooseTiles[16384];
+#define taskSpritesTilesLen 32768
+extern const unsigned short taskSpritesTiles[16384];
 
-#define goosePalLen 512
-extern const unsigned short goosePal[256];
+#define taskSpritesPalLen 512
+extern const unsigned short taskSpritesPal[256];
 
-#endif // GRIT_GOOSE_H
+#endif // GRIT_TASKSPRITES_H
 
-//}}BLOCK(goose)
+//}}BLOCK(taskSprites)

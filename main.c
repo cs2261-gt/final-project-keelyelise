@@ -12,6 +12,7 @@
 #include "instructionsScreen.h"
 #include "sprites.h"
 #include "TaskList.h"
+#include "taskSprites.h"
 #include "temp.h" //remove later
 #include "tempCollision.h" //remove later
 
@@ -29,6 +30,7 @@ void goToWin();
 void win();
 void goToTask();
 void task();
+void drawTaskList();
 
 //States
 enum {START, INSTRUCTIONS, GAME, PAUSE, WIN, TASK};
@@ -123,6 +125,10 @@ void instructions() {
 
 void goToGame() {
     REG_DISPCTL = MODE0 | BG0_ENABLE | SPRITE_ENABLE;
+
+    hideSprites();
+    DMANow(3, shadowOAM, OAM, 512);
+    
     //Add game background tiles and map to memory
     DMANow(3, tempTiles, &CHARBLOCK[1], tempTilesLen / 2);
     DMANow(3, tempMap, &SCREENBLOCK[16], 512 * 32);
@@ -130,7 +136,6 @@ void goToGame() {
     //Add game sprite palette and tiles to memory
     DMANow(3, goosePal, SPRITEPALETTE, 256);
     DMANow(3, gooseTiles, &CHARBLOCK[4], gooseTilesLen / 2);
-    //DMANow(3, gardenerTiles, &CHARBLOCK[5], gardenerTilesLen / 2);
     state = GAME;
 }
 
@@ -184,15 +189,53 @@ void win() {
 }
 
 void goToTask() {
-    REG_DISPCTL = MODE0 | BG1_ENABLE;
+    REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
+
+    hideSprites();
+    DMANow(3, shadowOAM, OAM, 512);
+
     //Add task list tiles and map to memory
     DMANow(3, TaskListTiles, &CHARBLOCK[0], TaskListTilesLen / 2);
     DMANow(3, TaskListMap, &SCREENBLOCK[28], 512 * 2);
+    //Add task list sprite palette and tiles to memory
+    DMANow(3, taskSpritesPal, SPRITEPALETTE, 256);
+    DMANow(3, taskSpritesTiles, &CHARBLOCK[4], taskSpritesTilesLen / 2);
     state = TASK;
 }
 
 void task() {
+    drawTaskList();
+
+    //Add shadowOAM to OAM
+    waitForVBlank();
+    DMANow(3, shadowOAM, OAM, 512);
+
     if (BUTTON_PRESSED(BUTTON_B)) {
         goToGame();
+    }
+}
+
+void drawTaskList() {
+    int count = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 7; j++) {
+            shadowOAM[count].attr0 = (30 + (i * 16)) | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+            shadowOAM[count].attr1 = (10 + (j * 32)) | ATTR1_MEDIUM;
+            if ((4 - i) < tasks) {
+                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((j * 4), (i * 2));
+            } else {
+                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((j * 4), ((i * 2) + 10));
+            }
+            count++;
+        }
+    }
+    if (tasks < 0) {
+        shadowOAM[count].attr0 = 110 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[count].attr1 = 10 | ATTR1_LARGE;
+        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(0, 20);
+        count++;
+        shadowOAM[count].attr0 = 110 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[count].attr1 = 74 | ATTR1_LARGE;
+        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(8, 20);
     }
 }

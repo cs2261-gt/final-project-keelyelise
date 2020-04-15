@@ -24,8 +24,11 @@ typedef struct {
 } GOOSE;
 
 
+extern GOOSE goose;
+
+
 enum {LEFT, RIGHT, BACK, FORWARD};
-enum {HONK, IDLE, WALK};
+enum {IDLE, WALK};
 enum {DUCK, STAND, SWIM};
 
 
@@ -46,18 +49,29 @@ typedef struct {
     int width;
     int height;
     int level;
-    int index;
     int grabbed;
     int hoff;
+    int spriteCol;
+    int spriteRow;
+    int shape;
+    int size;
 } OBJECT;
 
 
-enum {BLOCK};
+
+
+
+extern OBJECT objects[14];
+
+
+enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
 
 
 void initObjects();
 void updateObjects();
 void drawObjects();
+void drawCollision(OBJECT* o);
+void checkTasks();
 # 3 "gooseLib.c" 2
 # 1 "humanLib.h" 1
 
@@ -76,6 +90,9 @@ typedef struct {
 } HUMAN;
 
 
+extern HUMAN human;
+
+
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
@@ -91,10 +108,6 @@ void drawHuman();
 
 
 
-
-extern GOOSE goose;
-extern HUMAN human;
-extern OBJECT objects[2];
 extern int tasks;
 extern int cheat;
 extern int voff;
@@ -304,7 +317,7 @@ void updateGoose() {
             } else {
                 goose.beakX = 8;
             }
-            if ((hoff > 0) && (goose.screenCol < (240 / 2))) {
+            if ((hoff > 0)) {
                 hoff--;
                 gooseHoff--;
                 overallHoff--;
@@ -315,19 +328,21 @@ void updateGoose() {
         if ((goose.worldCol < (1024 - goose.width))
         && tempCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]
         && tempCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]) {
-            goose.worldCol += goose.cdel;
-            goose.dir = RIGHT;
-            goose.anistate = WALK;
-            if (goose.state == DUCK) {
-                goose.beakY = 14;
-                goose.beakX = 22;
-            } else {
-                goose.beakX = 13;
-            }
-            if ((hoff < (1024 - 240 - 1)) && (overallHoff < (1024 - 240 - 1)) && (goose.screenCol > (240 / 2))) {
-                hoff++;
-                gooseHoff++;
-                overallHoff++;
+            if (tasks < 5 || goose.worldCol < 390) {
+                goose.worldCol += goose.cdel;
+                goose.dir = RIGHT;
+                goose.anistate = WALK;
+                if (goose.state == DUCK) {
+                    goose.beakY = 14;
+                    goose.beakX = 22;
+                } else {
+                    goose.beakX = 13;
+                }
+                if ((hoff < (1024 - 240 - 1)) && (overallHoff < (1024 - 240 - 1)) && (goose.screenCol > (240 / 2))) {
+                    hoff++;
+                    gooseHoff++;
+                    overallHoff++;
+                }
             }
         }
     }
@@ -354,9 +369,9 @@ void drawGoose() {
             }
         }
         if (goose.anistate == IDLE) {
-            shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((4 + (goose.state * 16)))) | ((0)<<12);
+            shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((goose.state * 12))) | ((0)<<12);
         } else {
-            shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((8 + (goose.state * 16) + (goose.aninum * 4)))) | ((0)<<12);
+            shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((4 + (goose.state * 12) + (goose.aninum * 4)))) | ((0)<<12);
         }
     } else {
         shadowOAM[goose.index].attr2 = (((16))*32+((goose.dir * 8 + 4))) | ((0)<<12);

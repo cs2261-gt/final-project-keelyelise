@@ -157,7 +157,7 @@ extern GOOSE goose;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
-enum {HONK, IDLE, WALK};
+enum {IDLE, WALK};
 enum {DUCK, STAND, SWIM};
 
 
@@ -178,19 +178,22 @@ typedef struct {
     int width;
     int height;
     int level;
-    int index;
     int grabbed;
     int hoff;
+    int spriteCol;
+    int spriteRow;
+    int shape;
+    int size;
 } OBJECT;
 
 
 
 
 
-extern OBJECT objects[2];
+extern OBJECT objects[14];
 
 
-enum {BLOCK};
+enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
 
 
 void initObjects();
@@ -310,6 +313,13 @@ extern const unsigned short TaskListMap[1024];
 
 extern const unsigned short TaskListPal[256];
 # 15 "main.c" 2
+# 1 "taskSprites.h" 1
+# 21 "taskSprites.h"
+extern const unsigned short taskSpritesTiles[16384];
+
+
+extern const unsigned short taskSpritesPal[256];
+# 16 "main.c" 2
 # 1 "temp.h" 1
 # 22 "temp.h"
 extern const unsigned short tempTiles[1920];
@@ -319,11 +329,11 @@ extern const unsigned short tempMap[4096];
 
 
 extern const unsigned short tempPal[256];
-# 16 "main.c" 2
+# 17 "main.c" 2
 # 1 "tempCollision.h" 1
 # 20 "tempCollision.h"
 extern const unsigned short tempCollisionBitmap[262144];
-# 17 "main.c" 2
+# 18 "main.c" 2
 
 
 void initialize();
@@ -339,6 +349,7 @@ void goToWin();
 void win();
 void goToTask();
 void task();
+void drawTaskList();
 
 
 enum {START, INSTRUCTIONS, GAME, PAUSE, WIN, TASK};
@@ -434,13 +445,16 @@ void instructions() {
 void goToGame() {
     (*(unsigned short *)0x4000000) = 0 | (1<<8) | (1<<12);
 
+    hideSprites();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
+
     DMANow(3, tempTiles, &((charblock *)0x6000000)[1], 3840 / 2);
     DMANow(3, tempMap, &((screenblock *)0x6000000)[16], 512 * 32);
 
 
     DMANow(3, goosePal, ((unsigned short *)0x5000200), 256);
     DMANow(3, gooseTiles, &((charblock *)0x6000000)[4], 32768 / 2);
-
     state = GAME;
 }
 
@@ -494,15 +508,53 @@ void win() {
 }
 
 void goToTask() {
-    (*(unsigned short *)0x4000000) = 0 | (1<<9);
+    (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
+
+    hideSprites();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
 
     DMANow(3, TaskListTiles, &((charblock *)0x6000000)[0], 1088 / 2);
     DMANow(3, TaskListMap, &((screenblock *)0x6000000)[28], 512 * 2);
+
+    DMANow(3, taskSpritesPal, ((unsigned short *)0x5000200), 256);
+    DMANow(3, taskSpritesTiles, &((charblock *)0x6000000)[4], 32768 / 2);
     state = TASK;
 }
 
 void task() {
+    drawTaskList();
+
+
+    waitForVBlank();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
     if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1))))) {
         goToGame();
+    }
+}
+
+void drawTaskList() {
+    int count = 0;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 7; j++) {
+            shadowOAM[count].attr0 = (30 + (i * 16)) | (0<<13) | (0<<8) | (1<<14);
+            shadowOAM[count].attr1 = (10 + (j * 32)) | (2<<14);
+            if ((4 - i) < tasks) {
+                shadowOAM[count].attr2 = ((0)<<12) | (((i * 2))*32+((j * 4)));
+            } else {
+                shadowOAM[count].attr2 = ((0)<<12) | ((((i * 2) + 10))*32+((j * 4)));
+            }
+            count++;
+        }
+    }
+    if (tasks < 0) {
+        shadowOAM[count].attr0 = 110 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[count].attr1 = 10 | (3<<14);
+        shadowOAM[count].attr2 = ((0)<<12) | ((20)*32+(0));
+        count++;
+        shadowOAM[count].attr0 = 110 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[count].attr1 = 74 | (3<<14);
+        shadowOAM[count].attr2 = ((0)<<12) | ((20)*32+(8));
     }
 }

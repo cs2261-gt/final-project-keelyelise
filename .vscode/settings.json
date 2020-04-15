@@ -3,6 +3,7 @@
         "startscreen.h": "c",
         "humanlib.h": "c",
         "instructionsscreen.h": "c",
-        "mylib.h": "c"
+        "mylib.h": "c",
+        "tempcollision.h": "c"
     }
 }

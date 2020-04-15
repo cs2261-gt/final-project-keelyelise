@@ -161,7 +161,7 @@ extern GOOSE goose;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
-enum {HONK, IDLE, WALK};
+enum {IDLE, WALK};
 enum {DUCK, STAND, SWIM};
 
 
@@ -182,24 +182,30 @@ typedef struct {
     int width;
     int height;
     int level;
-    int index;
     int grabbed;
     int hoff;
+    int spriteCol;
+    int spriteRow;
+    int shape;
+    int size;
 } OBJECT;
 
 
 
 
 
-extern OBJECT objects[2];
+extern OBJECT objects[14];
+extern int shadowCount;
 
 
-enum {BLOCK};
+enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
 
 
 void initObjects();
 void updateObjects();
 void drawObjects();
+void drawCollision(OBJECT* o);
+void checkTasks();
 # 6 "game.c" 2
 # 1 "humanLib.h" 1
 
@@ -234,7 +240,7 @@ void drawHuman();
 
 GOOSE goose;
 HUMAN human;
-OBJECT objects[2];
+OBJECT objects[14];
 int tasks;
 int cheat;
 int voff;
@@ -261,6 +267,7 @@ void initGame() {
 }
 
 void updateGame() {
+    shadowCount = 14;
     updateGoose();
     updateHuman();
     updateObjects();

@@ -23,7 +23,7 @@ extern GOOSE goose;
 
 //Enums
 enum {LEFT, RIGHT, BACK, FORWARD}; //direction
-enum {HONK, IDLE, WALK}; //goose anistate
+enum {IDLE, WALK}; //goose anistate
 enum {DUCK, STAND, SWIM}; //goose state
 
 //Methods

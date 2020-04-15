@@ -35,6 +35,7 @@ void initGame() {
 }
 
 void updateGame() {
+    shadowCount = 14;
     updateGoose();
     updateHuman();
     updateObjects();

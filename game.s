@@ -77,26 +77,29 @@ updateGame:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
+	mov	r1, #14
+	ldr	r2, .L13
 	push	{r4, lr}
-	ldr	r3, .L13
-	mov	lr, pc
-	bx	r3
 	ldr	r3, .L13+4
+	str	r1, [r2]
 	mov	lr, pc
 	bx	r3
 	ldr	r3, .L13+8
 	mov	lr, pc
 	bx	r3
-	ldr	r2, .L13+12
+	ldr	r3, .L13+12
+	mov	lr, pc
+	bx	r3
+	ldr	r2, .L13+16
 	ldr	r3, [r2]
 	cmp	r3, #256
 	ble	.L7
-	ldr	ip, .L13+16
+	ldr	ip, .L13+20
 	ldr	r1, [ip]
 	cmp	r1, #17
 	ble	.L12
 .L8:
-	ldr	r2, .L13+20
+	ldr	r2, .L13+24
 	ldr	r3, [r2]
 	cmp	r3, #512
 	subgt	r3, r3, #512
@@ -111,7 +114,7 @@ updateGame:
 .L7:
 	cmp	r3, #0
 	bgt	.L8
-	ldr	ip, .L13+16
+	ldr	ip, .L13+20
 	ldr	r1, [ip]
 	cmp	r1, #16
 	ble	.L8
@@ -141,6 +144,7 @@ updateGame:
 .L14:
 	.align	2
 .L13:
+	.word	shadowCount
 	.word	updateGoose
 	.word	updateHuman
 	.word	updateObjects
@@ -194,7 +198,7 @@ drawGame:
 	.comm	voff,4,4
 	.comm	cheat,4,4
 	.comm	tasks,4,4
-	.comm	objects,104,4
+	.comm	objects,896,4
 	.comm	human,44,4
 	.comm	goose,64,4
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

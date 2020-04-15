@@ -86,7 +86,7 @@ void updateGoose() {
             } else {
                 goose.beakX = 8;
             }
-            if ((hoff > 0) && (goose.screenCol < (SCREENWIDTH / 2))) {
+            if ((hoff > 0)) { // NEEDS TO BE ADJUSTED
                 hoff--;
                 gooseHoff--;
                 overallHoff--;
@@ -97,19 +97,21 @@ void updateGoose() {
         if ((goose.worldCol < (WORLDWIDTH - goose.width))
         && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow), WORLDWIDTH)] 
         && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
-            goose.worldCol += goose.cdel;
-            goose.dir = RIGHT;
-            goose.anistate = WALK;
-            if (goose.state == DUCK) {
-                goose.beakY = 14;
-                goose.beakX = 22;
-            } else {
-                goose.beakX = 13;
-            }
-            if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
-                hoff++;
-                gooseHoff++;
-                overallHoff++;
+            if (tasks < 5 || goose.worldCol < 390) {
+                goose.worldCol += goose.cdel;
+                goose.dir = RIGHT;
+                goose.anistate = WALK;
+                if (goose.state == DUCK) {
+                    goose.beakY = 14;
+                    goose.beakX = 22;
+                } else {
+                    goose.beakX = 13;
+                }
+                if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
+                    hoff++;
+                    gooseHoff++;
+                    overallHoff++;
+                }
             }
         }
     }
@@ -136,9 +138,9 @@ void drawGoose() {
             }
         }
         if (goose.anistate == IDLE) {
-            shadowOAM[goose.index].attr2 = ATTR2_TILEID((4 + (goose.state * 16)), (4 * goose.dir)) | ATTR2_PALROW(0);
+            shadowOAM[goose.index].attr2 = ATTR2_TILEID((goose.state * 12), (4 * goose.dir)) | ATTR2_PALROW(0);
         } else {
-            shadowOAM[goose.index].attr2 = ATTR2_TILEID((8 + (goose.state * 16) + (goose.aninum * 4)), (4 * goose.dir)) | ATTR2_PALROW(0);
+            shadowOAM[goose.index].attr2 = ATTR2_TILEID((4 + (goose.state * 12) + (goose.aninum * 4)), (4 * goose.dir)) | ATTR2_PALROW(0);
         }
     } else {
         shadowOAM[goose.index].attr2 = ATTR2_TILEID((goose.dir * 8 + 4), (16)) | ATTR2_PALROW(0);
