@@ -1,3 +1,31 @@
+/*
+
+So far, the goose can pick up objects and move them around. I have begun implementing
+human movement but have commented it out as it is not quite working properly. There are
+quite a few bugs, and every time I fix something, a new one appears. Right now, I have
+run into an issue where the objects won't move all the way to the left or top when the 
+gooseis carrying them. Also, when one object is picked up, another one appears in its
+place. This began happening when I tried to fix the objects jumping back to their original
+locations when the goose placed them down. In addition, the objects are appearing in
+multiple screenblocks when they should only be appearing in one. I am working on this
+with Marie, but we haven't figured it out yet. Since the objects won't go into the top
+left corner, the goose can't put the necessary objects onto the picnic blanket, but the
+logic for this task exists. 
+
+To play, the goose first needs to pick up the fertilizer bag (which, when the human is
+working properly, will cause the human to see this happen and open the gate). After this,
+the goose must pick up the sprinkler, which would turn it on. Then the goose must steal the
+gardener's hat, making him wear his sun hat. Next, the goose should bring a carrot, apple,
+sandwich, thermos, and jam to the picnic blanket. Lastly, the goose should steal the
+gardener's keys and then leave out the back gate. When each task is completed, it is crossed
+off on the task list.
+
+I apologize for how buggy the game is. I promise that I have spent a lot of time on it this
+week, but I just keep creating more bugs and messing up old progress I had made.
+
+*/
+
+
 #include "myLib.h"
 #include "game.h"
 #include "gooseLib.h"
@@ -150,8 +178,11 @@ void game() {
     if (BUTTON_PRESSED(BUTTON_START)) {
         goToPause();
     }
-    if (BUTTON_PRESSED(BUTTON_B)) {
+    if (BUTTON_PRESSED(BUTTON_A)) {
         goToTask();
+    }
+    if (tasks == 0) {
+        goToWin();
     }
 }
 
@@ -168,9 +199,6 @@ void goToPause() {
 void pause() {
     if (BUTTON_PRESSED(BUTTON_START)) {
         goToGame();
-    }
-    if (BUTTON_PRESSED(BUTTON_SELECT)) {
-        goToWin();
     }
 }
 
@@ -210,7 +238,7 @@ void task() {
     waitForVBlank();
     DMANow(3, shadowOAM, OAM, 512);
 
-    if (BUTTON_PRESSED(BUTTON_B)) {
+    if (BUTTON_PRESSED(BUTTON_A)) {
         goToGame();
     }
 }

@@ -4,6 +4,7 @@
         "humanlib.h": "c",
         "instructionsscreen.h": "c",
         "mylib.h": "c",
-        "tempcollision.h": "c"
+        "tempcollision.h": "c",
+        "objectlib.h": "c"
     }
 }

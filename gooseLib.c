@@ -5,8 +5,13 @@
 #include "myLib.h"
 #include "tempCollision.h"
 
+int honkTimer;
+int gateOpen;
+
 
 void initGoose() {
+    honkTimer = 0;
+
     goose.worldRow = 64;
     goose.worldCol = 104;
     goose.width = 32;
@@ -98,22 +103,35 @@ void updateGoose() {
         && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow), WORLDWIDTH)] 
         && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
             if (tasks < 5 || goose.worldCol < 390) {
-                goose.worldCol += goose.cdel;
-                goose.dir = RIGHT;
-                goose.anistate = WALK;
-                if (goose.state == DUCK) {
-                    goose.beakY = 14;
-                    goose.beakX = 22;
-                } else {
-                    goose.beakX = 13;
-                }
-                if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
-                    hoff++;
-                    gooseHoff++;
-                    overallHoff++;
+                if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
+                    goose.worldCol += goose.cdel;
+                    goose.dir = RIGHT;
+                    goose.anistate = WALK;
+                    if (goose.state == DUCK) {
+                        goose.beakY = 14;
+                        goose.beakX = 22;
+                    } else {
+                        goose.beakX = 13;
+                    }
+                    if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
+                        hoff++;
+                        gooseHoff++;
+                        overallHoff++;
+                    }
+                } else if (tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589 && stolenObject.type == KEYS) {
+                    gateOpen = 1;
+                    tasks = 0;
                 }
             }
         }
+    }
+
+    if (BUTTON_PRESSED(BUTTON_B) && (honkTimer == 0)) {
+        honkTimer++;
+    } else if (honkTimer >= 30) {
+        honkTimer = 0;
+    } else if (honkTimer > 0) {
+        honkTimer++;
     }
 
     //Reset goose position

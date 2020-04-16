@@ -25,6 +25,8 @@ typedef struct {
 
 
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
@@ -63,6 +65,9 @@ typedef struct {
 
 extern OBJECT objects[14];
 extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -88,20 +93,36 @@ typedef struct {
     int anistate;
     int index;
     int dir;
+    int anicounter;
+    int workTimer;
+    int aninum;
+    int action;
+    int grabbing;
 } HUMAN;
 
 
 extern HUMAN human;
+extern int walkDir;
+extern int hatTimer;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
 
 
 void initHuman();
 void updateHuman();
 void drawHuman();
+void chase();
+void returnObject();
+void sweat();
+void openFrontGate();
+void openBackGate();
+void turnSprinklerOff();
+void gardening();
+void performCheat();
 # 4 "objectLib.c" 2
 # 1 "game.h" 1
 
@@ -238,11 +259,13 @@ extern const unsigned short tempCollisionBitmap[262144];
 # 7 "objectLib.c" 2
 
 int shadowCount;
+int sprinklerOn;
 
 
 void initObjects() {
 
     shadowCount = 14;
+    sprinklerOn = 0;
 
 
     objects[0].type = FERTILIZER;
@@ -310,7 +333,7 @@ void initObjects() {
     objects[4].height = 8;
 
     objects[4].worldRow = 120;
-    objects[4].worldCol = 500;
+    objects[4].worldCol = 460;
     objects[4].permRow = 120;
     objects[4].permCol = 500;
     objects[4].level = 0;
@@ -325,7 +348,7 @@ void initObjects() {
     objects[5].height = 8;
 
     objects[5].worldRow = 150;
-    objects[5].worldCol = 215;
+    objects[5].worldCol = 180;
     objects[5].permRow = 150;
     objects[5].permCol = 215;
     objects[5].level = 1;
@@ -355,7 +378,7 @@ void initObjects() {
     objects[7].height = 8;
 
     objects[7].worldRow = 170;
-    objects[7].worldCol = 230;
+    objects[7].worldCol = 180;
     objects[7].permRow = 170;
     objects[7].permCol = 230;
     objects[7].level = 1;
@@ -467,36 +490,57 @@ void updateObjects() {
     }
     for (int i = 0; i < 14; i++) {
 
-        if (objects[i].grabbed == 0) {
+        if ((objects[i].grabbed == 0) && (goose.grabbing == 0)) {
             int coll = collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX - 5), (goose.worldRow + goose.beakY), beakWidth + 5, beakHeight);
             if (coll) {
                 drawCollision(&(objects[i]));
-                if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<8)))) {
-                    if (((~((*(volatile unsigned short *)0x04000130)) & ((1<<9)))) && (objects[i].level == 0)) {
-                        goose.grabbing = 1;
-                        objects[i].grabbed = 1;
-                    } else if ((goose.state == STAND) && (objects[i].level == 1)) {
-                        goose.grabbing = 1;
-                        objects[i].grabbed = 1;
+                if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8))))) {
+                    if (!(human.state == STAND && objects[i].type == KEYS)) {
+                        if (((~((*(volatile unsigned short *)0x04000130)) & ((1<<9)))) && (objects[i].level == 0)) {
+                            goose.grabbing = 1;
+                            objects[i].grabbed = 1;
+                            stolenObject = objects[i];
+                        } else if ((goose.state == STAND) && (objects[i].level == 1)) {
+                            goose.grabbing = 1;
+                            objects[i].grabbed = 1;
+                            stolenObject = objects[i];
+                        }
                     }
                 }
             }
             objects[i].screenRow = objects[i].worldRow - voff;
             objects[i].screenCol = objects[i].worldCol - gooseHoff;
         } else {
-            if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<8)))) {
+            if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8))))) {
                 objects[i].grabbed = 0;
                 goose.grabbing = 0;
-            } else {
+                objects[i].worldRow = goose.worldRow + goose.beakY;
+                objects[i].worldCol = goose.worldCol + goose.beakX;
+                objects[i].screenRow = objects[i].worldRow - voff;
+                objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+            } else if (goose.grabbing) {
                 objects[i].hoff = gooseHoff;
                 if (goose.dir == LEFT) {
-                    objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width + 3);
+                    objects[i].worldCol = goose.worldCol + goose.beakX;
                 } else if (goose.dir == RIGHT) {
                     objects[i].worldCol = goose.worldCol + goose.beakX;
                 } else {
-                    objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width / 2);
+                    objects[i].worldCol = goose.worldCol + goose.beakX;
                 }
                 objects[i].worldRow = goose.worldRow + goose.beakY;
+                objects[i].screenRow = objects[i].worldRow - voff;
+                objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+            } else if (human.grabbing) {
+                objects[i].hoff = gooseHoff;
+
+
+
+
+
+
+
+                objects[i].worldCol = human.worldCol + 20;
+                objects[i].worldRow = human.worldRow + 32;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
             }
@@ -505,7 +549,25 @@ void updateObjects() {
 
         if ((objects[i].type == PEN) && (objects[i].grabbed)) {
             tasks = -1;
+        } else if ((objects[i].type == SPRINKLER) && (objects[i].grabbed)) {
+            sprinklerOn = 1;
+            tasks = 3;
+        } else if (objects[i].type == FERTILIZER && objects[i].grabbed) {
+            tasks = 4;
+        } else if (objects[i].type == HAT && objects[i].grabbed) {
+            tasks = 1;
         }
+    }
+    int picnicCol = 32;
+    int picnicRow = 15;
+    int picnicWidth = 69;
+    int picnicHeight = 68;
+    if ((tasks == 2) && collision(objects[4].worldCol, objects[4].worldRow, objects[4].width, objects[4].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[5].worldCol, objects[5].worldRow, objects[5].width, objects[5].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[6].worldCol, objects[6].worldRow, objects[6].width, objects[6].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[7].worldCol, objects[7].worldRow, objects[7].width, objects[7].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[8].worldCol, objects[8].worldRow, objects[8].width, objects[8].height, picnicCol, picnicRow, picnicWidth, picnicHeight)) {
+        tasks == 1;
     }
 }
 
@@ -524,12 +586,12 @@ void drawObjects() {
 }
 
 void drawCollision(OBJECT* o) {
-    int row = (o -> worldRow) + ((o -> height) / 2 - 4);
-    int col = (o -> worldCol) + ((o -> width) / 2 - 4);
-    shadowOAM[shadowCount].attr0 = row | (0<<8) | (0<<13) | (0<<14);
-    shadowOAM[shadowCount].attr1 = col | (0<<14);
-    shadowOAM[shadowCount].attr2 = ((0)<<12) | ((3)*32+(31));
-    shadowCount++;
+
+
+
+
+
+
 }
 
 void checkTasks() {

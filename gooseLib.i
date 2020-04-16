@@ -25,6 +25,8 @@ typedef struct {
 
 
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
@@ -62,6 +64,10 @@ typedef struct {
 
 
 extern OBJECT objects[14];
+extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -87,20 +93,36 @@ typedef struct {
     int anistate;
     int index;
     int dir;
+    int anicounter;
+    int workTimer;
+    int aninum;
+    int action;
+    int grabbing;
 } HUMAN;
 
 
 extern HUMAN human;
+extern int walkDir;
+extern int hatTimer;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
 
 
 void initHuman();
 void updateHuman();
 void drawHuman();
+void chase();
+void returnObject();
+void sweat();
+void openFrontGate();
+void openBackGate();
+void turnSprinklerOff();
+void gardening();
+void performCheat();
 # 4 "gooseLib.c" 2
 # 1 "game.h" 1
 
@@ -236,8 +258,13 @@ int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, i
 extern const unsigned short tempCollisionBitmap[262144];
 # 7 "gooseLib.c" 2
 
+int honkTimer;
+int gateOpen;
+
 
 void initGoose() {
+    honkTimer = 0;
+
     goose.worldRow = 64;
     goose.worldCol = 104;
     goose.width = 32;
@@ -329,22 +356,35 @@ void updateGoose() {
         && tempCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]
         && tempCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]) {
             if (tasks < 5 || goose.worldCol < 390) {
-                goose.worldCol += goose.cdel;
-                goose.dir = RIGHT;
-                goose.anistate = WALK;
-                if (goose.state == DUCK) {
-                    goose.beakY = 14;
-                    goose.beakX = 22;
-                } else {
-                    goose.beakX = 13;
-                }
-                if ((hoff < (1024 - 240 - 1)) && (overallHoff < (1024 - 240 - 1)) && (goose.screenCol > (240 / 2))) {
-                    hoff++;
-                    gooseHoff++;
-                    overallHoff++;
+                if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
+                    goose.worldCol += goose.cdel;
+                    goose.dir = RIGHT;
+                    goose.anistate = WALK;
+                    if (goose.state == DUCK) {
+                        goose.beakY = 14;
+                        goose.beakX = 22;
+                    } else {
+                        goose.beakX = 13;
+                    }
+                    if ((hoff < (1024 - 240 - 1)) && (overallHoff < (1024 - 240 - 1)) && (goose.screenCol > (240 / 2))) {
+                        hoff++;
+                        gooseHoff++;
+                        overallHoff++;
+                    }
+                } else if (tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589 && stolenObject.type == KEYS) {
+                    gateOpen = 1;
+                    tasks = 0;
                 }
             }
         }
+    }
+
+    if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1)))) && (honkTimer == 0)) {
+        honkTimer++;
+    } else if (honkTimer >= 30) {
+        honkTimer = 0;
+    } else if (honkTimer > 0) {
+        honkTimer++;
     }
 
 

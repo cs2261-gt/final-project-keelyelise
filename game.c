@@ -17,6 +17,8 @@ int sb;
 int anicounter;
 int gooseHoff;
 int overallHoff;
+OBJECT stolenObject;
+OBJECT empty;
 
 
 //Methods

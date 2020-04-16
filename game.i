@@ -158,6 +158,8 @@ typedef struct {
 
 
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
@@ -196,6 +198,9 @@ typedef struct {
 
 extern OBJECT objects[14];
 extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -221,20 +226,36 @@ typedef struct {
     int anistate;
     int index;
     int dir;
+    int anicounter;
+    int workTimer;
+    int aninum;
+    int action;
+    int grabbing;
 } HUMAN;
 
 
 extern HUMAN human;
+extern int walkDir;
+extern int hatTimer;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
 
 
 void initHuman();
 void updateHuman();
 void drawHuman();
+void chase();
+void returnObject();
+void sweat();
+void openFrontGate();
+void openBackGate();
+void turnSprinklerOff();
+void gardening();
+void performCheat();
 # 7 "game.c" 2
 
 
@@ -249,6 +270,8 @@ int sb;
 int anicounter;
 int gooseHoff;
 int overallHoff;
+OBJECT stolenObject;
+OBJECT empty;
 
 
 

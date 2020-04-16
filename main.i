@@ -154,6 +154,8 @@ typedef struct {
 
 
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
@@ -191,6 +193,10 @@ typedef struct {
 
 
 extern OBJECT objects[14];
+extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -199,6 +205,8 @@ enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM,
 void initObjects();
 void updateObjects();
 void drawObjects();
+void drawCollision(OBJECT* o);
+void checkTasks();
 # 5 "main.c" 2
 # 1 "humanLib.h" 1
 
@@ -214,20 +222,36 @@ typedef struct {
     int anistate;
     int index;
     int dir;
+    int anicounter;
+    int workTimer;
+    int aninum;
+    int action;
+    int grabbing;
 } HUMAN;
 
 
 extern HUMAN human;
+extern int walkDir;
+extern int hatTimer;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
 
 
 void initHuman();
 void updateHuman();
 void drawHuman();
+void chase();
+void returnObject();
+void sweat();
+void openFrontGate();
+void openBackGate();
+void turnSprinklerOff();
+void gardening();
+void performCheat();
 # 6 "main.c" 2
 # 1 "startScreen.h" 1
 # 22 "startScreen.h"
@@ -469,8 +493,11 @@ void game() {
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
         goToPause();
     }
-    if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1))))) {
+    if ((!(~(oldButtons)&((1<<0))) && (~buttons & ((1<<0))))) {
         goToTask();
+    }
+    if (tasks == 0) {
+        goToWin();
     }
 }
 
@@ -487,9 +514,6 @@ void goToPause() {
 void pause() {
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
         goToGame();
-    }
-    if ((!(~(oldButtons)&((1<<2))) && (~buttons & ((1<<2))))) {
-        goToWin();
     }
 }
 
@@ -529,7 +553,7 @@ void task() {
     waitForVBlank();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
-    if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1))))) {
+    if ((!(~(oldButtons)&((1<<0))) && (~buttons & ((1<<0))))) {
         goToGame();
     }
 }

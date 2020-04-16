@@ -25,6 +25,8 @@ typedef struct {
 
 
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 
 enum {LEFT, RIGHT, BACK, FORWARD};
@@ -62,6 +64,10 @@ typedef struct {
 
 
 extern OBJECT objects[14];
+extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -70,6 +76,8 @@ enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM,
 void initObjects();
 void updateObjects();
 void drawObjects();
+void drawCollision(OBJECT* o);
+void checkTasks();
 # 3 "humanLib.c" 2
 # 1 "humanLib.h" 1
 
@@ -85,20 +93,36 @@ typedef struct {
     int anistate;
     int index;
     int dir;
+    int anicounter;
+    int workTimer;
+    int aninum;
+    int action;
+    int grabbing;
 } HUMAN;
 
 
 extern HUMAN human;
+extern int walkDir;
+extern int hatTimer;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
 
 
 void initHuman();
 void updateHuman();
 void drawHuman();
+void chase();
+void returnObject();
+void sweat();
+void openFrontGate();
+void openBackGate();
+void turnSprinklerOff();
+void gardening();
+void performCheat();
 # 4 "humanLib.c" 2
 # 1 "game.h" 1
 
@@ -234,18 +258,102 @@ int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, i
 extern const unsigned short tempCollisionBitmap[262144];
 # 7 "humanLib.c" 2
 
+int walkDir;
+int hatTimer;
 
 void initHuman() {
-# 19 "humanLib.c"
+    walkDir = -1;
+    hatTimer = 0;
+
+    human.worldRow = 30;
+    human.worldCol = 100;
+    human.bubbleDel = 40;
+    human.bubbleWidth = 112;
+    human.bubbleHeight = 144;
+    human.state = STANDH;
+    human.anistate = IDLEH;
+    human.index = 1;
+    human.dir = FORWARDH;
+    human.anicounter = 0;
+    human.workTimer = 0;
+    human.aninum = 0;
+    human.action = GARDENING;
 }
 
 void updateHuman() {
+    if (human.action == GARDENING) {
+        gardening();
+    } else if (human.action == CHASE) {
+        chase();
+    } else if (human.action == RETURNOBJ) {
+        returnObject();
+    } else if (human.action == SWEAT) {
+        sweat();
+    } else if (human.action == OPENFRONT) {
+        openFrontGate();
+    } else if (human.action == OPENBACK) {
+        openBackGate();
+    } else if (human.action == SPRINKLEROFF) {
+        turnSprinklerOff();
+    } else if (human.action == CHEAT) {
+        performCheat();
+    }
 
+    if (tasks == -1) {
+        human.action == CHEAT;
+    } else if (tasks == 3) {
+        human.action = SWEAT;
+    } else if ((tasks == 4) && sprinklerOn) {
+        human.action == SPRINKLEROFF;
+        turnSprinklerOff();
+    }
 
+    human.screenRow = human.worldRow - voff;
+    human.screenCol = human.worldCol - gooseHoff;
 }
 
 void drawHuman() {
+    shadowOAM[human.index].attr0 = (0xFF & human.screenRow) | (0<<8) | (0<<13) | (2<<14);
+    shadowOAM[human.index].attr1 = (0x1FF & human.screenCol) | (3<<14);
+    if (human.dir == FORWARDH) {
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+((human.state * 8)));
+    } else if (human.dir == BACKH) {
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+(((human.state * 8) + 16)));
+    } else if (human.dir == LEFTH) {
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8))));
+    } else {
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8) + 16)));
+    }
+}
 
+void chase() {
+# 116 "humanLib.c"
+}
 
+void returnObject() {
+# 142 "humanLib.c"
+}
+
+void sweat() {
+# 172 "humanLib.c"
+}
+
+void openFrontGate() {
+# 192 "humanLib.c"
+}
+
+void openBackGate() {
+
+}
+
+void turnSprinklerOff() {
+# 232 "humanLib.c"
+}
+
+void gardening() {
+# 298 "humanLib.c"
+}
+
+void performCheat() {
 
 }

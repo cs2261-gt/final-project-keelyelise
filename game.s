@@ -190,6 +190,8 @@ drawGame:
 	.word	voff
 	.word	hoff
 	.size	drawGame, .-drawGame
+	.comm	empty,64,4
+	.comm	stolenObject,64,4
 	.comm	overallHoff,4,4
 	.comm	gooseHoff,4,4
 	.comm	anicounter,4,4
@@ -199,6 +201,6 @@ drawGame:
 	.comm	cheat,4,4
 	.comm	tasks,4,4
 	.comm	objects,896,4
-	.comm	human,44,4
+	.comm	human,64,4
 	.comm	goose,64,4
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

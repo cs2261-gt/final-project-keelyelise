@@ -20,6 +20,8 @@ typedef struct {
 
 //Variables
 extern GOOSE goose;
+extern int honkTimer;
+extern int gateOpen;
 
 //Enums
 enum {LEFT, RIGHT, BACK, FORWARD}; //direction

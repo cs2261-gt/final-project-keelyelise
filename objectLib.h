@@ -24,6 +24,9 @@ typedef struct {
 //Variables
 extern OBJECT objects[OBJECTCOUNT];
 extern int shadowCount;
+extern OBJECT stolenObject;
+extern OBJECT empty;
+extern int sprinklerOn;
 
 //Enums
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN}; //object types

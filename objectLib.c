@@ -6,11 +6,13 @@
 #include "tempCollision.h"
 
 int shadowCount;
+int sprinklerOn;
 
 
 void initObjects() {
 
     shadowCount = 14;
+    sprinklerOn = 0;
 
     //Fertilizer
     objects[0].type = FERTILIZER;
@@ -78,7 +80,7 @@ void initObjects() {
     objects[4].height = 8;
     //objects[4].index = 6;
     objects[4].worldRow = 120;
-    objects[4].worldCol = 500;
+    objects[4].worldCol = 460;
     objects[4].permRow = 120;
     objects[4].permCol = 500;
     objects[4].level = 0;
@@ -93,7 +95,7 @@ void initObjects() {
     objects[5].height = 8;
     //objects[5].index = 7;
     objects[5].worldRow = 150;
-    objects[5].worldCol = 215;
+    objects[5].worldCol = 180;
     objects[5].permRow = 150;
     objects[5].permCol = 215;
     objects[5].level = 1;
@@ -123,7 +125,7 @@ void initObjects() {
     objects[7].height = 8;
     //objects[7].index = 9;
     objects[7].worldRow = 170;
-    objects[7].worldCol = 230;
+    objects[7].worldCol = 180;
     objects[7].permRow = 170;
     objects[7].permCol = 230;
     objects[7].level = 1;
@@ -235,36 +237,57 @@ void updateObjects() {
     }
     for (int i = 0; i < OBJECTCOUNT; i++) {
         //If the object is not currently grabbed
-        if (objects[i].grabbed == 0) {
+        if ((objects[i].grabbed == 0) && (goose.grabbing == 0)) {
             int coll = collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX - 5), (goose.worldRow + goose.beakY), beakWidth + 5, beakHeight);
             if (coll) {
                 drawCollision(&(objects[i]));
-                if (BUTTON_HELD(BUTTON_R)) {
-                    if ((BUTTON_HELD(BUTTON_L)) && (objects[i].level == 0)) {
-                        goose.grabbing = 1;
-                        objects[i].grabbed = 1;
-                    }  else if ((goose.state == STAND) && (objects[i].level == 1)) {
-                        goose.grabbing = 1;
-                        objects[i].grabbed = 1;
+                if (BUTTON_PRESSED(BUTTON_R)) {
+                    if (!(human.state == STAND && objects[i].type == KEYS)) {
+                        if ((BUTTON_HELD(BUTTON_L)) && (objects[i].level == 0)) {
+                            goose.grabbing = 1;
+                            objects[i].grabbed = 1;
+                            stolenObject = objects[i];
+                        }  else if ((goose.state == STAND) && (objects[i].level == 1)) {
+                            goose.grabbing = 1;
+                            objects[i].grabbed = 1;
+                            stolenObject = objects[i];
+                        }
                     }
                 }
             }
             objects[i].screenRow = objects[i].worldRow - voff;
             objects[i].screenCol = objects[i].worldCol - gooseHoff;
         } else { //If the object is currently grabbed
-            if (BUTTON_HELD(BUTTON_R)) { //Drop the object
+            if (BUTTON_PRESSED(BUTTON_R)) { //Drop the object
                 objects[i].grabbed = 0;
                 goose.grabbing = 0;
-            } else { //Reposition the object based on the goose's beak to carry
+                objects[i].worldRow = goose.worldRow + goose.beakY;
+                objects[i].worldCol = goose.worldCol + goose.beakX;
+                objects[i].screenRow = objects[i].worldRow - voff;
+                objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+            } else if (goose.grabbing) { //Reposition the object based on the goose's beak to carry
                 objects[i].hoff = gooseHoff;
                 if (goose.dir == LEFT) {
-                    objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width + 3);
+                    objects[i].worldCol = goose.worldCol + goose.beakX;
                 } else if (goose.dir == RIGHT) {
                     objects[i].worldCol = goose.worldCol + goose.beakX;
                 } else {
-                    objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width / 2);
+                    objects[i].worldCol = goose.worldCol + goose.beakX;
                 }
                 objects[i].worldRow = goose.worldRow + goose.beakY;
+                objects[i].screenRow = objects[i].worldRow - voff;
+                objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+            } else if (human.grabbing) {
+                objects[i].hoff = gooseHoff;
+                // if (goose.dir == LEFT) {
+                //     objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width + 3);
+                // } else if (goose.dir == RIGHT) {
+                //     objects[i].worldCol = goose.worldCol + goose.beakX;
+                // } else {
+                //     objects[i].worldCol = goose.worldCol + goose.beakX - (objects[i].width / 2);
+                // }
+                objects[i].worldCol = human.worldCol + 20;
+                objects[i].worldRow = human.worldRow + 32;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
             }
@@ -273,7 +296,25 @@ void updateObjects() {
 
         if ((objects[i].type == PEN) && (objects[i].grabbed)) {
             tasks = -1;
+        } else if ((objects[i].type == SPRINKLER) && (objects[i].grabbed)) {
+            sprinklerOn = 1;
+            tasks = 3;
+        } else if (objects[i].type == FERTILIZER && objects[i].grabbed) {
+            tasks = 4;
+        } else if (objects[i].type == HAT && objects[i].grabbed) {
+            tasks = 1;
         }
+    }
+    int picnicCol = 32;
+    int picnicRow = 15;
+    int picnicWidth = 69;
+    int picnicHeight = 68;
+    if ((tasks == 2) && collision(objects[4].worldCol, objects[4].worldRow, objects[4].width, objects[4].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[5].worldCol, objects[5].worldRow, objects[5].width, objects[5].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[6].worldCol, objects[6].worldRow, objects[6].width, objects[6].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[7].worldCol, objects[7].worldRow, objects[7].width, objects[7].height, picnicCol, picnicRow, picnicWidth, picnicHeight)
+    && collision(objects[8].worldCol, objects[8].worldRow, objects[8].width, objects[8].height, picnicCol, picnicRow, picnicWidth, picnicHeight)) {
+        tasks == 1;
     }
 }
 
@@ -292,12 +333,12 @@ void drawObjects() {
 }
 
 void drawCollision(OBJECT* o) {
-    int row = (o -> worldRow) + ((o -> height) / 2 - 4);
-    int col = (o -> worldCol) + ((o -> width) / 2 - 4);
-    shadowOAM[shadowCount].attr0 = row | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_SQUARE;
-    shadowOAM[shadowCount].attr1 = col | ATTR1_TINY;
-    shadowOAM[shadowCount].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(31, 3);
-    shadowCount++;
+    // int row = (o -> worldRow) + ((o -> height) / 2 - 4);
+    // int col = (o -> worldCol) + ((o -> width) / 2 - 4);
+    // shadowOAM[shadowCount].attr0 = row | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_SQUARE;
+    // shadowOAM[shadowCount].attr1 = col | ATTR1_TINY;
+    // shadowOAM[shadowCount].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(31, 3);
+    // shadowCount++;
 }
 
 void checkTasks() {
