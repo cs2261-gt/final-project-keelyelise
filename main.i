@@ -2,6 +2,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "main.c"
+# 29 "main.c"
 # 1 "myLib.h" 1
 
 
@@ -109,7 +110,7 @@ typedef struct{
 
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
-# 2 "main.c" 2
+# 30 "main.c" 2
 # 1 "game.h" 1
 
 
@@ -130,7 +131,7 @@ extern int overallHoff;
 void initGame();
 void updateGame();
 void drawGame();
-# 3 "main.c" 2
+# 31 "main.c" 2
 # 1 "gooseLib.h" 1
 
 typedef struct {
@@ -166,7 +167,7 @@ enum {DUCK, STAND, SWIM};
 void initGoose();
 void updateGoose();
 void drawGoose();
-# 4 "main.c" 2
+# 32 "main.c" 2
 # 1 "objectLib.h" 1
 
 typedef struct {
@@ -207,7 +208,7 @@ void updateObjects();
 void drawObjects();
 void drawCollision(OBJECT* o);
 void checkTasks();
-# 5 "main.c" 2
+# 33 "main.c" 2
 # 1 "humanLib.h" 1
 
 typedef struct {
@@ -252,7 +253,7 @@ void openBackGate();
 void turnSprinklerOff();
 void gardening();
 void performCheat();
-# 6 "main.c" 2
+# 34 "main.c" 2
 # 1 "startScreen.h" 1
 # 22 "startScreen.h"
 extern const unsigned short startScreenTiles[2080];
@@ -262,51 +263,51 @@ extern const unsigned short startScreenMap[1024];
 
 
 extern const unsigned short startScreenPal[256];
-# 7 "main.c" 2
+# 35 "main.c" 2
 # 1 "goose.h" 1
 # 21 "goose.h"
 extern const unsigned short gooseTiles[16384];
 
 
 extern const unsigned short goosePal[256];
-# 8 "main.c" 2
+# 36 "main.c" 2
 # 1 "gardener.h" 1
 # 21 "gardener.h"
 extern const unsigned short gardenerTiles[16384];
 
 
 extern const unsigned short gardenerPal[256];
-# 9 "main.c" 2
+# 37 "main.c" 2
 # 1 "garden.h" 1
 # 22 "garden.h"
-extern const unsigned short gardenTiles[2736];
+extern const unsigned short gardenTiles[21984];
 
 
-extern const unsigned short gardenMap[16384];
+extern const unsigned short gardenMap[4096];
 
 
 extern const unsigned short gardenPal[256];
-# 10 "main.c" 2
-# 1 "PauseScreen.h" 1
-# 22 "PauseScreen.h"
-extern const unsigned short PauseScreenTiles[1568];
+# 38 "main.c" 2
+# 1 "pauseScreen.h" 1
+# 22 "pauseScreen.h"
+extern const unsigned short pauseScreenTiles[22816];
 
 
-extern const unsigned short PauseScreenMap[1024];
+extern const unsigned short pauseScreenMap[2048];
 
 
-extern const unsigned short PauseScreenPal[256];
-# 11 "main.c" 2
-# 1 "WinScreen.h" 1
-# 22 "WinScreen.h"
-extern const unsigned short WinScreenTiles[784];
+extern const unsigned short pauseScreenPal[256];
+# 39 "main.c" 2
+# 1 "winScreen.h" 1
+# 22 "winScreen.h"
+extern const unsigned short winScreenTiles[18400];
 
 
-extern const unsigned short WinScreenMap[1024];
+extern const unsigned short winScreenMap[1024];
 
 
-extern const unsigned short WinScreenPal[256];
-# 12 "main.c" 2
+extern const unsigned short winScreenPal[256];
+# 40 "main.c" 2
 # 1 "instructionsScreen.h" 1
 # 22 "instructionsScreen.h"
 extern const unsigned short instructionsScreenTiles[1072];
@@ -316,7 +317,7 @@ extern const unsigned short instructionsScreenMap[1024];
 
 
 extern const unsigned short instructionsScreenPal[256];
-# 13 "main.c" 2
+# 41 "main.c" 2
 # 1 "sprites.h" 1
 # 22 "sprites.h"
 extern const unsigned short spritesTiles[48];
@@ -326,7 +327,7 @@ extern const unsigned short spritesMap[1024];
 
 
 extern const unsigned short spritesPal[256];
-# 14 "main.c" 2
+# 42 "main.c" 2
 # 1 "TaskList.h" 1
 # 22 "TaskList.h"
 extern const unsigned short TaskListTiles[544];
@@ -336,28 +337,52 @@ extern const unsigned short TaskListMap[1024];
 
 
 extern const unsigned short TaskListPal[256];
-# 15 "main.c" 2
+# 43 "main.c" 2
 # 1 "taskSprites.h" 1
 # 21 "taskSprites.h"
 extern const unsigned short taskSpritesTiles[16384];
 
 
 extern const unsigned short taskSpritesPal[256];
-# 16 "main.c" 2
-# 1 "temp.h" 1
-# 22 "temp.h"
-extern const unsigned short tempTiles[1920];
+# 44 "main.c" 2
+# 1 "sound.h" 1
+SOUND soundA;
+SOUND soundB;
 
 
-extern const unsigned short tempMap[4096];
+
+void setupSounds();
+void playSoundA(const signed char* sound, int length, int loops);
+void playSoundB(const signed char* sound, int length, int loops);
+
+void setupInterrupts();
+void interruptHandler();
+
+void pauseSound();
+void unpauseSound();
+void stopSound();
+# 45 "main.c" 2
+# 1 "menuSong.h" 1
 
 
-extern const unsigned short tempPal[256];
-# 17 "main.c" 2
-# 1 "tempCollision.h" 1
-# 20 "tempCollision.h"
-extern const unsigned short tempCollisionBitmap[262144];
-# 18 "main.c" 2
+
+
+extern const signed char menuSong[1805505];
+# 46 "main.c" 2
+# 1 "gardenSong.h" 1
+
+
+
+
+extern const signed char gardenSong[1373015];
+# 47 "main.c" 2
+# 1 "honk.h" 1
+
+
+
+
+extern const signed char honk[5742];
+# 48 "main.c" 2
 
 
 void initialize();
@@ -428,11 +453,16 @@ void initialize() {
     voff = 0;
 
 
-    DMANow(3, gardenPal, ((unsigned short *)0x5000000), 256);
+    DMANow(3, startScreenPal, ((unsigned short *)0x5000000), 256);
 
 
     (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (0<<7) | (0<<14);
-    (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((16)<<8) | (0<<7) | (1<<14);
+    (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((16)<<8) | (1<<7) | (1<<14);
+
+
+    setupSounds();
+ setupInterrupts();
+
     goToStart();
 }
 
@@ -441,6 +471,9 @@ void goToStart() {
 
     DMANow(3, startScreenTiles, &((charblock *)0x6000000)[0], 4160 / 2);
     DMANow(3, startScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+
+    playSoundA(menuSong, 1805505, 1);
+
     state = START;
 }
 
@@ -462,6 +495,8 @@ void goToInstructions() {
 
 void instructions() {
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
+        stopSound();
+        playSoundA(gardenSong, 1373015, 1);
         goToGame();
     }
 }
@@ -473,8 +508,11 @@ void goToGame() {
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
 
-    DMANow(3, tempTiles, &((charblock *)0x6000000)[1], 3840 / 2);
-    DMANow(3, tempMap, &((screenblock *)0x6000000)[16], 512 * 32);
+    DMANow(3, gardenTiles, &((charblock *)0x6000000)[1], 43968 / 2);
+    DMANow(3, gardenMap, &((screenblock *)0x6000000)[16], 512 * 64);
+
+
+    DMANow(3, gardenPal, ((unsigned short *)0x5000000), 256);
 
 
     DMANow(3, goosePal, ((unsigned short *)0x5000200), 256);
@@ -502,26 +540,42 @@ void game() {
 }
 
 void goToPause() {
+    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (1<<7) | (0<<14);
     (*(unsigned short *)0x4000000) = 0 | (1<<9);
 
-    DMANow(3, PauseScreenTiles, &((charblock *)0x6000000)[0], 3136 / 2);
-    DMANow(3, PauseScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+    DMANow(3, pauseScreenTiles, &((charblock *)0x6000000)[0], 45632 / 2);
+    DMANow(3, pauseScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
 
+
+    DMANow(3, pauseScreenPal, ((unsigned short *)0x5000000), 256);
+
+
+
+
+    stopSound();
+    playSoundA(menuSong, 1805505, 1);
 
     state = PAUSE;
 }
 
 void pause() {
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
+        stopSound();
+        playSoundA(gardenSong, 1373015, 1);
         goToGame();
     }
 }
 
 void goToWin() {
+    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (1<<7) | (0<<14);
     (*(unsigned short *)0x4000000) = 0 | (1<<9);
 
-    DMANow(3, WinScreenTiles, &((charblock *)0x6000000)[0], 1568 / 2);
-    DMANow(3, WinScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+    DMANow(3, winScreenTiles, &((charblock *)0x6000000)[0], 36800 / 2);
+    DMANow(3, winScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+
+
+    DMANow(3, winScreenPal, ((unsigned short *)0x5000000), 256);
+
     state = WIN;
 }
 
@@ -532,6 +586,7 @@ void win() {
 }
 
 void goToTask() {
+    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (0<<7) | (0<<14);
     (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
 
     hideSprites();

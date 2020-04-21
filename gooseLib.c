@@ -3,7 +3,9 @@
 #include "humanLib.h"
 #include "game.h"
 #include "myLib.h"
-#include "tempCollision.h"
+#include "gardenCollision.h"
+#include "sound.h"
+#include "honk.h"
 
 int honkTimer;
 int gateOpen;
@@ -44,8 +46,8 @@ void updateGoose() {
     //Arrow buttons and movement
     if (BUTTON_HELD(BUTTON_UP)) {
         if ((goose.worldRow > -4)
-        && tempCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow - goose.rdel), WORLDWIDTH)] 
-        && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow - goose.rdel), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow - goose.rdel), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow - goose.rdel), WORLDWIDTH)]) {
             goose.worldRow -= goose.rdel;
             goose.dir = BACK;
             goose.anistate = WALK;
@@ -62,8 +64,8 @@ void updateGoose() {
     }
     if (BUTTON_HELD(BUTTON_DOWN)) {
         if ((goose.worldRow < (WORLDHEIGHT - goose.height))
-        && tempCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)] 
-        && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]) {
             goose.worldRow += goose.rdel;
             goose.dir = FORWARD;
             goose.anistate = WALK;
@@ -80,8 +82,8 @@ void updateGoose() {
     }
     if (BUTTON_HELD(BUTTON_LEFT)) {
         if ((goose.worldCol > 1)
-        && tempCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow), WORLDWIDTH)] 
-        && tempCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
             goose.worldCol -= goose.cdel;
             goose.dir = LEFT;
             goose.anistate = WALK;
@@ -100,8 +102,8 @@ void updateGoose() {
     }
     if (BUTTON_HELD(BUTTON_RIGHT)) {
         if ((goose.worldCol < (WORLDWIDTH - goose.width))
-        && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow), WORLDWIDTH)] 
-        && tempCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
             if (tasks < 5 || goose.worldCol < 390) {
                 if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
                     goose.worldCol += goose.cdel;
@@ -128,6 +130,7 @@ void updateGoose() {
 
     if (BUTTON_PRESSED(BUTTON_B) && (honkTimer == 0)) {
         honkTimer++;
+        playSoundB(honk, HONKLEN, 0);
     } else if (honkTimer >= 30) {
         honkTimer = 0;
     } else if (honkTimer > 0) {

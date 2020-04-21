@@ -5,6 +5,9 @@
         "instructionsscreen.h": "c",
         "mylib.h": "c",
         "tempcollision.h": "c",
-        "objectlib.h": "c"
+        "objectlib.h": "c",
+        "gooselib.h": "c",
+        "game.h": "c",
+        "winscreen.h": "c"
     }
 }

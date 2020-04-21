@@ -1,15 +1,15 @@
 
-//{{BLOCK(PauseScreen)
+//{{BLOCK(pauseScreen)
 
 //======================================================================
 //
-//	PauseScreen, 256x256@4, 
+//	pauseScreen, 512x256@8, 
 //	+ palette 256 entries, not compressed
-//	+ 98 tiles (t|f|p reduced) not compressed
-//	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 3136 + 2048 = 5696
+//	+ 713 tiles (t|f|p reduced) not compressed
+//	+ regular map (in SBBs), not compressed, 64x32 
+//	Total size: 512 + 45632 + 4096 = 50240
 //
-//	Time-stamp: 2020-04-05, 21:38:26
+//	Time-stamp: 2020-04-19, 22:01:37
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,15 +18,15 @@
 #ifndef GRIT_PAUSESCREEN_H
 #define GRIT_PAUSESCREEN_H
 
-#define PauseScreenTilesLen 3136
-extern const unsigned short PauseScreenTiles[1568];
+#define pauseScreenTilesLen 45632
+extern const unsigned short pauseScreenTiles[22816];
 
-#define PauseScreenMapLen 2048
-extern const unsigned short PauseScreenMap[1024];
+#define pauseScreenMapLen 4096
+extern const unsigned short pauseScreenMap[2048];
 
-#define PauseScreenPalLen 512
-extern const unsigned short PauseScreenPal[256];
+#define pauseScreenPalLen 512
+extern const unsigned short pauseScreenPal[256];
 
 #endif // GRIT_PAUSESCREEN_H
 
-//}}BLOCK(PauseScreen)
+//}}BLOCK(pauseScreen)

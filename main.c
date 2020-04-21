@@ -35,14 +35,16 @@ week, but I just keep creating more bugs and messing up old progress I had made.
 #include "goose.h"
 #include "gardener.h"
 #include "garden.h"
-#include "PauseScreen.h"
-#include "WinScreen.h"
+#include "pauseScreen.h"
+#include "winScreen.h"
 #include "instructionsScreen.h"
 #include "sprites.h"
 #include "TaskList.h"
 #include "taskSprites.h"
-#include "temp.h" //remove later
-#include "tempCollision.h" //remove later
+#include "sound.h"
+#include "menuSong.h"
+#include "gardenSong.h"
+#include "honk.h"
 
 //Prototypes
 void initialize();
@@ -113,11 +115,16 @@ void initialize() {
     voff = 0;
 
     //Add background palette to memory
-    DMANow(3, gardenPal, PALETTE, 256);
+    DMANow(3, startScreenPal, PALETTE, 256);
 
     //Initialize background
     REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_4BPP | BG_SIZE_SMALL;
-    REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(16) | BG_4BPP | BG_SIZE_WIDE;
+    REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(16) | BG_8BPP | BG_SIZE_WIDE;
+
+    //Setup sounds and interrupts
+    setupSounds();
+	setupInterrupts();
+
     goToStart();
 }
 
@@ -126,6 +133,9 @@ void goToStart() {
     //Add start screen tiles and map to memory
     DMANow(3, startScreenTiles, &CHARBLOCK[0], startScreenTilesLen / 2);
     DMANow(3, startScreenMap, &SCREENBLOCK[28], 512 * 2);
+
+    playSoundA(menuSong, MENUSONGLEN, 1);
+
     state = START;
 }
 
@@ -147,6 +157,8 @@ void goToInstructions() {
 
 void instructions() {
     if (BUTTON_PRESSED(BUTTON_START)) {
+        stopSound();
+        playSoundA(gardenSong, GARDENSONGLEN, 1);
         goToGame();
     }
 }
@@ -158,8 +170,11 @@ void goToGame() {
     DMANow(3, shadowOAM, OAM, 512);
     
     //Add game background tiles and map to memory
-    DMANow(3, tempTiles, &CHARBLOCK[1], tempTilesLen / 2);
-    DMANow(3, tempMap, &SCREENBLOCK[16], 512 * 32);
+    DMANow(3, gardenTiles, &CHARBLOCK[1], gardenTilesLen / 2);
+    DMANow(3, gardenMap, &SCREENBLOCK[16], 512 * 64);
+
+    //Add color palette back to memory
+    DMANow(3, gardenPal, PALETTE, 256);
 
     //Add game sprite palette and tiles to memory
     DMANow(3, goosePal, SPRITEPALETTE, 256);
@@ -187,26 +202,42 @@ void game() {
 }
 
 void goToPause() {
+    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_8BPP | BG_SIZE_SMALL;
     REG_DISPCTL = MODE0 | BG1_ENABLE;
     //Add pause tiles and map to meory
-    DMANow(3, PauseScreenTiles, &CHARBLOCK[0], PauseScreenTilesLen / 2);
-    DMANow(3, PauseScreenMap, &SCREENBLOCK[28], 512 * 2);
+    DMANow(3, pauseScreenTiles, &CHARBLOCK[0], pauseScreenTilesLen / 2);
+    DMANow(3, pauseScreenMap, &SCREENBLOCK[28], 512 * 2);
+
+    //Add color palette
+    DMANow(3, pauseScreenPal, PALETTE, 256);
+
     //hideSprites();
     //DMANow(3, shadowOAM, OAM, 512);
+
+    stopSound();
+    playSoundA(menuSong, MENUSONGLEN, 1);
+
     state = PAUSE;
 }
 
 void pause() {
     if (BUTTON_PRESSED(BUTTON_START)) {
+        stopSound();
+        playSoundA(gardenSong, GARDENSONGLEN, 1);
         goToGame();
     }
 }
 
 void goToWin() {
+    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_8BPP | BG_SIZE_SMALL;
     REG_DISPCTL = MODE0 | BG1_ENABLE;
     //Add win background tiles and map to memory
-    DMANow(3, WinScreenTiles, &CHARBLOCK[0], WinScreenTilesLen / 2);
-    DMANow(3, WinScreenMap, &SCREENBLOCK[28], 512 * 2);
+    DMANow(3, winScreenTiles, &CHARBLOCK[0], winScreenTilesLen / 2);
+    DMANow(3, winScreenMap, &SCREENBLOCK[28], 512 * 2);
+
+    //Add color palette to memory
+    DMANow(3, winScreenPal, PALETTE, 256);
+
     state = WIN;
 }
 
@@ -217,6 +248,7 @@ void win() {
 }
 
 void goToTask() {
+    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_4BPP | BG_SIZE_SMALL;
     REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
 
     hideSprites();

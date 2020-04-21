@@ -31,7 +31,7 @@ initGame:
 	ldr	r3, .L4+8
 	mov	lr, pc
 	bx	r3
-	mov	lr, #5
+	mov	lr, #1
 	mov	r3, #0
 	mov	r1, #16
 	ldr	r2, .L4+12
@@ -122,7 +122,7 @@ updateGame:
 	sub	r1, r1, #1
 	lsl	r0, r1, #24
 	orr	r0, r0, #1073741824
-	orr	r0, r0, #262144
+	orr	r0, r0, #8650752
 	lsr	r0, r0, #16
 	add	r3, r3, #256
 	str	r1, [ip]
@@ -134,7 +134,7 @@ updateGame:
 	add	r0, r1, #1
 	lsl	r1, r0, #24
 	orr	r1, r1, #1073741824
-	orr	r1, r1, #262144
+	orr	r1, r1, #8650752
 	lsr	r1, r1, #16
 	sub	r3, r3, #256
 	str	r0, [ip]

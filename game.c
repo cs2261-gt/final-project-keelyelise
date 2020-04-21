@@ -26,7 +26,7 @@ void initGame() {
     initGoose();
     initHuman();
     initObjects();
-    tasks = 5;
+    tasks = 1;
     cheat = 0;
     voff = 0;
     hoff = 0;
@@ -45,11 +45,11 @@ void updateGame() {
     if (hoff > 256 && sb < 18) {
         hoff -= 256;
         sb++;
-        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_4BPP;
+        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
     } else if (hoff <= 0 && sb > 16) {
         hoff += 256;
         sb--;
-        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_4BPP;
+        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
     }
     if (gooseHoff > 512) {
         gooseHoff -= 512;

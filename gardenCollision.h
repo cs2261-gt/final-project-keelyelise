@@ -3,11 +3,11 @@
 
 //======================================================================
 //
-//	gardenCollision, 1024x1024@16, 
+//	gardenCollision, 1024x256@16, 
 //	+ bitmap not compressed
-//	Total size: 2097152 = 2097152
+//	Total size: 524288 = 524288
 //
-//	Time-stamp: 2020-04-02, 21:41:26
+//	Time-stamp: 2020-04-20, 11:09:37
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -16,8 +16,8 @@
 #ifndef GRIT_GARDENCOLLISION_H
 #define GRIT_GARDENCOLLISION_H
 
-#define gardenCollisionBitmapLen 2097152
-extern const unsigned short gardenCollisionBitmap[1048576];
+#define gardenCollisionBitmapLen 524288
+extern const unsigned short gardenCollisionBitmap[262144];
 
 #endif // GRIT_GARDENCOLLISION_H
 

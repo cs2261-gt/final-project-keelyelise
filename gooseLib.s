@@ -60,295 +60,311 @@ updateGoose:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	mov	r1, #0
-	ldr	r3, .L63
-	ldrh	r2, [r3, #48]
-	ands	r2, r2, #512
-	movne	r2, #5
-	ldr	r3, .L63+4
+	mov	r2, #0
+	ldr	r3, .L76
+	ldrh	r3, [r3, #48]
+	ands	r3, r3, #512
+	movne	r3, #5
 	push	{r4, r5, r6, r7, r8, lr}
-	str	r1, [r3, #32]
-	movne	r1, #1
-	streq	r2, [r3, #28]
-	strne	r2, [r3, #60]
-	ldr	r2, .L63
-	ldrh	r2, [r2, #48]
-	ldr	lr, .L63+8
-	strne	r1, [r3, #28]
-	tst	r2, #64
-	ldr	ip, [lr]
-	ldm	r3, {r1, r2}
-	bne	.L9
-	cmn	r1, #3
-	bge	.L60
-.L9:
-	ldr	r0, .L63
-	ldrh	r0, [r0, #48]
-	tst	r0, #128
-	bne	.L12
-	ldr	r4, [r3, #20]
-	rsb	r0, r4, #256
-	cmp	r0, r1
-	bgt	.L61
-.L12:
-	ldr	r0, .L63
-	ldrh	r0, [r0, #48]
-	ldr	lr, .L63+12
-	ands	r0, r0, #32
-	ldr	r4, [lr]
+	ldr	r4, .L76+4
+	str	r2, [r4, #32]
+	movne	r2, #1
+	streq	r3, [r4, #28]
+	strne	r3, [r4, #60]
+	ldr	r3, .L76
+	ldrh	r3, [r3, #48]
+	strne	r2, [r4, #28]
+	tst	r3, #64
+	bne	.L71
+	ldr	r3, [r4]
+	cmn	r3, #3
+	bge	.L62
+.L71:
+	ldr	r5, .L76+8
+.L10:
+	ldr	r3, .L76
+	ldrh	r3, [r3, #48]
+	tst	r3, #128
 	bne	.L15
-	cmp	r2, #1
-	ble	.L15
-	ldr	r5, [r3, #48]
-	sub	r5, r2, r5
-	ldr	r7, .L63+16
-	add	r6, r5, r1, lsl #10
-	lsl	r6, r6, #1
-	ldrh	r6, [r7, r6]
-	cmp	r6, #0
-	beq	.L15
-	ldr	r6, [r3, #20]
-	add	r6, r1, r6
-	sub	r6, r6, #1
-	add	r6, r5, r6, lsl #10
-	lsl	r6, r6, #1
-	ldrh	r6, [r7, r6]
-	cmp	r6, #0
-	beq	.L15
-	mov	r2, #1
-	ldr	r6, [r3, #28]
-	cmp	r6, #0
-	str	r0, [r3, #40]
-	moveq	r0, #14
-	str	r2, [r3, #32]
-	mvneq	r2, #0
-	movne	r2, #8
-	streq	r0, [r3, #60]
-	ldr	r0, .L63+20
-	str	r2, [r3, #56]
-	ldr	r2, [r0]
-	cmp	r2, #0
-	subgt	r2, r2, #1
-	strgt	r2, [r0]
-	movle	r2, r5
-	movgt	r2, r5
-	ldrgt	r7, .L63+24
-	ldrgt	r6, [r7]
-	subgt	r4, r4, #1
-	subgt	r6, r6, #1
-	str	r5, [r3, #4]
-	strgt	r4, [lr]
-	strgt	r6, [r7]
+	ldr	r1, [r4, #20]
+	ldr	r2, [r4]
+	rsb	r3, r1, #256
+	cmp	r2, r3
+	blt	.L73
 .L15:
-	ldr	r0, .L63
-	ldrh	r0, [r0, #48]
-	tst	r0, #16
-	bne	.L18
-	ldr	r0, [r3, #16]
-	rsb	r5, r0, #1024
-	cmp	r5, r2
-	bgt	.L62
-.L18:
-	ldr	r0, .L63+28
-	ldrh	r0, [r0]
-	ldr	lr, .L63+32
-	tst	r0, #2
-	ldr	r0, [lr]
-	beq	.L22
-	ldr	r5, .L63+36
-	ldrh	r5, [r5]
-	tst	r5, #2
-	bne	.L22
+	ldr	r3, .L76
+	ldrh	r3, [r3, #48]
+	ands	r3, r3, #32
+	bne	.L72
+	ldr	r1, [r4, #4]
+	cmp	r1, #1
+	ble	.L72
+	ldr	r0, [r4, #48]
+	ldr	r2, [r4]
+	sub	r1, r1, r0
+	ldr	ip, .L76+12
+	add	r0, r1, r2, lsl #10
+	lsl	r0, r0, #1
+	ldrh	r0, [ip, r0]
 	cmp	r0, #0
-	moveq	r0, #1
-	streq	r0, [lr]
-	beq	.L23
-.L22:
-	cmp	r0, #29
-	movgt	r0, #0
-	strgt	r0, [lr]
-	bgt	.L23
-	cmp	r0, #0
-	addgt	r0, r0, #1
-	strgt	r0, [lr]
-.L23:
-	sub	r2, r2, r4
-	sub	r1, r1, ip
-	str	r1, [r3, #8]
-	str	r2, [r3, #12]
+	bne	.L66
+.L72:
+	ldr	r6, .L76+16
+.L20:
+	ldr	r3, .L76
+	ldrh	r3, [r3, #48]
+	tst	r3, #16
+	bne	.L25
+	ldr	r3, [r4, #16]
+	ldr	r2, [r4, #4]
+	rsb	r1, r3, #1024
+	cmp	r2, r1
+	blt	.L74
+.L25:
+	ldr	r3, .L76+20
+	ldrh	r2, [r3]
+	ldr	r3, .L76+24
+	tst	r2, #2
+	ldr	r2, [r3]
+	beq	.L30
+	ldr	r1, .L76+28
+	ldrh	r1, [r1]
+	tst	r1, #2
+	bne	.L30
+	cmp	r2, #0
+	beq	.L75
+.L30:
+	cmp	r2, #29
+	movgt	r2, #0
+	strgt	r2, [r3]
+	bgt	.L31
+	cmp	r2, #0
+	addgt	r2, r2, #1
+	strgt	r2, [r3]
+.L31:
+	ldm	r4, {r2, r3}
+	ldr	r0, [r5]
+	ldr	r1, [r6]
+	sub	r2, r2, r0
+	sub	r3, r3, r1
+	str	r2, [r4, #8]
+	str	r3, [r4, #12]
 	pop	{r4, r5, r6, r7, r8, lr}
 	bx	lr
-.L62:
-	ldr	r6, [r3, #48]
-	add	r0, r0, r2
-	sub	r0, r0, #1
-	add	r0, r0, r6
-	ldr	r7, .L63+16
-	add	r5, r0, r1, lsl #10
-	lsl	r5, r5, #1
-	ldrh	r5, [r7, r5]
-	cmp	r5, #0
-	beq	.L18
-	ldr	r5, [r3, #20]
-	add	r5, r1, r5
-	sub	r5, r5, #1
-	add	r0, r0, r5, lsl #10
-	lsl	r0, r0, #1
-	ldrh	r0, [r7, r0]
-	cmp	r0, #0
-	beq	.L18
-	ldr	r5, .L63+40
-	ldr	r7, .L63+44
-	ldr	r0, [r5]
-	cmp	r2, r7
-	cmpgt	r0, #4
-	bgt	.L18
-	ldr	r8, .L63+48
-	ldr	r7, [r8]
-	subs	r0, r0, #1
-	movne	r0, #1
+.L74:
+	ldr	r0, [r4, #48]
+	add	r3, r2, r3
+	ldr	ip, [r4]
+	sub	r3, r3, #1
+	add	r3, r3, r0
+	ldr	lr, .L76+12
+	add	r1, r3, ip, lsl #10
+	lsl	r1, r1, #1
+	ldrh	r1, [lr, r1]
+	cmp	r1, #0
+	beq	.L25
+	ldr	r1, [r4, #20]
+	add	r1, ip, r1
+	sub	r1, r1, #1
+	add	r3, r3, r1, lsl #10
+	lsl	r3, r3, #1
+	ldrh	r3, [lr, r3]
+	cmp	r3, #0
+	beq	.L25
+	ldr	r1, .L76+32
+	ldr	lr, .L76+36
+	ldr	r3, [r1]
+	cmp	r2, lr
+	cmpgt	r3, #4
+	bgt	.L25
+	ldr	lr, .L76+40
+	ldr	r7, [lr]
+	subs	r3, r3, #1
+	movne	r3, #1
 	cmp	r7, #0
-	movne	r0, #1
-	cmp	r1, #4
-	orrgt	r0, r0, #1
-	ldr	r7, .L63+52
-	cmp	r2, r7
-	orrne	r0, r0, #1
-	cmp	r0, #0
-	beq	.L19
-	mov	r0, #1
-	ldr	r5, [r3, #28]
-	cmp	r5, #0
-	moveq	r5, #14
-	str	r0, [r3, #40]
-	str	r0, [r3, #32]
-	moveq	r0, #22
-	movne	r0, #13
-	add	r2, r2, r6
-	ldr	r6, .L63+20
-	streq	r5, [r3, #60]
-	str	r0, [r3, #56]
-	ldr	r5, [r6]
-	ldr	r0, .L63+56
-	cmp	r5, r0
-	str	r2, [r3, #4]
-	bgt	.L18
-	ldr	r8, .L63+24
-	ldr	r7, [r8]
-	cmp	r7, r0
-	bgt	.L18
-	ldr	r0, [r3, #12]
-	cmp	r0, #120
-	ble	.L18
-	add	r5, r5, #1
-	add	r4, r4, #1
-	add	r7, r7, #1
-	str	r5, [r6]
-	str	r4, [lr]
-	str	r7, [r8]
-	b	.L18
-.L61:
-	ldr	r5, [r3, #44]
-	add	r0, r4, r1
-	sub	r0, r0, #1
-	add	r0, r0, r5
-	add	r6, r2, r0, lsl #10
-	ldr	r7, .L63+16
-	lsl	r6, r6, #1
-	ldrh	r6, [r7, r6]
-	cmp	r6, #0
-	lsl	r0, r0, #10
-	beq	.L12
-	ldr	r6, [r3, #16]
-	add	r0, r0, r6
-	add	r0, r0, r2
-	add	r0, r7, r0, lsl #1
-	ldrh	r0, [r0, #-2]
-	cmp	r0, #0
-	beq	.L12
-	mov	r0, #1
-	add	r1, r1, r5
-	ldr	r5, [r3, #28]
-	cmp	r5, #0
-	moveq	r5, #17
-	str	r0, [r3, #32]
-	mov	r6, #3
-	moveq	r0, #9
-	movne	r0, #9
-	streq	r5, [r3, #60]
-	cmp	ip, #95
-	str	r1, [r3]
-	str	r6, [r3, #40]
-	str	r0, [r3, #56]
-	bgt	.L12
-	ldr	r5, [r3, #8]
-	rsb	r0, r4, #80
-	cmp	r5, r0
-	addgt	ip, ip, #1
-	strgt	ip, [lr]
-	b	.L12
-.L60:
-	ldr	r0, [r3, #44]
-	sub	r0, r1, r0
-	ldr	r5, .L63+16
-	add	r4, r2, r0, lsl #10
-	lsl	r4, r4, #1
-	ldrh	r4, [r5, r4]
-	cmp	r4, #0
-	lsl	r4, r0, #10
-	beq	.L9
-	ldr	r6, [r3, #16]
-	add	r4, r4, r6
-	add	r4, r4, r2
-	add	r5, r5, r4, lsl #1
-	ldrh	r4, [r5, #-2]
-	cmp	r4, #0
-	beq	.L9
-	mov	r4, #2
-	mov	r1, #1
-	ldr	r5, [r3, #28]
-	cmp	r5, #0
-	str	r4, [r3, #40]
-	moveq	r4, #10
-	str	r1, [r3, #32]
-	moveq	r1, #12
-	movne	r1, #12
-	streq	r4, [r3, #60]
+	movne	r3, #1
+	cmp	ip, #4
+	movle	ip, r3
+	orrgt	ip, r3, #1
+	ldr	r3, .L76+44
+	cmp	r2, r3
+	orrne	ip, ip, #1
 	cmp	ip, #0
-	str	r0, [r3]
-	str	r1, [r3, #56]
-	ble	.L26
-	ldr	r1, [r3, #20]
-	ldr	r4, [r3, #8]
-	rsb	r1, r1, #80
-	cmp	r4, r1
-	sublt	ip, ip, #1
-	movlt	r1, r0
-	strlt	ip, [lr]
-	blt	.L9
-.L26:
-	mov	r1, r0
-	b	.L9
-.L19:
-	ldr	r2, .L63+60
-	ldr	r2, [r2]
-	cmp	r2, #9
-	moveq	lr, #1
-	moveq	r2, r7
-	movne	r2, r7
-	streq	r0, [r5]
-	streq	lr, [r8]
-	b	.L18
-.L64:
+	beq	.L27
+	add	r3, r2, r0
+	ldr	r2, [r4, #28]
+	mov	r1, #1
+	cmp	r2, #0
+	moveq	r2, #14
+	str	r3, [r4, #4]
+	moveq	r3, #22
+	movne	r3, #13
+	str	r1, [r4, #40]
+	str	r1, [r4, #32]
+	ldr	r1, .L76+48
+	streq	r2, [r4, #60]
+	str	r3, [r4, #56]
+	ldr	r2, [r1]
+	ldr	r3, .L76+52
+	cmp	r2, r3
+	bgt	.L25
+	ldr	ip, .L76+56
+	ldr	r0, [ip]
+	cmp	r0, r3
+	bgt	.L25
+	ldr	r3, [r4, #12]
+	cmp	r3, #120
+	ble	.L25
+	ldr	r3, [r6]
+	add	r2, r2, #1
+	add	r0, r0, #1
+	add	r3, r3, #1
+	str	r2, [r1]
+	str	r0, [ip]
+	str	r3, [r6]
+	b	.L25
+.L73:
+	ldr	ip, [r4, #44]
+	add	r3, r2, r1
+	ldr	r6, [r4, #4]
+	sub	r3, r3, #1
+	add	r3, r3, ip
+	add	r0, r6, r3, lsl #10
+	ldr	lr, .L76+12
+	lsl	r0, r0, #1
+	ldrh	r0, [lr, r0]
+	cmp	r0, #0
+	lsl	r3, r3, #10
+	beq	.L15
+	ldr	r0, [r4, #16]
+	add	r3, r3, r0
+	add	r3, r3, r6
+	add	r3, lr, r3, lsl #1
+	ldrh	r3, [r3, #-2]
+	cmp	r3, #0
+	beq	.L15
+	add	r3, r2, ip
+	ldr	r2, [r4, #28]
+	cmp	r2, #0
+	moveq	r2, #17
+	str	r3, [r4]
+	mov	lr, #3
+	moveq	r3, #9
+	movne	r3, #9
+	mov	r0, #1
+	streq	r2, [r4, #60]
+	ldr	r2, [r5]
+	cmp	r2, #95
+	str	lr, [r4, #40]
+	str	r0, [r4, #32]
+	str	r3, [r4, #56]
+	bgt	.L15
+	ldr	r0, [r4, #8]
+	rsb	r3, r1, #80
+	cmp	r0, r3
+	addgt	r2, r2, #1
+	strgt	r2, [r5]
+	b	.L15
+.L62:
+	ldr	r2, [r4, #44]
+	ldr	r0, [r4, #4]
+	sub	r3, r3, r2
+	ldr	r1, .L76+12
+	add	r2, r0, r3, lsl #10
+	lsl	r2, r2, #1
+	ldrh	r2, [r1, r2]
+	cmp	r2, #0
+	lsl	r2, r3, #10
+	beq	.L71
+	ldr	ip, [r4, #16]
+	add	r2, r2, ip
+	add	r2, r2, r0
+	add	r1, r1, r2, lsl #1
+	ldrh	r2, [r1, #-2]
+	cmp	r2, #0
+	beq	.L71
+	mov	r2, #1
+	ldr	r0, [r4, #28]
+	cmp	r0, #0
+	str	r3, [r4]
+	moveq	r3, #12
+	movne	r3, #12
+	str	r2, [r4, #32]
+	moveq	r2, #10
+	mov	r1, #2
+	ldr	r5, .L76+8
+	str	r3, [r4, #56]
+	ldr	r3, [r5]
+	streq	r2, [r4, #60]
+	cmp	r3, #0
+	str	r1, [r4, #40]
+	ble	.L10
+	ldr	r2, [r4, #20]
+	ldr	r1, [r4, #8]
+	rsb	r2, r2, #80
+	cmp	r1, r2
+	sublt	r3, r3, #1
+	strlt	r3, [r5]
+	b	.L10
+.L66:
+	ldr	r0, [r4, #20]
+	add	r2, r2, r0
+	sub	r2, r2, #1
+	add	r2, r1, r2, lsl #10
+	lsl	r2, r2, #1
+	ldrh	r2, [ip, r2]
+	cmp	r2, #0
+	beq	.L72
+	mov	r2, #1
+	ldr	r0, [r4, #28]
+	cmp	r0, #0
+	str	r2, [r4, #32]
+	moveq	r2, #14
+	str	r3, [r4, #40]
+	mvneq	r3, #0
+	movne	r3, #8
+	streq	r2, [r4, #60]
+	ldr	r2, .L76+48
+	str	r3, [r4, #56]
+	ldr	r3, [r2]
+	cmp	r3, #0
+	ldr	r6, .L76+16
+	ldrgt	r0, .L76+56
+	subgt	r3, r3, #1
+	str	r1, [r4, #4]
+	strgt	r3, [r2]
+	ldrgt	r1, [r6]
+	ldrgt	r3, [r0]
+	subgt	r1, r1, #1
+	subgt	r3, r3, #1
+	strgt	r1, [r6]
+	strgt	r3, [r0]
+	b	.L20
+.L75:
+	mov	ip, #1
+	ldr	r1, .L76+60
+	str	ip, [r3]
+	ldr	r0, .L76+64
+	ldr	r3, .L76+68
+	mov	lr, pc
+	bx	r3
+	b	.L31
+.L27:
+	ldr	r3, .L76+72
+	ldr	r3, [r3]
+	cmp	r3, #9
+	moveq	r3, #1
+	streq	ip, [r1]
+	streq	r3, [lr]
+	b	.L25
+.L77:
 	.align	2
-.L63:
+.L76:
 	.word	67109120
 	.word	goose
 	.word	voff
+	.word	gardenCollisionBitmap
 	.word	gooseHoff
-	.word	tempCollisionBitmap
-	.word	hoff
-	.word	overallHoff
 	.word	oldButtons
 	.word	honkTimer
 	.word	buttons
@@ -356,7 +372,12 @@ updateGoose:
 	.word	389
 	.word	gateOpen
 	.word	589
+	.word	hoff
 	.word	782
+	.word	overallHoff
+	.word	3163
+	.word	honk
+	.word	playSoundB
 	.word	stolenObject
 	.size	updateGoose, .-updateGoose
 	.align	2
@@ -369,13 +390,13 @@ drawGoose:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	ldr	r2, .L73
+	ldr	r2, .L86
 	ldr	r1, [r2, #12]
 	mvn	r1, r1, lsl #17
 	mvn	r1, r1, lsr #17
 	ldr	r0, [r2, #52]
 	ldr	r3, [r2, #28]
-	ldr	ip, .L73+4
+	ldr	ip, .L86+4
 	push	{r4, r5, lr}
 	ldr	r4, [r2, #8]
 	lsl	lr, r0, #3
@@ -384,35 +405,35 @@ drawGoose:
 	strh	r4, [ip, lr]	@ movhi
 	strh	r1, [r0, #2]	@ movhi
 	ldrh	r1, [r2, #40]
-	beq	.L66
+	beq	.L79
 	ldr	r4, [r2, #32]
 	lsl	r3, r3, #16
 	cmp	r4, #1
 	lsr	r3, r3, #16
-	beq	.L72
+	beq	.L85
 	cmp	r4, #0
 	ldrne	r0, [r2, #36]
-	bne	.L68
+	bne	.L81
 	add	r3, r3, r3, lsl #1
 	lsl	r3, r3, #2
 	add	r3, r3, r1, lsl #7
 	strh	r3, [r0, #4]	@ movhi
 	pop	{r4, r5, lr}
 	bx	lr
-.L72:
-	ldr	r4, .L73+8
+.L85:
+	ldr	r4, .L86+8
 	ldr	r0, [r4]
 	add	r0, r0, #1
 	cmp	r0, #6
 	str	r0, [r4]
 	ldr	r0, [r2, #36]
-	ble	.L68
+	ble	.L81
 	rsbs	r0, r0, #1
 	movcc	r0, #0
 	mov	r5, #0
 	str	r0, [r2, #36]
 	str	r5, [r4]
-.L68:
+.L81:
 	add	r3, r3, r3, lsl #1
 	add	r3, r3, r1, lsl #5
 	add	r3, r3, #1
@@ -422,19 +443,21 @@ drawGoose:
 	strh	r3, [r2, #4]	@ movhi
 	pop	{r4, r5, lr}
 	bx	lr
-.L66:
+.L79:
 	lsl	r3, r1, #3
 	add	r3, r3, #516
 	strh	r3, [r0, #4]	@ movhi
 	pop	{r4, r5, lr}
 	bx	lr
-.L74:
+.L87:
 	.align	2
-.L73:
+.L86:
 	.word	goose
 	.word	shadowOAM
 	.word	anicounter
 	.size	drawGoose, .-drawGoose
 	.comm	gateOpen,4,4
 	.comm	honkTimer,4,4
+	.comm	soundB,32,4
+	.comm	soundA,32,4
 	.ident	"GCC: (devkitARM release 53) 9.1.0"

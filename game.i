@@ -279,7 +279,7 @@ void initGame() {
     initGoose();
     initHuman();
     initObjects();
-    tasks = 5;
+    tasks = 1;
     cheat = 0;
     voff = 0;
     hoff = 0;
@@ -298,11 +298,11 @@ void updateGame() {
     if (hoff > 256 && sb < 18) {
         hoff -= 256;
         sb++;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (0<<7);
+        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
     } else if (hoff <= 0 && sb > 16) {
         hoff += 256;
         sb--;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (0<<7);
+        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
     }
     if (gooseHoff > 512) {
         gooseHoff -= 512;

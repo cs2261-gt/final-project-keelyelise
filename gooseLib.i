@@ -253,10 +253,34 @@ typedef struct{
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
 # 6 "gooseLib.c" 2
-# 1 "tempCollision.h" 1
-# 20 "tempCollision.h"
-extern const unsigned short tempCollisionBitmap[262144];
+# 1 "gardenCollision.h" 1
+# 20 "gardenCollision.h"
+extern const unsigned short gardenCollisionBitmap[262144];
 # 7 "gooseLib.c" 2
+# 1 "sound.h" 1
+SOUND soundA;
+SOUND soundB;
+
+
+
+void setupSounds();
+void playSoundA(const signed char* sound, int length, int loops);
+void playSoundB(const signed char* sound, int length, int loops);
+
+void setupInterrupts();
+void interruptHandler();
+
+void pauseSound();
+void unpauseSound();
+void stopSound();
+# 8 "gooseLib.c" 2
+# 1 "honk.h" 1
+
+
+
+
+extern const signed char honk[3163];
+# 9 "gooseLib.c" 2
 
 int honkTimer;
 int gateOpen;
@@ -297,8 +321,8 @@ void updateGoose() {
 
     if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<6)))) {
         if ((goose.worldRow > -4)
-        && tempCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+(goose.worldCol))]
-        && tempCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+(goose.worldCol))]
+        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
             goose.worldRow -= goose.rdel;
             goose.dir = BACK;
             goose.anistate = WALK;
@@ -315,8 +339,8 @@ void updateGoose() {
     }
     if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<7)))) {
         if ((goose.worldRow < (256 - goose.height))
-        && tempCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+(goose.worldCol))]
-        && tempCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+(goose.worldCol))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
             goose.worldRow += goose.rdel;
             goose.dir = FORWARD;
             goose.anistate = WALK;
@@ -333,8 +357,8 @@ void updateGoose() {
     }
     if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<5)))) {
         if ((goose.worldCol > 1)
-        && tempCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol - goose.cdel)))]
-        && tempCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol - goose.cdel)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol - goose.cdel)))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol - goose.cdel)))]) {
             goose.worldCol -= goose.cdel;
             goose.dir = LEFT;
             goose.anistate = WALK;
@@ -353,8 +377,8 @@ void updateGoose() {
     }
     if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<4)))) {
         if ((goose.worldCol < (1024 - goose.width))
-        && tempCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]
-        && tempCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]) {
             if (tasks < 5 || goose.worldCol < 390) {
                 if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
                     goose.worldCol += goose.cdel;
@@ -381,6 +405,7 @@ void updateGoose() {
 
     if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1)))) && (honkTimer == 0)) {
         honkTimer++;
+        playSoundB(honk, 3163, 0);
     } else if (honkTimer >= 30) {
         honkTimer = 0;
     } else if (honkTimer > 0) {
