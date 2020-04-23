@@ -33,7 +33,7 @@ initGame:
 	bx	r3
 	mov	lr, #1
 	mov	r3, #0
-	mov	r1, #16
+	mov	r1, #28
 	ldr	r2, .L4+12
 	ldr	ip, .L4+16
 	str	lr, [r2]
@@ -96,7 +96,7 @@ updateGame:
 	ble	.L7
 	ldr	ip, .L13+20
 	ldr	r1, [ip]
-	cmp	r1, #17
+	cmp	r1, #29
 	ble	.L12
 .L8:
 	ldr	r2, .L13+24
@@ -116,13 +116,13 @@ updateGame:
 	bgt	.L8
 	ldr	ip, .L13+20
 	ldr	r1, [ip]
-	cmp	r1, #16
+	cmp	r1, #28
 	ble	.L8
 	mov	lr, #67108864
 	sub	r1, r1, #1
 	lsl	r0, r1, #24
 	orr	r0, r0, #1073741824
-	orr	r0, r0, #8650752
+	orr	r0, r0, #8388608
 	lsr	r0, r0, #16
 	add	r3, r3, #256
 	str	r1, [ip]
@@ -134,7 +134,7 @@ updateGame:
 	add	r0, r1, #1
 	lsl	r1, r0, #24
 	orr	r1, r1, #1073741824
-	orr	r1, r1, #8650752
+	orr	r1, r1, #8388608
 	lsr	r1, r1, #16
 	sub	r3, r3, #256
 	str	r0, [ip]

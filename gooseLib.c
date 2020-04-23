@@ -13,6 +13,7 @@ int gateOpen;
 
 void initGoose() {
     honkTimer = 0;
+    gateOpen = 0;
 
     goose.worldRow = 64;
     goose.worldCol = 104;
@@ -45,9 +46,10 @@ void updateGoose() {
 
     //Arrow buttons and movement
     if (BUTTON_HELD(BUTTON_UP)) {
-        if ((goose.worldRow > -4)
-        && gardenCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow - goose.rdel), WORLDWIDTH)] 
-        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow - goose.rdel), WORLDWIDTH)]) {
+        if ((goose.worldRow > 0)
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + 7), (goose.worldRow - goose.rdel + 15), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 - 7), (goose.worldRow - goose.rdel + 15), WORLDWIDTH)]
+        && !collision(goose.worldCol, goose.worldRow - 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldRow -= goose.rdel;
             goose.dir = BACK;
             goose.anistate = WALK;
@@ -61,11 +63,11 @@ void updateGoose() {
                 voff--;
             }
         }
-    }
-    if (BUTTON_HELD(BUTTON_DOWN)) {
+    } else if (BUTTON_HELD(BUTTON_DOWN)) {
         if ((goose.worldRow < (WORLDHEIGHT - goose.height))
-        && gardenCollisionBitmap[OFFSET(goose.worldCol, (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)] 
-        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + 7), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 - 7), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]
+        && !collision(goose.worldCol, goose.worldRow + 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldRow += goose.rdel;
             goose.dir = FORWARD;
             goose.anistate = WALK;
@@ -79,11 +81,11 @@ void updateGoose() {
                 voff++;
             }
         }
-    }
-    if (BUTTON_HELD(BUTTON_LEFT)) {
+    } else if (BUTTON_HELD(BUTTON_LEFT)) {
         if ((goose.worldCol > 1)
-        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow), WORLDWIDTH)] 
-        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel + 9), (goose.worldRow + 15), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol - goose.cdel + 9), (goose.worldRow + goose.height - 1), WORLDWIDTH)]
+        && !collision(goose.worldCol - 1, goose.worldRow, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldCol -= goose.cdel;
             goose.dir = LEFT;
             goose.anistate = WALK;
@@ -93,19 +95,20 @@ void updateGoose() {
             } else {
                 goose.beakX = 8;
             }
-            if ((hoff > 0)) { // NEEDS TO BE ADJUSTED
+            if ((hoff > 0)) {
                 hoff--;
                 gooseHoff--;
                 overallHoff--;
             }
         }
-    }
-    if (BUTTON_HELD(BUTTON_RIGHT)) {
+    } else if (BUTTON_HELD(BUTTON_RIGHT)) {
         if ((goose.worldCol < (WORLDWIDTH - goose.width))
-        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow), WORLDWIDTH)] 
-        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel), (goose.worldRow + goose.height - 1), WORLDWIDTH)]) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel - 9), (goose.worldRow + 15), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel - 9), (goose.worldRow + goose.height - 1), WORLDWIDTH)]
+        && !collision(goose.worldCol + 1, goose.worldRow, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             if (tasks < 5 || goose.worldCol < 390) {
-                if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
+                if ((tasks == 1) && (goose.worldRow <= 8) && (goose.worldCol >= 640) && (stolenObject.type == KEYS) && (goose.grabbing)) {
+                    gateOpen = 1;
                     goose.worldCol += goose.cdel;
                     goose.dir = RIGHT;
                     goose.anistate = WALK;
@@ -120,9 +123,24 @@ void updateGoose() {
                         gooseHoff++;
                         overallHoff++;
                     }
-                } else if (tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589 && stolenObject.type == KEYS) {
-                    gateOpen = 1;
-                    tasks = 0;
+                    if (goose.worldCol > 675) {
+                        tasks = 0;
+                    }
+                } else if ((goose.worldCol < 640) || (goose.worldRow > 7) || gateOpen) {
+                    goose.worldCol += goose.cdel;
+                    goose.dir = RIGHT;
+                    goose.anistate = WALK;
+                    if (goose.state == DUCK) {
+                        goose.beakY = 14;
+                        goose.beakX = 22;
+                    } else {
+                        goose.beakX = 13;
+                    }
+                    if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
+                        hoff++;
+                        gooseHoff++;
+                        overallHoff++;
+                    }
                 }
             }
         }

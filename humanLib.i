@@ -260,13 +260,17 @@ extern const unsigned short tempCollisionBitmap[262144];
 
 int walkDir;
 int hatTimer;
+int aniTimer;
+int aninum;
 
 void initHuman() {
     walkDir = -1;
     hatTimer = 0;
+    aniTimer = 0;
+    aninum = 0;
 
-    human.worldRow = 30;
-    human.worldCol = 100;
+    human.worldRow = 40;
+    human.worldCol = 300;
     human.bubbleDel = 40;
     human.bubbleWidth = 112;
     human.bubbleHeight = 144;
@@ -313,33 +317,42 @@ void updateHuman() {
 }
 
 void drawHuman() {
-    shadowOAM[human.index].attr0 = (0xFF & human.screenRow) | (0<<8) | (0<<13) | (2<<14);
+    aniTimer = (aniTimer + 1) % 20;
+    if (aniTimer == 0) {
+        aninum = (aninum + 1) % 2;
+    }
+    int humanSB = (human.worldCol / 256) + 28;
+    if ((humanSB == sb) || (humanSB == (sb + 1))) {
+        shadowOAM[human.index].attr0 = (0xFF & human.screenRow) | (0<<8) | (0<<13) | (2<<14);
+    } else {
+        shadowOAM[human.index].attr0 = (2<<8);
+    }
     shadowOAM[human.index].attr1 = (0x1FF & human.screenCol) | (3<<14);
     if (human.dir == FORWARDH) {
-        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+((human.state * 8)));
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+(((human.state * 8) + (4 * aninum))));
     } else if (human.dir == BACKH) {
-        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+(((human.state * 8) + 16)));
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((16)*32+(((human.state * 8) + 16 + (4 * aninum))));
     } else if (human.dir == LEFTH) {
-        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8))));
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8) + (4 * aninum))));
     } else {
-        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8) + 16)));
+        shadowOAM[human.index].attr2 = ((0)<<12) | ((24)*32+(((human.state * 8) + 16 + (4 * aninum))));
     }
 }
 
 void chase() {
-# 116 "humanLib.c"
+# 129 "humanLib.c"
 }
 
 void returnObject() {
-# 142 "humanLib.c"
+# 155 "humanLib.c"
 }
 
 void sweat() {
-# 172 "humanLib.c"
+# 185 "humanLib.c"
 }
 
 void openFrontGate() {
-# 192 "humanLib.c"
+# 205 "humanLib.c"
 }
 
 void openBackGate() {
@@ -347,11 +360,50 @@ void openBackGate() {
 }
 
 void turnSprinklerOff() {
-# 232 "humanLib.c"
+# 245 "humanLib.c"
 }
 
 void gardening() {
-# 298 "humanLib.c"
+    if (human.worldCol != 440) {
+        if (440 > human.worldCol) {
+            human.worldCol++;
+        }
+        if (440 < human.worldCol) {
+            human.worldCol--;
+        }
+        if (100 > human.worldRow) {
+            human.worldRow++;
+        }
+        if (100 < human.worldRow) {
+            human.worldRow--;
+        }
+    }
+# 286 "humanLib.c"
+        if (human.workTimer == 0) {
+            human.state = STANDH;
+            human.worldRow += (walkDir);
+            if (walkDir > 0) {
+                human.dir = FORWARDH;
+            } else {
+                human.dir = BACKH;
+            }
+            if (human.worldRow == 6) {
+                walkDir = 1;
+                human.dir = BACKH;
+                human.workTimer++;
+            } else if (human.worldRow == 136) {
+                walkDir = -1;
+                human.dir = FORWARDH;
+                human.workTimer++;
+            }
+        } else {
+            human.state = KNEELH;
+            human.workTimer++;
+            if (human.workTimer >= 250) {
+                human.workTimer = 0;
+            }
+        }
+
 }
 
 void performCheat() {

@@ -1,27 +1,17 @@
 /*
 
-So far, the goose can pick up objects and move them around. I have begun implementing
-human movement but have commented it out as it is not quite working properly. There are
-quite a few bugs, and every time I fix something, a new one appears. Right now, I have
-run into an issue where the objects won't move all the way to the left or top when the 
-gooseis carrying them. Also, when one object is picked up, another one appears in its
-place. This began happening when I tried to fix the objects jumping back to their original
-locations when the goose placed them down. In addition, the objects are appearing in
-multiple screenblocks when they should only be appearing in one. I am working on this
-with Marie, but we haven't figured it out yet. Since the objects won't go into the top
-left corner, the goose can't put the necessary objects onto the picnic blanket, but the
-logic for this task exists. 
-
-To play, the goose first needs to pick up the fertilizer bag (which, when the human is
-working properly, will cause the human to see this happen and open the gate). After this,
-the goose must pick up the sprinkler, which would turn it on. Then the goose must steal the
-gardener's hat, making him wear his sun hat. Next, the goose should bring a carrot, apple,
-sandwich, thermos, and jam to the picnic blanket. Lastly, the goose should steal the
-gardener's keys and then leave out the back gate. When each task is completed, it is crossed
-off on the task list.
-
-I apologize for how buggy the game is. I promise that I have spent a lot of time on it this
-week, but I just keep creating more bugs and messing up old progress I had made.
+The art is now done. I made an animated instruction screen that shows what
+each button controls in the game. I have added songs and sound effects (such
+as the honk and a pen writing noise for when the pen is picked up to indicate 
+that the goose wrote something on the task list). The task list now says what 
+specific items are needed for the picnic. The goose can also now fully complete 
+the task list and win the game. The hat and the keys are both located in the 
+grass behind the bench. I am still having a few issues with my background tiles 
+for the garden and win screen, but for the most part they are displaying. All 
+that I have left to finish is fixing these tiles and fixing the human interaction
+with the goose. For now, I show him walking back and forth, and he is animated.
+I also think I might find a different song for the win state, because the music 
+doesn't quite match the feel of winning. 
 
 */
 
@@ -45,6 +35,7 @@ week, but I just keep creating more bugs and messing up old progress I had made.
 #include "menuSong.h"
 #include "gardenSong.h"
 #include "honk.h"
+#include "buttons.h"
 
 //Prototypes
 void initialize();
@@ -73,6 +64,11 @@ unsigned short oldButtons;
 //Offset
 int voff;
 int hoff;
+
+//Variables for onscreen buttons
+int buttonTimer;
+int option;
+int frame;
 
 
 int main() {
@@ -113,13 +109,16 @@ void initialize() {
     buttons = BUTTONS;
     hoff = 0;
     voff = 0;
+    buttonTimer = 0;
+    option = 0;
+    frame = 0;
+
+    //Setup backgrounds
+    REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_8BPP | BG_SIZE_WIDE;
+    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_4BPP | BG_SIZE_SMALL;
 
     //Add background palette to memory
     DMANow(3, startScreenPal, PALETTE, 256);
-
-    //Initialize background
-    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_4BPP | BG_SIZE_SMALL;
-    REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(16) | BG_8BPP | BG_SIZE_WIDE;
 
     //Setup sounds and interrupts
     setupSounds();
@@ -129,10 +128,19 @@ void initialize() {
 }
 
 void goToStart() {
-    REG_DISPCTL = MODE0 | BG1_ENABLE;
+    REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_4BPP | BG_SIZE_SMALL;
+    REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
+    
+    //Add background palette to memory
+    DMANow(3, startScreenPal, PALETTE, 256);
+
     //Add start screen tiles and map to memory
     DMANow(3, startScreenTiles, &CHARBLOCK[0], startScreenTilesLen / 2);
     DMANow(3, startScreenMap, &SCREENBLOCK[28], 512 * 2);
+
+    //Add game sprite palette and tiles to memory
+    DMANow(3, buttonsPal, SPRITEPALETTE, 256);
+    DMANow(3, buttonsTiles, &CHARBLOCK[4], buttonsTilesLen / 2);
 
     playSoundA(menuSong, MENUSONGLEN, 1);
 
@@ -140,15 +148,57 @@ void goToStart() {
 }
 
 void start() {
+    hideSprites();
+    if (option == 0) {
+        shadowOAM[0].attr0 = 108 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[0].attr1 = 9 | ATTR1_MEDIUM;
+        shadowOAM[0].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 26);
+        shadowOAM[1].attr0 = 108 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[1].attr1 = 41 | ATTR1_MEDIUM;
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 26);
+        shadowOAM[2].attr0 = 128 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[2].attr1 = 9 | ATTR1_MEDIUM;
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 28);
+        shadowOAM[3].attr0 = 128 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[3].attr1 = 41 | ATTR1_MEDIUM;
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 28);
+    } else {
+        shadowOAM[0].attr0 = 108 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[0].attr1 = 9 | ATTR1_MEDIUM;
+        shadowOAM[0].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 24);
+        shadowOAM[1].attr0 = 108 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[1].attr1 = 41 | ATTR1_MEDIUM;
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 24);
+        shadowOAM[2].attr0 = 128 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[2].attr1 = 9 | ATTR1_MEDIUM;
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 30);
+        shadowOAM[3].attr0 = 128 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[3].attr1 = 41 | ATTR1_MEDIUM;
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 30);
+    }
+
     waitForVBlank();
+    DMANow(3, shadowOAM, OAM, 512);
+
     if (BUTTON_PRESSED(BUTTON_START)) {
-        initGame();
-        goToInstructions();
+        if (option == 0) {
+            initGame();
+            stopSound();
+            playSoundA(gardenSong, GARDENSONGLEN, 1);
+            goToGame();
+        } else {
+            goToInstructions();
+        }
+    } 
+    if (BUTTON_PRESSED(BUTTON_DOWN)) {
+        option = 1;
+    } else if (BUTTON_PRESSED(BUTTON_UP)) {
+        option = 0;
     }
 }
 
 void goToInstructions() {
-    REG_DISPCTL = MODE0 | BG1_ENABLE;
+    REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
     //Add instructions background tiles and map to memory
     DMANow(3, instructionsScreenTiles, &CHARBLOCK[0], instructionsScreenTilesLen / 2);
     DMANow(3, instructionsScreenMap, &SCREENBLOCK[28], 512 * 2);
@@ -156,10 +206,146 @@ void goToInstructions() {
 }
 
 void instructions() {
+    hideSprites();
+    shadowOAM[0].attr0 = 0 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // back button
+    shadowOAM[0].attr1 = 0 | ATTR1_MEDIUM;
+    shadowOAM[0].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 0);
+    shadowOAM[1].attr0 = 41 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // walking goose
+    shadowOAM[1].attr1 = 32 | ATTR1_MEDIUM;
+    shadowOAM[2].attr0 = 100 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // left
+    shadowOAM[2].attr1 = 24 | ATTR1_SMALL;
+    shadowOAM[3].attr0 = 100 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // right
+    shadowOAM[3].attr1 = 56 | ATTR1_SMALL;
+    shadowOAM[4].attr0 = 92 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // up
+    shadowOAM[4].attr1 = 40 | ATTR1_SMALL;
+    shadowOAM[5].attr0 = 108 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // down
+    shadowOAM[5].attr1 = 40 | ATTR1_SMALL;
+    if (buttonTimer >= 225) {
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID((frame * 4), 16);
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 0);
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(6, 0);
+        shadowOAM[4].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(8, 0);
+        shadowOAM[5].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(10, 2);
+    } else if (buttonTimer >= 150) {
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID((frame * 4), 12);
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 0);
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(6, 0);
+        shadowOAM[4].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(8, 2);
+        shadowOAM[5].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(10, 0);
+    } else if (buttonTimer >= 75) {
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID((frame * 4), 8);
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 0);
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(6, 2);
+        shadowOAM[4].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(8, 0);
+        shadowOAM[5].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(10, 0);
+    } else {
+        shadowOAM[1].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID((frame * 4), 4);
+        shadowOAM[2].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 2);
+        shadowOAM[3].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(6, 0);
+        shadowOAM[4].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(8, 0);
+        shadowOAM[5].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(10, 0);
+    }
+    shadowOAM[6].attr0 = 41 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // ducking goose
+    shadowOAM[6].attr1 = 104 | ATTR1_MEDIUM;
+    shadowOAM[7].attr0 = 96 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // left shoulder
+    shadowOAM[7].attr1 = 112 | ATTR1_SMALL;
+    if (buttonTimer >= 225) {
+        shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 20);
+        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
+    } else if (buttonTimer >= 150) {
+        shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 20);
+        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
+    } else if (buttonTimer >= 75) {
+        shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 20);
+        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
+    } else {
+        shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 20);
+        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 2);
+    }
+    shadowOAM[8].attr0 = 41 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // grabbing goose
+    shadowOAM[8].attr1 = 176 | ATTR1_MEDIUM;
+    shadowOAM[9].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 16); // apple
+    shadowOAM[10].attr0 = 96 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE; // right shoulder
+    shadowOAM[10].attr1 = 184 | ATTR1_SMALL;
+    if (buttonTimer >= 225) {
+        shadowOAM[8].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 20);
+        shadowOAM[9].attr0 = 55 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE;
+        shadowOAM[9].attr1 = 172 | ATTR1_TINY;
+        if (buttonTimer > 260) {
+            shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 0);
+        } else {
+            shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 2);
+        }
+    } else if (buttonTimer >= 150) {
+        shadowOAM[8].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 20);
+        shadowOAM[9].attr0 = 45 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE;
+        shadowOAM[9].attr1 = 180 | ATTR1_TINY;
+        shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 0);
+    } else if (buttonTimer >= 75) {
+        shadowOAM[8].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 20);
+        shadowOAM[9].attr0 = 55 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE;
+        shadowOAM[9].attr1 = 172 | ATTR1_TINY;
+        if (buttonTimer > 110) {
+            shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 2);
+        } else {
+            shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 0);
+        }
+    } else {
+        shadowOAM[8].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 20);
+        shadowOAM[9].attr0 = 55 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_SQUARE;
+        shadowOAM[9].attr1 = 172 | ATTR1_TINY;
+        shadowOAM[10].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(14, 0);
+    }
+    shadowOAM[11].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // a part 1
+    shadowOAM[11].attr1 = 8 | ATTR1_MEDIUM;
+    shadowOAM[12].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // a part 2
+    shadowOAM[12].attr1 = 40 | ATTR1_MEDIUM;
+    shadowOAM[13].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // a part 3
+    shadowOAM[13].attr1 = 72 | ATTR1_MEDIUM;
+    shadowOAM[14].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // b part 1
+    shadowOAM[14].attr1 = 104 | ATTR1_MEDIUM;
+    shadowOAM[15].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // b part 2
+    shadowOAM[15].attr1 = 136 | ATTR1_MEDIUM;
+    shadowOAM[16].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // start part 1
+    shadowOAM[16].attr1 = 168 | ATTR1_MEDIUM;
+    shadowOAM[17].attr0 = 142 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE; // start part 2
+    shadowOAM[17].attr1 = 200 | ATTR1_MEDIUM;
+    if (buttonTimer >= 200) {
+        shadowOAM[11].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 4);
+        shadowOAM[12].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 4);
+        shadowOAM[13].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(17, 4);
+        shadowOAM[14].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 8);
+        shadowOAM[15].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 8);
+        shadowOAM[16].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 14);
+        shadowOAM[17].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 14);
+    } else if (buttonTimer >= 100) {
+        shadowOAM[11].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 4);
+        shadowOAM[12].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 4);
+        shadowOAM[13].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(17, 4);
+        shadowOAM[14].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 10);
+        shadowOAM[15].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 10);
+        shadowOAM[16].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 12);
+        shadowOAM[17].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 12);
+    } else {
+        shadowOAM[11].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 6);
+        shadowOAM[12].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 6);
+        shadowOAM[13].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(17, 6);
+        shadowOAM[14].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 8);
+        shadowOAM[15].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 8);
+        shadowOAM[16].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(9, 12);
+        shadowOAM[17].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(13, 12);
+    }
+
+    buttonTimer = (buttonTimer + 1) % 300;
+    if ((buttonTimer % 10) == 0) {
+        frame = (frame + 1) % 2;
+    }
+
+    waitForVBlank();
+    DMANow(3, shadowOAM, OAM, 512);
+
     if (BUTTON_PRESSED(BUTTON_START)) {
-        stopSound();
-        playSoundA(gardenSong, GARDENSONGLEN, 1);
-        goToGame();
+        goToStart();
     }
 }
 
@@ -170,8 +356,8 @@ void goToGame() {
     DMANow(3, shadowOAM, OAM, 512);
     
     //Add game background tiles and map to memory
-    DMANow(3, gardenTiles, &CHARBLOCK[1], gardenTilesLen / 2);
-    DMANow(3, gardenMap, &SCREENBLOCK[16], 512 * 64);
+    DMANow(3, gardenTiles, &CHARBLOCK[0], gardenTilesLen / 2);
+    DMANow(3, gardenMap, &SCREENBLOCK[28], 512 * 32);
 
     //Add color palette back to memory
     DMANow(3, gardenPal, PALETTE, 256);
@@ -179,6 +365,7 @@ void goToGame() {
     //Add game sprite palette and tiles to memory
     DMANow(3, goosePal, SPRITEPALETTE, 256);
     DMANow(3, gooseTiles, &CHARBLOCK[4], gooseTilesLen / 2);
+
     state = GAME;
 }
 
@@ -237,6 +424,9 @@ void goToWin() {
 
     //Add color palette to memory
     DMANow(3, winScreenPal, PALETTE, 256);
+    
+    stopSound();
+    playSoundA(menuSong, MENUSONGLEN, 1);
 
     state = WIN;
 }
@@ -257,6 +447,10 @@ void goToTask() {
     //Add task list tiles and map to memory
     DMANow(3, TaskListTiles, &CHARBLOCK[0], TaskListTilesLen / 2);
     DMANow(3, TaskListMap, &SCREENBLOCK[28], 512 * 2);
+
+    //Add color palette to memory
+    DMANow(3, TaskListPal, PALETTE, 256);
+
     //Add task list sprite palette and tiles to memory
     DMANow(3, taskSpritesPal, SPRITEPALETTE, 256);
     DMANow(3, taskSpritesTiles, &CHARBLOCK[4], taskSpritesTilesLen / 2);
@@ -277,25 +471,28 @@ void task() {
 
 void drawTaskList() {
     int count = 0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7; j++) {
             shadowOAM[count].attr0 = (30 + (i * 16)) | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
             shadowOAM[count].attr1 = (10 + (j * 32)) | ATTR1_MEDIUM;
             if ((4 - i) < tasks) {
-                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((j * 4), (i * 2));
+                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((j) * 4), (i * 2));
+                if ((tasks == 1) && (i == 4)) {
+                    shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((j) * 4), (i * 2 + 12));
+                }
             } else {
-                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((j * 4), ((i * 2) + 10));
+                shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((j * 4), ((i * 2) + 12));
             }
             count++;
         }
     }
     if (tasks < 0) {
-        shadowOAM[count].attr0 = 110 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[count].attr0 = 126 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
         shadowOAM[count].attr1 = 10 | ATTR1_LARGE;
-        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(0, 20);
+        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(0, 24);
         count++;
-        shadowOAM[count].attr0 = 110 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+        shadowOAM[count].attr0 = 126 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
         shadowOAM[count].attr1 = 74 | ATTR1_LARGE;
-        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(8, 20);
+        shadowOAM[count].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(8, 24);
     }
 }

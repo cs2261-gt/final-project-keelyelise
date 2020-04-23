@@ -5,11 +5,11 @@
 //
 //	TaskList, 256x256@4, 
 //	+ palette 256 entries, not compressed
-//	+ 34 tiles (t|f|p reduced) not compressed
+//	+ 31 tiles (t|f|p reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 1088 + 2048 = 3648
+//	Total size: 512 + 992 + 2048 = 3552
 //
-//	Time-stamp: 2020-04-05, 21:42:29
+//	Time-stamp: 2020-04-22, 09:35:42
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.3
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,8 +18,8 @@
 #ifndef GRIT_TASKLIST_H
 #define GRIT_TASKLIST_H
 
-#define TaskListTilesLen 1088
-extern const unsigned short TaskListTiles[544];
+#define TaskListTilesLen 992
+extern const unsigned short TaskListTiles[496];
 
 #define TaskListMapLen 2048
 extern const unsigned short TaskListMap[1024];

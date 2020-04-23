@@ -2,7 +2,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "main.c"
-# 29 "main.c"
+# 16 "main.c"
 # 1 "myLib.h" 1
 
 
@@ -110,7 +110,7 @@ typedef struct{
 
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
-# 30 "main.c" 2
+# 17 "main.c" 2
 # 1 "game.h" 1
 
 
@@ -131,7 +131,7 @@ extern int overallHoff;
 void initGame();
 void updateGame();
 void drawGame();
-# 31 "main.c" 2
+# 18 "main.c" 2
 # 1 "gooseLib.h" 1
 
 typedef struct {
@@ -167,7 +167,7 @@ enum {DUCK, STAND, SWIM};
 void initGoose();
 void updateGoose();
 void drawGoose();
-# 32 "main.c" 2
+# 19 "main.c" 2
 # 1 "objectLib.h" 1
 
 typedef struct {
@@ -208,7 +208,7 @@ void updateObjects();
 void drawObjects();
 void drawCollision(OBJECT* o);
 void checkTasks();
-# 33 "main.c" 2
+# 20 "main.c" 2
 # 1 "humanLib.h" 1
 
 typedef struct {
@@ -253,41 +253,41 @@ void openBackGate();
 void turnSprinklerOff();
 void gardening();
 void performCheat();
-# 34 "main.c" 2
+# 21 "main.c" 2
 # 1 "startScreen.h" 1
 # 22 "startScreen.h"
-extern const unsigned short startScreenTiles[2080];
+extern const unsigned short startScreenTiles[3024];
 
 
 extern const unsigned short startScreenMap[1024];
 
 
 extern const unsigned short startScreenPal[256];
-# 35 "main.c" 2
+# 22 "main.c" 2
 # 1 "goose.h" 1
 # 21 "goose.h"
 extern const unsigned short gooseTiles[16384];
 
 
 extern const unsigned short goosePal[256];
-# 36 "main.c" 2
+# 23 "main.c" 2
 # 1 "gardener.h" 1
 # 21 "gardener.h"
 extern const unsigned short gardenerTiles[16384];
 
 
 extern const unsigned short gardenerPal[256];
-# 37 "main.c" 2
+# 24 "main.c" 2
 # 1 "garden.h" 1
 # 22 "garden.h"
-extern const unsigned short gardenTiles[21984];
+extern const unsigned short gardenTiles[20192];
 
 
 extern const unsigned short gardenMap[4096];
 
 
 extern const unsigned short gardenPal[256];
-# 38 "main.c" 2
+# 25 "main.c" 2
 # 1 "pauseScreen.h" 1
 # 22 "pauseScreen.h"
 extern const unsigned short pauseScreenTiles[22816];
@@ -297,7 +297,7 @@ extern const unsigned short pauseScreenMap[2048];
 
 
 extern const unsigned short pauseScreenPal[256];
-# 39 "main.c" 2
+# 26 "main.c" 2
 # 1 "winScreen.h" 1
 # 22 "winScreen.h"
 extern const unsigned short winScreenTiles[18400];
@@ -307,17 +307,17 @@ extern const unsigned short winScreenMap[1024];
 
 
 extern const unsigned short winScreenPal[256];
-# 40 "main.c" 2
+# 27 "main.c" 2
 # 1 "instructionsScreen.h" 1
 # 22 "instructionsScreen.h"
-extern const unsigned short instructionsScreenTiles[1072];
+extern const unsigned short instructionsScreenTiles[944];
 
 
 extern const unsigned short instructionsScreenMap[1024];
 
 
 extern const unsigned short instructionsScreenPal[256];
-# 41 "main.c" 2
+# 28 "main.c" 2
 # 1 "sprites.h" 1
 # 22 "sprites.h"
 extern const unsigned short spritesTiles[48];
@@ -327,24 +327,24 @@ extern const unsigned short spritesMap[1024];
 
 
 extern const unsigned short spritesPal[256];
-# 42 "main.c" 2
+# 29 "main.c" 2
 # 1 "TaskList.h" 1
 # 22 "TaskList.h"
-extern const unsigned short TaskListTiles[544];
+extern const unsigned short TaskListTiles[496];
 
 
 extern const unsigned short TaskListMap[1024];
 
 
 extern const unsigned short TaskListPal[256];
-# 43 "main.c" 2
+# 30 "main.c" 2
 # 1 "taskSprites.h" 1
 # 21 "taskSprites.h"
 extern const unsigned short taskSpritesTiles[16384];
 
 
 extern const unsigned short taskSpritesPal[256];
-# 44 "main.c" 2
+# 31 "main.c" 2
 # 1 "sound.h" 1
 SOUND soundA;
 SOUND soundB;
@@ -361,28 +361,35 @@ void interruptHandler();
 void pauseSound();
 void unpauseSound();
 void stopSound();
-# 45 "main.c" 2
+# 32 "main.c" 2
 # 1 "menuSong.h" 1
 
 
 
 
 extern const signed char menuSong[1805505];
-# 46 "main.c" 2
+# 33 "main.c" 2
 # 1 "gardenSong.h" 1
 
 
 
 
 extern const signed char gardenSong[1373015];
-# 47 "main.c" 2
+# 34 "main.c" 2
 # 1 "honk.h" 1
 
 
 
 
 extern const signed char honk[5742];
-# 48 "main.c" 2
+# 35 "main.c" 2
+# 1 "buttons.h" 1
+# 21 "buttons.h"
+extern const unsigned short buttonsTiles[16384];
+
+
+extern const unsigned short buttonsPal[256];
+# 36 "main.c" 2
 
 
 void initialize();
@@ -411,6 +418,11 @@ unsigned short oldButtons;
 
 int voff;
 int hoff;
+
+
+int buttonTimer;
+int option;
+int frame;
 
 
 int main() {
@@ -451,13 +463,16 @@ void initialize() {
     buttons = (*(volatile unsigned short *)0x04000130);
     hoff = 0;
     voff = 0;
+    buttonTimer = 0;
+    option = 0;
+    frame = 0;
+
+
+    (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((28)<<8) | (1<<7) | (1<<14);
+    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (0<<7) | (0<<14);
 
 
     DMANow(3, startScreenPal, ((unsigned short *)0x5000000), 256);
-
-
-    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (0<<7) | (0<<14);
-    (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((16)<<8) | (1<<7) | (1<<14);
 
 
     setupSounds();
@@ -467,10 +482,19 @@ void initialize() {
 }
 
 void goToStart() {
-    (*(unsigned short *)0x4000000) = 0 | (1<<9);
+    (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (0<<7) | (0<<14);
+    (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
 
-    DMANow(3, startScreenTiles, &((charblock *)0x6000000)[0], 4160 / 2);
+
+    DMANow(3, startScreenPal, ((unsigned short *)0x5000000), 256);
+
+
+    DMANow(3, startScreenTiles, &((charblock *)0x6000000)[0], 6048 / 2);
     DMANow(3, startScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+
+
+    DMANow(3, buttonsPal, ((unsigned short *)0x5000200), 256);
+    DMANow(3, buttonsTiles, &((charblock *)0x6000000)[4], 32768 / 2);
 
     playSoundA(menuSong, 1805505, 1);
 
@@ -478,26 +502,204 @@ void goToStart() {
 }
 
 void start() {
+    hideSprites();
+    if (option == 0) {
+        shadowOAM[0].attr0 = 108 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[0].attr1 = 9 | (2<<14);
+        shadowOAM[0].attr2 = ((2)<<12) | ((26)*32+(0));
+        shadowOAM[1].attr0 = 108 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[1].attr1 = 41 | (2<<14);
+        shadowOAM[1].attr2 = ((2)<<12) | ((26)*32+(4));
+        shadowOAM[2].attr0 = 128 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[2].attr1 = 9 | (2<<14);
+        shadowOAM[2].attr2 = ((2)<<12) | ((28)*32+(0));
+        shadowOAM[3].attr0 = 128 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[3].attr1 = 41 | (2<<14);
+        shadowOAM[3].attr2 = ((2)<<12) | ((28)*32+(4));
+    } else {
+        shadowOAM[0].attr0 = 108 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[0].attr1 = 9 | (2<<14);
+        shadowOAM[0].attr2 = ((2)<<12) | ((24)*32+(0));
+        shadowOAM[1].attr0 = 108 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[1].attr1 = 41 | (2<<14);
+        shadowOAM[1].attr2 = ((2)<<12) | ((24)*32+(4));
+        shadowOAM[2].attr0 = 128 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[2].attr1 = 9 | (2<<14);
+        shadowOAM[2].attr2 = ((2)<<12) | ((30)*32+(0));
+        shadowOAM[3].attr0 = 128 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[3].attr1 = 41 | (2<<14);
+        shadowOAM[3].attr2 = ((2)<<12) | ((30)*32+(4));
+    }
+
     waitForVBlank();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
-        initGame();
-        goToInstructions();
+        if (option == 0) {
+            initGame();
+            stopSound();
+            playSoundA(gardenSong, 1373015, 1);
+            goToGame();
+        } else {
+            goToInstructions();
+        }
+    }
+    if ((!(~(oldButtons)&((1<<7))) && (~buttons & ((1<<7))))) {
+        option = 1;
+    } else if ((!(~(oldButtons)&((1<<6))) && (~buttons & ((1<<6))))) {
+        option = 0;
     }
 }
 
 void goToInstructions() {
-    (*(unsigned short *)0x4000000) = 0 | (1<<9);
+    (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
 
-    DMANow(3, instructionsScreenTiles, &((charblock *)0x6000000)[0], 2144 / 2);
+    DMANow(3, instructionsScreenTiles, &((charblock *)0x6000000)[0], 1888 / 2);
     DMANow(3, instructionsScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
     state = INSTRUCTIONS;
 }
 
 void instructions() {
+    hideSprites();
+    shadowOAM[0].attr0 = 0 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[0].attr1 = 0 | (2<<14);
+    shadowOAM[0].attr2 = ((2)<<12) | ((0)*32+(0));
+    shadowOAM[1].attr0 = 41 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[1].attr1 = 32 | (2<<14);
+    shadowOAM[2].attr0 = 100 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[2].attr1 = 24 | (1<<14);
+    shadowOAM[3].attr0 = 100 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[3].attr1 = 56 | (1<<14);
+    shadowOAM[4].attr0 = 92 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[4].attr1 = 40 | (1<<14);
+    shadowOAM[5].attr0 = 108 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[5].attr1 = 40 | (1<<14);
+    if (buttonTimer >= 225) {
+        shadowOAM[1].attr2 = ((2)<<12) | ((16)*32+((frame * 4)));
+        shadowOAM[2].attr2 = ((2)<<12) | ((0)*32+(4));
+        shadowOAM[3].attr2 = ((2)<<12) | ((0)*32+(6));
+        shadowOAM[4].attr2 = ((2)<<12) | ((0)*32+(8));
+        shadowOAM[5].attr2 = ((2)<<12) | ((2)*32+(10));
+    } else if (buttonTimer >= 150) {
+        shadowOAM[1].attr2 = ((2)<<12) | ((12)*32+((frame * 4)));
+        shadowOAM[2].attr2 = ((2)<<12) | ((0)*32+(4));
+        shadowOAM[3].attr2 = ((2)<<12) | ((0)*32+(6));
+        shadowOAM[4].attr2 = ((2)<<12) | ((2)*32+(8));
+        shadowOAM[5].attr2 = ((2)<<12) | ((0)*32+(10));
+    } else if (buttonTimer >= 75) {
+        shadowOAM[1].attr2 = ((2)<<12) | ((8)*32+((frame * 4)));
+        shadowOAM[2].attr2 = ((2)<<12) | ((0)*32+(4));
+        shadowOAM[3].attr2 = ((2)<<12) | ((2)*32+(6));
+        shadowOAM[4].attr2 = ((2)<<12) | ((0)*32+(8));
+        shadowOAM[5].attr2 = ((2)<<12) | ((0)*32+(10));
+    } else {
+        shadowOAM[1].attr2 = ((2)<<12) | ((4)*32+((frame * 4)));
+        shadowOAM[2].attr2 = ((2)<<12) | ((2)*32+(4));
+        shadowOAM[3].attr2 = ((2)<<12) | ((0)*32+(6));
+        shadowOAM[4].attr2 = ((2)<<12) | ((0)*32+(8));
+        shadowOAM[5].attr2 = ((2)<<12) | ((0)*32+(10));
+    }
+    shadowOAM[6].attr0 = 41 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[6].attr1 = 104 | (2<<14);
+    shadowOAM[7].attr0 = 96 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[7].attr1 = 112 | (1<<14);
+    if (buttonTimer >= 225) {
+        shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(4));
+        shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
+    } else if (buttonTimer >= 150) {
+        shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(0));
+        shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
+    } else if (buttonTimer >= 75) {
+        shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(4));
+        shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
+    } else {
+        shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(0));
+        shadowOAM[7].attr2 = ((2)<<12) | ((2)*32+(12));
+    }
+    shadowOAM[8].attr0 = 41 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[8].attr1 = 176 | (2<<14);
+    shadowOAM[9].attr2 = ((2)<<12) | ((16)*32+(9));
+    shadowOAM[10].attr0 = 96 | (0<<13) | (0<<8) | (0<<14);
+    shadowOAM[10].attr1 = 184 | (1<<14);
+    if (buttonTimer >= 225) {
+        shadowOAM[8].attr2 = ((2)<<12) | ((20)*32+(0));
+        shadowOAM[9].attr0 = 55 | (0<<13) | (0<<8) | (0<<14);
+        shadowOAM[9].attr1 = 172 | (0<<14);
+        if (buttonTimer > 260) {
+            shadowOAM[10].attr2 = ((2)<<12) | ((0)*32+(14));
+        } else {
+            shadowOAM[10].attr2 = ((2)<<12) | ((2)*32+(14));
+        }
+    } else if (buttonTimer >= 150) {
+        shadowOAM[8].attr2 = ((2)<<12) | ((20)*32+(4));
+        shadowOAM[9].attr0 = 45 | (0<<13) | (0<<8) | (0<<14);
+        shadowOAM[9].attr1 = 180 | (0<<14);
+        shadowOAM[10].attr2 = ((2)<<12) | ((0)*32+(14));
+    } else if (buttonTimer >= 75) {
+        shadowOAM[8].attr2 = ((2)<<12) | ((20)*32+(0));
+        shadowOAM[9].attr0 = 55 | (0<<13) | (0<<8) | (0<<14);
+        shadowOAM[9].attr1 = 172 | (0<<14);
+        if (buttonTimer > 110) {
+            shadowOAM[10].attr2 = ((2)<<12) | ((2)*32+(14));
+        } else {
+            shadowOAM[10].attr2 = ((2)<<12) | ((0)*32+(14));
+        }
+    } else {
+        shadowOAM[8].attr2 = ((2)<<12) | ((20)*32+(4));
+        shadowOAM[9].attr0 = 55 | (0<<13) | (0<<8) | (0<<14);
+        shadowOAM[9].attr1 = 172 | (0<<14);
+        shadowOAM[10].attr2 = ((2)<<12) | ((0)*32+(14));
+    }
+    shadowOAM[11].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[11].attr1 = 8 | (2<<14);
+    shadowOAM[12].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[12].attr1 = 40 | (2<<14);
+    shadowOAM[13].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[13].attr1 = 72 | (2<<14);
+    shadowOAM[14].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[14].attr1 = 104 | (2<<14);
+    shadowOAM[15].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[15].attr1 = 136 | (2<<14);
+    shadowOAM[16].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[16].attr1 = 168 | (2<<14);
+    shadowOAM[17].attr0 = 142 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[17].attr1 = 200 | (2<<14);
+    if (buttonTimer >= 200) {
+        shadowOAM[11].attr2 = ((2)<<12) | ((4)*32+(9));
+        shadowOAM[12].attr2 = ((2)<<12) | ((4)*32+(13));
+        shadowOAM[13].attr2 = ((2)<<12) | ((4)*32+(17));
+        shadowOAM[14].attr2 = ((2)<<12) | ((8)*32+(9));
+        shadowOAM[15].attr2 = ((2)<<12) | ((8)*32+(13));
+        shadowOAM[16].attr2 = ((2)<<12) | ((14)*32+(9));
+        shadowOAM[17].attr2 = ((2)<<12) | ((14)*32+(13));
+    } else if (buttonTimer >= 100) {
+        shadowOAM[11].attr2 = ((2)<<12) | ((4)*32+(9));
+        shadowOAM[12].attr2 = ((2)<<12) | ((4)*32+(13));
+        shadowOAM[13].attr2 = ((2)<<12) | ((4)*32+(17));
+        shadowOAM[14].attr2 = ((2)<<12) | ((10)*32+(9));
+        shadowOAM[15].attr2 = ((2)<<12) | ((10)*32+(13));
+        shadowOAM[16].attr2 = ((2)<<12) | ((12)*32+(9));
+        shadowOAM[17].attr2 = ((2)<<12) | ((12)*32+(13));
+    } else {
+        shadowOAM[11].attr2 = ((2)<<12) | ((6)*32+(9));
+        shadowOAM[12].attr2 = ((2)<<12) | ((6)*32+(13));
+        shadowOAM[13].attr2 = ((2)<<12) | ((6)*32+(17));
+        shadowOAM[14].attr2 = ((2)<<12) | ((8)*32+(9));
+        shadowOAM[15].attr2 = ((2)<<12) | ((8)*32+(13));
+        shadowOAM[16].attr2 = ((2)<<12) | ((12)*32+(9));
+        shadowOAM[17].attr2 = ((2)<<12) | ((12)*32+(13));
+    }
+
+    buttonTimer = (buttonTimer + 1) % 300;
+    if ((buttonTimer % 10) == 0) {
+        frame = (frame + 1) % 2;
+    }
+
+    waitForVBlank();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
-        stopSound();
-        playSoundA(gardenSong, 1373015, 1);
-        goToGame();
+        goToStart();
     }
 }
 
@@ -508,8 +710,8 @@ void goToGame() {
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
 
-    DMANow(3, gardenTiles, &((charblock *)0x6000000)[1], 43968 / 2);
-    DMANow(3, gardenMap, &((screenblock *)0x6000000)[16], 512 * 64);
+    DMANow(3, gardenTiles, &((charblock *)0x6000000)[0], 40384 / 2);
+    DMANow(3, gardenMap, &((screenblock *)0x6000000)[28], 512 * 32);
 
 
     DMANow(3, gardenPal, ((unsigned short *)0x5000000), 256);
@@ -517,6 +719,7 @@ void goToGame() {
 
     DMANow(3, goosePal, ((unsigned short *)0x5000200), 256);
     DMANow(3, gooseTiles, &((charblock *)0x6000000)[4], 32768 / 2);
+
     state = GAME;
 }
 
@@ -576,6 +779,9 @@ void goToWin() {
 
     DMANow(3, winScreenPal, ((unsigned short *)0x5000000), 256);
 
+    stopSound();
+    playSoundA(menuSong, 1805505, 1);
+
     state = WIN;
 }
 
@@ -593,8 +799,12 @@ void goToTask() {
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
 
-    DMANow(3, TaskListTiles, &((charblock *)0x6000000)[0], 1088 / 2);
+    DMANow(3, TaskListTiles, &((charblock *)0x6000000)[0], 992 / 2);
     DMANow(3, TaskListMap, &((screenblock *)0x6000000)[28], 512 * 2);
+
+
+    DMANow(3, TaskListPal, ((unsigned short *)0x5000000), 256);
+
 
     DMANow(3, taskSpritesPal, ((unsigned short *)0x5000200), 256);
     DMANow(3, taskSpritesTiles, &((charblock *)0x6000000)[4], 32768 / 2);
@@ -615,25 +825,28 @@ void task() {
 
 void drawTaskList() {
     int count = 0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 7; j++) {
             shadowOAM[count].attr0 = (30 + (i * 16)) | (0<<13) | (0<<8) | (1<<14);
             shadowOAM[count].attr1 = (10 + (j * 32)) | (2<<14);
             if ((4 - i) < tasks) {
-                shadowOAM[count].attr2 = ((0)<<12) | (((i * 2))*32+((j * 4)));
+                shadowOAM[count].attr2 = ((0)<<12) | (((i * 2))*32+(((j) * 4)));
+                if ((tasks == 1) && (i == 4)) {
+                    shadowOAM[count].attr2 = ((0)<<12) | (((i * 2 + 12))*32+(((j) * 4)));
+                }
             } else {
-                shadowOAM[count].attr2 = ((0)<<12) | ((((i * 2) + 10))*32+((j * 4)));
+                shadowOAM[count].attr2 = ((0)<<12) | ((((i * 2) + 12))*32+((j * 4)));
             }
             count++;
         }
     }
     if (tasks < 0) {
-        shadowOAM[count].attr0 = 110 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[count].attr0 = 126 | (0<<13) | (0<<8) | (1<<14);
         shadowOAM[count].attr1 = 10 | (3<<14);
-        shadowOAM[count].attr2 = ((0)<<12) | ((20)*32+(0));
+        shadowOAM[count].attr2 = ((0)<<12) | ((24)*32+(0));
         count++;
-        shadowOAM[count].attr0 = 110 | (0<<13) | (0<<8) | (1<<14);
+        shadowOAM[count].attr0 = 126 | (0<<13) | (0<<8) | (1<<14);
         shadowOAM[count].attr1 = 74 | (3<<14);
-        shadowOAM[count].attr2 = ((0)<<12) | ((20)*32+(8));
+        shadowOAM[count].attr2 = ((0)<<12) | ((24)*32+(8));
     }
 }

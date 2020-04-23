@@ -7,13 +7,17 @@
 
 int walkDir;
 int hatTimer;
+int aniTimer;
+int aninum;
 
 void initHuman() {
     walkDir = -1;
     hatTimer = 0;
+    aniTimer = 0;
+    aninum = 0;
 
-    human.worldRow = 30;
-    human.worldCol = 100;
+    human.worldRow = 40;
+    human.worldCol = 300;
     human.bubbleDel = 40;
     human.bubbleWidth = 112;
     human.bubbleHeight = 144;
@@ -60,16 +64,25 @@ void updateHuman() {
 }
 
 void drawHuman() {
-    shadowOAM[human.index].attr0 = (ROWMASK & human.screenRow) | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_TALL;
+    aniTimer = (aniTimer + 1) % 20;
+    if (aniTimer == 0) {
+        aninum = (aninum + 1) % 2;
+    }
+    int humanSB = (human.worldCol / 256) + 28;
+    if ((humanSB == sb) || (humanSB == (sb + 1))) {
+        shadowOAM[human.index].attr0 = (ROWMASK & human.screenRow) | ATTR0_REGULAR | ATTR0_4BPP | ATTR0_TALL;
+    } else {
+        shadowOAM[human.index].attr0 = ATTR0_HIDE;
+    }
     shadowOAM[human.index].attr1 = (COLMASK & human.screenCol) | ATTR1_LARGE;
     if (human.dir == FORWARDH) {
-        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID((human.state * 8), 16);
+        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + (4 * aninum)), 16);
     } else if (human.dir == BACKH) {
-        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + 16), 16);
+        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + 16 + (4 * aninum)), 16);
     } else if (human.dir == LEFTH) {
-        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8)), 24);
+        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + (4 * aninum)), 24);
     } else {
-        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + 16), 24);
+        shadowOAM[human.index].attr2 = ATTR2_PALROW(0) | ATTR2_TILEID(((human.state * 8) + 16 + (4 * aninum)), 24);
     }
 }
 
@@ -232,20 +245,20 @@ void turnSprinklerOff() {
 }
 
 void gardening() {
-    // if (human.worldCol != 440) {
-    //     if (440 > human.worldCol) {
-    //         human.worldCol++;
-    //     }
-    //     if (440 < human.worldCol) {
-    //         human.worldCol--;
-    //     }
-    //     if (100 > human.worldRow) {
-    //         human.worldRow++;
-    //     }
-    //     if (100 < human.worldRow) {
-    //         human.worldRow--;
-    //     }
-    // }
+    if (human.worldCol != 440) {
+        if (440 > human.worldCol) {
+            human.worldCol++;
+        }
+        if (440 < human.worldCol) {
+            human.worldCol--;
+        }
+        if (100 > human.worldRow) {
+            human.worldRow++;
+        }
+        if (100 < human.worldRow) {
+            human.worldRow--;
+        }
+    }
     // if (collision((human.worldCol - human.bubbleDel), (human.worldRow - human.bubbleDel), human.bubbleWidth, human.bubbleHeight, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
     // //|| collision((human.worldCol), (human.worldRow), 32, 64, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
     //     if ((human.state == STAND) || (honkTimer > 0)) {
@@ -270,30 +283,30 @@ void gardening() {
     //     human.workTimer = 0;
     //     human.action = CHASE;
     // } else {
-    //     if (human.workTimer == 0) {
-    //         human.state = STANDH;
-    //         human.worldRow += (walkDir);
-    //         if (walkDir > 0) {
-    //             human.dir = FORWARDH;
-    //         } else {
-    //             human.dir = BACKH;
-    //         }
-    //         if (human.worldRow == 0) {
-    //             walkDir = 1;
-    //             human.dir = BACKH;
-    //             human.workTimer++;
-    //         } else if (human.worldRow == 157) {
-    //             walkDir = -1;
-    //             human.dir = FORWARDH;
-    //             human.workTimer++;
-    //         }
-    //     } else {
-    //         human.state = KNEELH;
-    //         human.workTimer++;
-    //         if (human.workTimer >= 250) {
-    //             human.workTimer = 0;
-    //         }
-    //     }
+        if (human.workTimer == 0) {
+            human.state = STANDH;
+            human.worldRow += (walkDir);
+            if (walkDir > 0) {
+                human.dir = FORWARDH;
+            } else {
+                human.dir = BACKH;
+            }
+            if (human.worldRow == 6) {
+                walkDir = 1;
+                human.dir = BACKH;
+                human.workTimer++;
+            } else if (human.worldRow == 136) {
+                walkDir = -1;
+                human.dir = FORWARDH;
+                human.workTimer++;
+            }
+        } else {
+            human.state = KNEELH;
+            human.workTimer++;
+            if (human.workTimer >= 250) {
+                human.workTimer = 0;
+            }
+        }
     // }
 }
 

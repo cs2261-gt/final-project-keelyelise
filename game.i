@@ -283,7 +283,7 @@ void initGame() {
     cheat = 0;
     voff = 0;
     hoff = 0;
-    sb = 16;
+    sb = 28;
     anicounter = 0;
     gooseHoff = 0;
     overallHoff = 0;
@@ -295,14 +295,14 @@ void updateGame() {
     updateHuman();
     updateObjects();
 
-    if (hoff > 256 && sb < 18) {
+    if (hoff > 256 && sb < 30) {
         hoff -= 256;
-        sb++;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
-    } else if (hoff <= 0 && sb > 16) {
+        sb += 1;
+        (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
+    } else if (hoff <= 0 && sb > 28) {
         hoff += 256;
-        sb--;
-        (*(volatile unsigned short*)0x4000008) = ((1)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
+        sb -= 1;
+        (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
     }
     if (gooseHoff > 512) {
         gooseHoff -= 512;

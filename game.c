@@ -26,11 +26,11 @@ void initGame() {
     initGoose();
     initHuman();
     initObjects();
-    tasks = 1;
+    tasks = 5;
     cheat = 0;
     voff = 0;
     hoff = 0;
-    sb = 16;
+    sb = 28;
     anicounter = 0;
     gooseHoff = 0;
     overallHoff = 0;
@@ -42,14 +42,14 @@ void updateGame() {
     updateHuman();
     updateObjects();
     //Logic for extra wide map
-    if (hoff > 256 && sb < 18) {
+    if (hoff > 256 && sb < 30) {
         hoff -= 256;
-        sb++;
-        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
-    } else if (hoff <= 0 && sb > 16) {
+        sb += 1;
+        REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
+    } else if (hoff <= 0 && sb > 28) {
         hoff += 256;
-        sb--;
-        REG_BG0CNT = BG_CHARBLOCK(1) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
+        sb -= 1;
+        REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
     }
     if (gooseHoff > 512) {
         gooseHoff -= 512;

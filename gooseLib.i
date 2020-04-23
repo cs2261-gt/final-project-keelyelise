@@ -279,7 +279,7 @@ void stopSound();
 
 
 
-extern const signed char honk[3163];
+extern const signed char honk[5742];
 # 9 "gooseLib.c" 2
 
 int honkTimer;
@@ -288,6 +288,7 @@ int gateOpen;
 
 void initGoose() {
     honkTimer = 0;
+    gateOpen = 0;
 
     goose.worldRow = 64;
     goose.worldCol = 104;
@@ -320,9 +321,10 @@ void updateGoose() {
 
 
     if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<6)))) {
-        if ((goose.worldRow > -4)
-        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+(goose.worldCol))]
-        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
+        if ((goose.worldRow > 0)
+        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel + 15))*(1024)+((goose.worldCol + 7)))]
+        && gardenCollisionBitmap[(((goose.worldRow - goose.rdel + 15))*(1024)+((goose.worldCol + goose.width - 1 - 7)))]
+        && !collision(goose.worldCol, goose.worldRow - 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldRow -= goose.rdel;
             goose.dir = BACK;
             goose.anistate = WALK;
@@ -336,11 +338,11 @@ void updateGoose() {
                 voff--;
             }
         }
-    }
-    if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<7)))) {
+    } else if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<7)))) {
         if ((goose.worldRow < (256 - goose.height))
-        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+(goose.worldCol))]
-        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+((goose.worldCol + goose.width - 1)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+((goose.worldCol + 7)))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1 + goose.rdel))*(1024)+((goose.worldCol + goose.width - 1 - 7)))]
+        && !collision(goose.worldCol, goose.worldRow + 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldRow += goose.rdel;
             goose.dir = FORWARD;
             goose.anistate = WALK;
@@ -354,11 +356,11 @@ void updateGoose() {
                 voff++;
             }
         }
-    }
-    if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<5)))) {
+    } else if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<5)))) {
         if ((goose.worldCol > 1)
-        && gardenCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol - goose.cdel)))]
-        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol - goose.cdel)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow + 15))*(1024)+((goose.worldCol - goose.cdel + 9)))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol - goose.cdel + 9)))]
+        && !collision(goose.worldCol - 1, goose.worldRow, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldCol -= goose.cdel;
             goose.dir = LEFT;
             goose.anistate = WALK;
@@ -374,13 +376,14 @@ void updateGoose() {
                 overallHoff--;
             }
         }
-    }
-    if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<4)))) {
+    } else if ((~((*(volatile unsigned short *)0x04000130)) & ((1<<4)))) {
         if ((goose.worldCol < (1024 - goose.width))
-        && gardenCollisionBitmap[(((goose.worldRow))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]
-        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel)))]) {
+        && gardenCollisionBitmap[(((goose.worldRow + 15))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel - 9)))]
+        && gardenCollisionBitmap[(((goose.worldRow + goose.height - 1))*(1024)+((goose.worldCol + goose.width - 1 + goose.cdel - 9)))]
+        && !collision(goose.worldCol + 1, goose.worldRow, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             if (tasks < 5 || goose.worldCol < 390) {
-                if (gateOpen || !(tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589)) {
+                if ((tasks == 1) && (goose.worldRow <= 8) && (goose.worldCol >= 640) && (stolenObject.type == KEYS) && (goose.grabbing)) {
+                    gateOpen = 1;
                     goose.worldCol += goose.cdel;
                     goose.dir = RIGHT;
                     goose.anistate = WALK;
@@ -395,9 +398,24 @@ void updateGoose() {
                         gooseHoff++;
                         overallHoff++;
                     }
-                } else if (tasks == 1 && goose.worldRow <= 4 && goose.worldCol == 589 && stolenObject.type == KEYS) {
-                    gateOpen = 1;
-                    tasks = 0;
+                    if (goose.worldCol > 675) {
+                        tasks = 0;
+                    }
+                } else if ((goose.worldCol < 640) || (goose.worldRow > 7) || gateOpen) {
+                    goose.worldCol += goose.cdel;
+                    goose.dir = RIGHT;
+                    goose.anistate = WALK;
+                    if (goose.state == DUCK) {
+                        goose.beakY = 14;
+                        goose.beakX = 22;
+                    } else {
+                        goose.beakX = 13;
+                    }
+                    if ((hoff < (1024 - 240 - 1)) && (overallHoff < (1024 - 240 - 1)) && (goose.screenCol > (240 / 2))) {
+                        hoff++;
+                        gooseHoff++;
+                        overallHoff++;
+                    }
                 }
             }
         }
@@ -405,7 +423,7 @@ void updateGoose() {
 
     if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1)))) && (honkTimer == 0)) {
         honkTimer++;
-        playSoundB(honk, 3163, 0);
+        playSoundB(honk, 5742, 0);
     } else if (honkTimer >= 30) {
         honkTimer = 0;
     } else if (honkTimer > 0) {
