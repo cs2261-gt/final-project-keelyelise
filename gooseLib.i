@@ -68,6 +68,8 @@ extern int shadowCount;
 extern OBJECT stolenObject;
 extern OBJECT empty;
 extern int sprinklerOn;
+extern int sprinklerTimer;
+extern int hatIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -104,12 +106,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, GARDENING};
 
 
 void initHuman();
@@ -120,7 +126,6 @@ void returnObject();
 void sweat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();
 # 4 "gooseLib.c" 2
@@ -423,7 +428,7 @@ void updateGoose() {
 
     if ((!(~(oldButtons)&((1<<1))) && (~buttons & ((1<<1)))) && (honkTimer == 0)) {
         honkTimer++;
-        playSoundB(honk, 5742, 0);
+        playSoundB(honk, 5742 - 20, 0);
     } else if (honkTimer >= 30) {
         honkTimer = 0;
     } else if (honkTimer > 0) {
@@ -442,19 +447,21 @@ void drawGoose() {
 
         if (goose.anistate == WALK) {
             anicounter++;
-            if (anicounter > 6) {
-                if (goose.aninum) {
-                    goose.aninum = 0;
-                } else {
-                    goose.aninum = 1;
-                }
+            if (anicounter > 3) {
+                goose.aninum = (goose.aninum + 1) % 4;
                 anicounter = 0;
             }
         }
         if (goose.anistate == IDLE) {
             shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((goose.state * 12))) | ((0)<<12);
         } else {
-            shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((4 + (goose.state * 12) + (goose.aninum * 4)))) | ((0)<<12);
+            if ((goose.aninum == 1) || (goose.aninum == 3)) {
+                shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((goose.state * 12))) | ((0)<<12);
+            } else if (goose.aninum == 0) {
+                shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((4 + (goose.state * 12)))) | ((0)<<12);
+            } else {
+                shadowOAM[goose.index].attr2 = (((4 * goose.dir))*32+((8 + (goose.state * 12)))) | ((0)<<12);
+            }
         }
     } else {
         shadowOAM[goose.index].attr2 = (((16))*32+((goose.dir * 8 + 4))) | ((0)<<12);

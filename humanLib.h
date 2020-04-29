@@ -22,12 +22,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 //Enums
 enum {FORWARDH, BACKH, LEFTH, RIGHTH}; //direction
 enum {IDLEH, WALKH}; //human anistate
 enum {STANDH, KNEELH}; //human state
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, OPENFRONT, OPENBACK, CHEAT, GARDENING, REPLACE};
 
 //Methods
 void initHuman();
@@ -35,9 +39,8 @@ void updateHuman();
 void drawHuman();
 void chase();
 void returnObject();
-void sweat();
+void replaceHat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();

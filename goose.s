@@ -33,8 +33,8 @@ goosePal:
 	.short	31
 	.short	20083
 	.short	0
-	.short	0
-	.short	0
+	.short	32736
+	.short	32629
 	.short	0
 	.short	0
 	.short	0
@@ -1690,32 +1690,32 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
+	.short	4369
+	.short	4368
+	.short	4369
+	.short	4368
+	.short	4369
+	.short	4369
+	.short	4369
+	.short	4352
+	.short	17
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	4369
+	.short	273
+	.short	4369
+	.short	4369
+	.short	4369
+	.short	273
+	.short	4369
+	.short	4369
+	.short	272
+	.short	4368
 	.short	0
 	.short	0
 	.short	0
@@ -6804,9 +6804,13 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
+	.short	4352
+	.short	4352
+	.short	16
 	.short	0
 	.short	0
 	.short	0
@@ -6822,12 +6826,16 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -6844,16 +6852,22 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
 	.short	0
+	.short	1
 	.short	0
+	.short	16
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
@@ -6868,6 +6882,8 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
+	.short	4353
 	.short	0
 	.short	0
 	.short	0
@@ -6879,43 +6895,27 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	4112
+	.short	1
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
+	.short	4096
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	256
 	.short	0
 	.short	0
 	.short	0
@@ -7325,6 +7325,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7334,8 +7335,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -7357,11 +7361,18 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	17
 	.short	0
+	.short	1
+	.short	16
 	.short	0
+	.short	256
 	.short	0
+	.short	16
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7369,24 +7380,32 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7396,7 +7415,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
+	.short	4096
 	.short	0
+	.short	256
 	.short	0
 	.short	0
 	.short	0
@@ -7408,29 +7430,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7835,12 +7835,18 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
+	.short	256
 	.short	0
+	.short	16
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
+	.short	4352
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
@@ -7862,8 +7868,11 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
+	.short	1
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
@@ -7873,6 +7882,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -7885,6 +7895,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7896,14 +7907,20 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	1
+	.short	4096
 	.short	0
+	.short	256
+	.short	4096
 	.short	0
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
@@ -7911,50 +7928,33 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
+	.short	16
 	.short	0
+	.short	1
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
+	.short	16
 	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	1
+	.short	4353
 	.short	0
 	.short	0
 	.short	0
@@ -8340,13 +8340,19 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	256
 	.short	0
 	.short	0
+	.short	256
 	.short	0
 	.short	0
+	.short	256
 	.short	0
+	.short	256
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -8366,11 +8372,16 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
+	.short	1
 	.short	0
+	.short	16
 	.short	0
 	.short	0
+	.short	4096
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -8386,20 +8397,27 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	256
+	.short	17
+	.short	17
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
 	.short	0
 	.short	0
+	.short	4096
 	.short	0
 	.short	0
 	.short	0
@@ -8410,7 +8428,10 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
+	.short	1
 	.short	0
+	.short	4352
+	.short	16
 	.short	0
 	.short	0
 	.short	0
@@ -8436,28 +8457,7 @@ gooseTiles:
 	.short	0
 	.short	0
 	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
-	.short	0
+	.short	16
 	.short	0
 	.short	0
 	.short	0

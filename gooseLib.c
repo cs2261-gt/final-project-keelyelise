@@ -148,7 +148,7 @@ void updateGoose() {
 
     if (BUTTON_PRESSED(BUTTON_B) && (honkTimer == 0)) {
         honkTimer++;
-        playSoundB(honk, HONKLEN, 0);
+        playSoundB(honk, HONKLEN - 20, 0);
     } else if (honkTimer >= 30) {
         honkTimer = 0;
     } else if (honkTimer > 0) {
@@ -167,19 +167,21 @@ void drawGoose() {
         //Changing animation state
         if (goose.anistate == WALK) {
             anicounter++;
-            if (anicounter > 6) {
-                if (goose.aninum) {
-                    goose.aninum = 0;
-                } else {
-                    goose.aninum = 1;
-                }
+            if (anicounter > 3) {
+                goose.aninum = (goose.aninum + 1) % 4;
                 anicounter = 0;
             }
         }
         if (goose.anistate == IDLE) {
             shadowOAM[goose.index].attr2 = ATTR2_TILEID((goose.state * 12), (4 * goose.dir)) | ATTR2_PALROW(0);
         } else {
-            shadowOAM[goose.index].attr2 = ATTR2_TILEID((4 + (goose.state * 12) + (goose.aninum * 4)), (4 * goose.dir)) | ATTR2_PALROW(0);
+            if ((goose.aninum == 1) || (goose.aninum == 3)) {
+                shadowOAM[goose.index].attr2 = ATTR2_TILEID((goose.state * 12), (4 * goose.dir)) | ATTR2_PALROW(0);
+            } else if (goose.aninum == 0) {
+                shadowOAM[goose.index].attr2 = ATTR2_TILEID((4 + (goose.state * 12)), (4 * goose.dir)) | ATTR2_PALROW(0);
+            } else { 
+                shadowOAM[goose.index].attr2 = ATTR2_TILEID((8 + (goose.state * 12)), (4 * goose.dir)) | ATTR2_PALROW(0);
+            }
         }
     } else {
         shadowOAM[goose.index].attr2 = ATTR2_TILEID((goose.dir * 8 + 4), (16)) | ATTR2_PALROW(0);

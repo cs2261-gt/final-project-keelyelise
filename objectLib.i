@@ -68,6 +68,8 @@ extern int shadowCount;
 extern OBJECT stolenObject;
 extern OBJECT empty;
 extern int sprinklerOn;
+extern int sprinklerTimer;
+extern int hatIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -104,12 +106,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, OPENFRONT, OPENBACK, CHEAT, GARDENING, REPLACE};
 
 
 void initHuman();
@@ -117,10 +123,9 @@ void updateHuman();
 void drawHuman();
 void chase();
 void returnObject();
-void sweat();
+void replaceHat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();
 # 4 "objectLib.c" 2
@@ -284,12 +289,16 @@ extern const signed char writing[28400];
 
 int shadowCount;
 int sprinklerOn;
+int sprinklerTimer;
+int hatIndex;
 
 
 void initObjects() {
 
 
-
+    sprinklerOn = 0;
+    sprinklerTimer = 0;
+    hatIndex = 2;
 
 
     objects[0].type = FERTILIZER;
@@ -314,7 +323,7 @@ void initObjects() {
     objects[1].worldRow = 130;
     objects[1].worldCol = 560;
     objects[1].permRow = 130;
-    objects[1].permCol = 590;
+    objects[1].permCol = 560;
     objects[1].level = 0;
     objects[1].shape = (0<<14);
     objects[1].size = (0<<14);
@@ -342,10 +351,10 @@ void initObjects() {
     objects[3].width = 16;
     objects[3].height = 8;
 
-    objects[3].worldRow = 80;
-    objects[3].worldCol = 880;
-    objects[3].permRow = 80;
-    objects[3].permCol = 880;
+    objects[3].worldRow = 196;
+    objects[3].worldCol = 918;
+    objects[3].permRow = 918;
+    objects[3].permCol = 196;
     objects[3].level = 1;
     objects[3].shape = (1<<14);
     objects[3].size = (0<<14);
@@ -374,7 +383,7 @@ void initObjects() {
 
     objects[5].worldRow = 125;
     objects[5].worldCol = 219;
-    objects[5].permRow = 150;
+    objects[5].permRow = 125;
     objects[5].permCol = 215;
     objects[5].level = 1;
     objects[5].shape = (0<<14);
@@ -387,10 +396,10 @@ void initObjects() {
     objects[6].width = 8;
     objects[6].height = 16;
 
-    objects[6].worldRow = 100;
-    objects[6].worldCol = 880;
-    objects[6].permRow = 100;
-    objects[6].permCol = 880;
+    objects[6].worldRow = 128;
+    objects[6].worldCol = 894;
+    objects[6].permRow = 128;
+    objects[6].permCol = 894;
     objects[6].level = 1;
     objects[6].shape = (2<<14);
     objects[6].size = (0<<14);
@@ -404,7 +413,7 @@ void initObjects() {
 
     objects[7].worldRow = 130;
     objects[7].worldCol = 230;
-    objects[7].permRow = 170;
+    objects[7].permRow = 130;
     objects[7].permCol = 230;
     objects[7].level = 1;
     objects[7].shape = (0<<14);
@@ -417,10 +426,10 @@ void initObjects() {
     objects[8].width = 8;
     objects[8].height = 8;
 
-    objects[8].worldRow = 120;
-    objects[8].worldCol = 880;
-    objects[8].permRow = 120;
-    objects[8].permCol = 880;
+    objects[8].worldRow = 152;
+    objects[8].worldCol = 894;
+    objects[8].permRow = 152;
+    objects[8].permCol = 894;
     objects[8].level = 1;
     objects[8].shape = (0<<14);
     objects[8].size = (0<<14);
@@ -477,10 +486,10 @@ void initObjects() {
     objects[12].width = 16;
     objects[12].height = 8;
 
-    objects[12].worldRow = 140;
-    objects[12].worldCol = 880;
-    objects[12].permRow = 140;
-    objects[12].permCol = 880;
+    objects[12].worldRow = 162;
+    objects[12].worldCol = 894;
+    objects[12].permRow = 162;
+    objects[12].permCol = 894;
     objects[12].level = 1;
     objects[12].shape = (1<<14);
     objects[12].size = (0<<14);
@@ -492,11 +501,11 @@ void initObjects() {
     objects[13].width = 8;
     objects[13].height = 8;
 
-    objects[13].worldRow = 160;
-    objects[13].worldCol = 880;
-    objects[13].permRow = 160;
-    objects[13].permCol = 880;
-    objects[13].level = 1;
+    objects[13].worldRow = 220;
+    objects[13].worldCol = 900;
+    objects[13].permRow = 220;
+    objects[13].permCol = 900;
+    objects[13].level = 0;
     objects[13].shape = (0<<14);
     objects[13].size = (0<<14);
     objects[13].spriteCol = 30;
@@ -533,10 +542,32 @@ void updateObjects() {
                     }
                 }
             }
+            if (i == hatIndex) {
+                if (human.state == KNEELH) {
+                    objects[i].worldRow = human.worldRow + 10;
+                    objects[i].level = 0;
+                } else {
+                    objects[i].worldRow = human.worldRow - 2;
+                    objects[i].level = 2;
+                }
+                objects[i].worldCol = human.worldCol + 8;
+                if (objects[i].grabbed) {
+                    hatIndex = 50;
+                }
+            } else if (i == 9) {
+                if (human.state == KNEELH) {
+                    objects[i].worldRow = human.worldRow + 58;
+                    objects[i].level = 0;
+                } else {
+                    objects[i].worldRow = human.worldRow + 45;
+                    objects[i].level = 1;
+                }
+                objects[i].worldCol = human.worldCol + 19;
+            }
             objects[i].screenRow = objects[i].worldRow - voff;
             objects[i].screenCol = objects[i].worldCol - gooseHoff;
         } else {
-            if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8))))) {
+            if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8)))) && goose.grabbing) {
                 objects[i].grabbed = 0;
                 goose.grabbing = 0;
                 objects[i].worldRow = goose.worldRow + goose.beakY;
@@ -564,8 +595,15 @@ void updateObjects() {
 
 
 
-                objects[i].worldCol = human.worldCol + 20;
-                objects[i].worldRow = human.worldRow + 32;
+                objects[i].worldCol = human.worldCol;
+                objects[i].worldRow = human.worldRow;
+                objects[i].screenRow = objects[i].worldRow - voff;
+                objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+
+            } else if (human.grabbing == 0) {
+                objects[i].grabbed = 0;
+                objects[i].worldRow = human.worldRow;
+                objects[i].worldCol = human.worldCol;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
             }
@@ -579,11 +617,8 @@ void updateObjects() {
             tasks = -1;
         } else if (tasks == 4 && (objects[i].type == SPRINKLER) && (objects[i].grabbed)) {
             sprinklerOn = 1;
-            tasks = 3;
-        } else if (tasks == 5 && objects[i].type == FERTILIZER && objects[i].grabbed) {
+        } else if (tasks == 5 && objects[i].type == FERTILIZER && objects[i].grabbed && human.grabbing) {
             tasks = 4;
-            objects[10].spriteCol = 28;
-            objects[10].worldRow = 44;
         } else if (tasks == 3 && objects[i].type == HAT && objects[i].grabbed) {
             tasks = 2;
         }
@@ -610,11 +645,6 @@ void updateObjects() {
 
 void drawObjects() {
     for (int i = 0; i < 14; i++) {
-
-
-
-
-
         int objSB = (objects[i].worldCol / 256) + 28;
         if ((objSB == sb) || (objSB == (sb + 1))) {
             if (gateOpen && (objects[i].type == BACKGATE)) {
@@ -627,6 +657,27 @@ void drawObjects() {
         }
         shadowOAM[i + 2].attr1 = (0x1FF & objects[i].screenCol) | objects[i].size;
         shadowOAM[i + 2].attr2 = ((0)<<12) | ((objects[i].spriteRow)*32+(objects[i].spriteCol));
+    }
+    int objSB = (objects[1].worldCol / 256) + 28;
+    if (sprinklerOn && ((objSB == sb) || (objSB == (sb + 1)))) {
+        sprinklerTimer++;
+        int sprinklerAniNum = sprinklerTimer % 12;
+        int sprinklerWorldRow = objects[1].worldRow - 12;
+        int sprinklerWorldCol = objects[1].worldCol - 12;
+        int sprinklerScreenRow = sprinklerWorldRow - voff;
+        int sprinklerScreenCol = sprinklerWorldCol - gooseHoff;
+        if (collision(sprinklerWorldCol, sprinklerWorldRow, 32, 32, human.worldCol, human.worldRow, 32, 64)) {
+            tasks = 3;
+        }
+        shadowOAM[14 + 2].attr0 = (0xFF & sprinklerScreenRow) | (0<<8) | (0<<14) | (0<<13);
+        shadowOAM[14 + 2].attr1 = (0x1FF & sprinklerScreenCol) | (2<<14);
+        if (sprinklerAniNum < 6) {
+            shadowOAM[14 + 2].attr2 = ((1)<<12) | ((12)*32+(24));
+        } else {
+            shadowOAM[14 + 2].attr2 = ((1)<<12) | ((12)*32+(28));
+        }
+    } else {
+        shadowOAM[14 + 1].attr0 = (2<<8);
     }
 }
 

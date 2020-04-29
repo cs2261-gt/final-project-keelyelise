@@ -31,7 +31,7 @@ initGame:
 	ldr	r3, .L4+8
 	mov	lr, pc
 	bx	r3
-	mov	lr, #1
+	mov	lr, #5
 	mov	r3, #0
 	mov	r1, #28
 	ldr	r2, .L4+12

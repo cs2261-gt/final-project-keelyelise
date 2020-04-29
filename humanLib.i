@@ -68,6 +68,8 @@ extern int shadowCount;
 extern OBJECT stolenObject;
 extern OBJECT empty;
 extern int sprinklerOn;
+extern int sprinklerTimer;
+extern int hatIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -104,12 +106,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, OPENFRONT, OPENBACK, CHEAT, GARDENING, REPLACE};
 
 
 void initHuman();
@@ -117,10 +123,9 @@ void updateHuman();
 void drawHuman();
 void chase();
 void returnObject();
-void sweat();
+void replaceHat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();
 # 4 "humanLib.c" 2
@@ -262,12 +267,16 @@ int walkDir;
 int hatTimer;
 int aniTimer;
 int aninum;
+int stepTimer;
+int savedDir;
 
 void initHuman() {
     walkDir = -1;
     hatTimer = 0;
     aniTimer = 0;
     aninum = 0;
+    stepTimer = 0;
+    savedDir = FORWARDH;
 
     human.worldRow = 40;
     human.worldCol = 300;
@@ -276,7 +285,7 @@ void initHuman() {
     human.bubbleHeight = 144;
     human.state = STANDH;
     human.anistate = IDLEH;
-    human.index = 1;
+    human.index = 20;
     human.dir = FORWARDH;
     human.anicounter = 0;
     human.workTimer = 0;
@@ -291,25 +300,18 @@ void updateHuman() {
         chase();
     } else if (human.action == RETURNOBJ) {
         returnObject();
-    } else if (human.action == SWEAT) {
-        sweat();
     } else if (human.action == OPENFRONT) {
         openFrontGate();
     } else if (human.action == OPENBACK) {
         openBackGate();
-    } else if (human.action == SPRINKLEROFF) {
-        turnSprinklerOff();
     } else if (human.action == CHEAT) {
         performCheat();
+    } else if (human.action == REPLACE) {
+        replaceHat();
     }
 
     if (tasks == -1) {
-        human.action == CHEAT;
-    } else if (tasks == 3) {
-        human.action = SWEAT;
-    } else if ((tasks == 4) && sprinklerOn) {
-        human.action == SPRINKLEROFF;
-        turnSprinklerOff();
+        human.action = CHEAT;
     }
 
     human.screenRow = human.worldRow - voff;
@@ -317,9 +319,11 @@ void updateHuman() {
 }
 
 void drawHuman() {
-    aniTimer = (aniTimer + 1) % 20;
-    if (aniTimer == 0) {
-        aninum = (aninum + 1) % 2;
+    if (human.anistate == WALKH) {
+        aniTimer = (aniTimer + 1) % 20;
+        if (aniTimer == 0) {
+            aninum = (aninum + 1) % 2;
+        }
     }
     int humanSB = (human.worldCol / 256) + 28;
     if ((humanSB == sb) || (humanSB == (sb + 1))) {
@@ -340,30 +344,120 @@ void drawHuman() {
 }
 
 void chase() {
-# 129 "humanLib.c"
+    stepTimer++;
+    human.anistate = WALKH;
+    if (goose.grabbing) {
+        if (stepTimer >= 2) {
+            stepTimer = 0;
+            if (goose.worldCol > human.worldCol) {
+                human.worldCol++;
+                human.dir = RIGHTH;
+            }
+            if (goose.worldCol < human.worldCol) {
+                human.worldCol--;
+                human.dir = LEFTH;
+            }
+            if (goose.worldRow > human.worldRow) {
+                human.worldRow++;
+                human.dir = FORWARDH;
+            }
+            if (goose.worldRow < human.worldRow) {
+                human.worldRow--;
+                human.dir = BACKH;
+            }
+        }
+        if (collision(human.worldCol, human.worldRow, 32, 64, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
+            goose.grabbing = 0;
+            human.grabbing = 1;
+            human.action = RETURNOBJ;
+        }
+    } else {
+        if (stolenObject.worldCol > human.worldCol) {
+            human.worldCol++;
+        }
+        if (stolenObject.worldCol < human.worldCol) {
+            human.worldCol--;
+        }
+        if (stolenObject.worldRow > human.worldRow) {
+            human.worldRow++;
+        }
+        if (stolenObject.worldRow < human.worldRow) {
+            human.worldRow--;
+        }
+        if (collision(human.worldCol, human.worldRow, 32, 64, stolenObject.worldCol, stolenObject.worldRow, stolenObject.width, stolenObject.height)) {
+            human.grabbing = 1;
+            human.action = RETURNOBJ;
+        }
+    }
 }
 
 void returnObject() {
-# 155 "humanLib.c"
-}
 
-void sweat() {
-# 185 "humanLib.c"
+    if (human.grabbing) {
+        if (stolenObject.permCol > human.worldCol) {
+            human.worldCol++;
+        }
+        if (stolenObject.permCol < human.worldCol) {
+            human.worldCol--;
+        }
+        if (stolenObject.permRow > human.worldRow) {
+            human.worldRow++;
+        }
+        if (stolenObject.permRow < human.worldRow) {
+            human.worldRow--;
+        }
+        if ((human.worldCol == stolenObject.permCol) && (human.worldRow == stolenObject.permRow)) {
+            human.grabbing = 0;
+        }
+    } else {
+        if (human.worldRow != 70) {
+            if (70 > human.worldRow) {
+                human.worldRow++;
+                human.dir = FORWARDH;
+            }
+            if (70 < human.worldRow) {
+                human.worldRow--;
+                human.dir = BACKH;
+            }
+        } else {
+            human.action = GARDENING;
+        }
+    }
 }
 
 void openFrontGate() {
-# 205 "humanLib.c"
+    stepTimer++;
+    human.anistate = WALKH;
+    if (stepTimer >= 2) {
+        stepTimer = 0;
+        if (human.worldCol > 422) {
+            human.worldCol--;
+            if (human.worldRow > 70) {
+                human.worldRow -= 1;
+            } else if (human.worldRow < 70) {
+                human.worldRow +=1;
+            }
+        } else if (human.worldCol == 422 && human.worldRow != 70) {
+            if (human.worldRow > 70) {
+                human.worldRow -= 1;
+            } else if (human.worldRow < 70) {
+                human.worldRow +=1;
+            }
+        } else if (human.worldCol >= 422) {
+            tasks = 4;
+            objects[10].spriteCol = 28;
+            objects[10].worldRow = 44;
+            human.action = CHASE;
+        }
+    }
 }
 
 void openBackGate() {
 
 }
 
-void turnSprinklerOff() {
-# 245 "humanLib.c"
-}
-
 void gardening() {
+
     if (human.worldCol != 440) {
         if (440 > human.worldCol) {
             human.worldCol++;
@@ -378,34 +472,127 @@ void gardening() {
             human.worldRow--;
         }
     }
-# 286 "humanLib.c"
+
+    if (collision((human.worldCol - human.bubbleDel), (human.worldRow - human.bubbleDel), human.bubbleWidth, human.bubbleHeight, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
+        if (human.state == STANDH || honkTimer > 0) {
+            human.state = STANDH;
+
+            if (goose.grabbing) {
+                human.workTimer = 0;
+                if ((stolenObject.type == FERTILIZER) && (tasks == 5)) {
+                    human.action = OPENFRONT;
+                } else {
+                    human.action = CHASE;
+                }
+            } else {
+                human.anistate = IDLEH;
+            }
+
+            if (goose.worldRow > human.worldRow) {
+                human.dir = FORWARDH;
+            } else if (goose.worldRow < human.worldRow) {
+                human.dir = BACKH;
+            } else if (goose.worldCol > human.worldCol) {
+                human.dir = RIGHTH;
+            } else {
+                human.dir = LEFTH;
+            }
+        } else {
+
+            human.anistate = WALKH;
+            if (human.workTimer == 0) {
+                human.state = STANDH;
+                human.worldRow += (walkDir);
+                if (walkDir > 0) {
+                    human.dir = FORWARDH;
+                } else {
+                    human.dir = BACKH;
+                }
+                if (human.worldRow == 6) {
+                    walkDir = 1;
+                    human.dir = BACKH;
+                    human.workTimer++;
+                } else if (human.worldRow == 136) {
+                    walkDir = -1;
+                    human.dir = FORWARDH;
+                    human.workTimer++;
+                }
+            } else {
+                human.state = KNEELH;
+                human.workTimer++;
+                if (human.workTimer >= 250) {
+                    human.workTimer = 0;
+                }
+            }
+        }
+    } else {
+
+        human.anistate = WALKH;
         if (human.workTimer == 0) {
             human.state = STANDH;
             human.worldRow += (walkDir);
             if (walkDir > 0) {
                 human.dir = FORWARDH;
+                savedDir = FORWARDH;
             } else {
                 human.dir = BACKH;
+                savedDir = BACKH;
             }
             if (human.worldRow == 6) {
                 walkDir = 1;
                 human.dir = BACKH;
+                savedDir = BACKH;
                 human.workTimer++;
             } else if (human.worldRow == 136) {
                 walkDir = -1;
                 human.dir = FORWARDH;
+                savedDir = FORWARDH;
                 human.workTimer++;
+            }
+            if (hatIndex == 50) {
+                if (tasks == 3) {
+                    human.action = REPLACE;
+                }
             }
         } else {
             human.state = KNEELH;
+            human.dir = savedDir;
             human.workTimer++;
             if (human.workTimer >= 250) {
                 human.workTimer = 0;
             }
         }
-
+    }
 }
 
 void performCheat() {
 
+}
+
+void replaceHat() {
+    human.state = STANDH;
+    human.anistate = WALKH;
+    human.dir = RIGHTH;
+    if (human.worldCol < 870) {
+        human.worldCol++;
+        if (human.worldCol > 760) {
+            if (human.worldRow > 180) {
+                human.worldRow--;
+            } else if (human.worldRow < 180) {
+                human.worldRow++;
+            }
+        } else {
+            if (human.worldRow > 136) {
+                human.worldRow--;
+            } else if (human.worldRow < 136) {
+                human.worldRow++;
+            }
+        }
+    }
+    if ((human.worldCol == 870) && (human.worldRow == 180)) {
+        hatIndex = 3;
+        objects[hatIndex].worldRow = human.worldRow - 2;
+        objects[hatIndex].worldCol = human.worldCol + 8;
+        human.action = GARDENING;
+    }
 }

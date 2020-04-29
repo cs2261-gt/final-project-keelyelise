@@ -509,7 +509,7 @@ updateGoose:
 	.word	tasks
 	.word	389
 	.word	782
-	.word	5742
+	.word	5722
 	.word	honk
 	.word	playSoundB
 	.word	stolenObject
@@ -525,68 +525,82 @@ drawGoose:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	ldr	r2, .L80
+	ldr	r2, .L85
 	ldr	r1, [r2, #12]
 	mvn	r1, r1, lsl #17
 	mvn	r1, r1, lsr #17
-	ldr	r0, [r2, #52]
+	ldr	ip, [r2, #52]
 	ldr	r3, [r2, #28]
-	ldr	ip, .L80+4
+	ldr	r0, .L85+4
 	push	{r4, r5, lr}
 	ldr	r4, [r2, #8]
-	lsl	lr, r0, #3
+	lsl	lr, ip, #3
 	cmp	r3, #2
-	add	r0, ip, r0, lsl #3
-	strh	r4, [ip, lr]	@ movhi
-	strh	r1, [r0, #2]	@ movhi
+	add	ip, r0, ip, lsl #3
+	strh	r4, [r0, lr]	@ movhi
+	strh	r1, [ip, #2]	@ movhi
 	ldrh	r1, [r2, #40]
 	beq	.L73
+	add	r3, r3, r3, lsl #1
 	ldr	r4, [r2, #32]
+	lsl	r3, r3, #2
+	add	r3, r3, r1, lsl #7
 	lsl	r3, r3, #16
 	cmp	r4, #1
 	lsr	r3, r3, #16
-	beq	.L79
+	beq	.L83
 	cmp	r4, #0
-	ldrne	r0, [r2, #36]
-	bne	.L75
-	add	r3, r3, r3, lsl #1
-	lsl	r3, r3, #2
-	add	r3, r3, r1, lsl #7
-	strh	r3, [r0, #4]	@ movhi
+	bne	.L84
+.L81:
+	strh	r3, [ip, #4]	@ movhi
+.L72:
 	pop	{r4, r5, lr}
 	bx	lr
-.L79:
-	ldr	r4, .L80+8
-	ldr	r0, [r4]
-	add	r0, r0, #1
-	cmp	r0, #6
-	str	r0, [r4]
-	ldr	r0, [r2, #36]
+.L83:
+	ldr	ip, .L85+8
+	ldr	r1, [ip]
+	add	r1, r1, #1
+	cmp	r1, #3
+	str	r1, [ip]
+	ldr	r1, [r2, #36]
 	ble	.L75
-	rsbs	r0, r0, #1
-	movcc	r0, #0
 	mov	r5, #0
-	str	r0, [r2, #36]
-	str	r5, [r4]
+	add	r1, r1, #1
+	subs	r4, r5, r1
+	and	r4, r4, #3
+	and	r1, r1, #3
+	rsbpl	r1, r4, #0
+	str	r1, [r2, #36]
+	str	r5, [ip]
 .L75:
-	add	r3, r3, r3, lsl #1
-	add	r3, r3, r1, lsl #5
-	add	r3, r3, #1
-	add	r3, r3, r0
-	add	r2, ip, lr
-	lsl	r3, r3, #2
-	strh	r3, [r2, #4]	@ movhi
+	bic	r2, r1, #2
+	cmp	r2, #1
+	add	r0, r0, lr
+	beq	.L82
+.L78:
+	cmp	r1, #0
+	addne	r3, r3, #8
+	strhne	r3, [r0, #4]	@ movhi
+	bne	.L72
+	add	r3, r3, #4
+.L82:
+	strh	r3, [r0, #4]	@ movhi
 	pop	{r4, r5, lr}
 	bx	lr
 .L73:
 	lsl	r3, r1, #3
 	add	r3, r3, #516
-	strh	r3, [r0, #4]	@ movhi
-	pop	{r4, r5, lr}
-	bx	lr
-.L81:
+	b	.L81
+.L84:
+	ldr	r1, [r2, #36]
+	bic	r2, r1, #2
+	cmp	r2, #1
+	add	r0, r0, lr
+	bne	.L78
+	b	.L82
+.L86:
 	.align	2
-.L80:
+.L85:
 	.word	goose
 	.word	shadowOAM
 	.word	anicounter

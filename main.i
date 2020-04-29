@@ -2,7 +2,7 @@
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "main.c"
-# 16 "main.c"
+# 19 "main.c"
 # 1 "myLib.h" 1
 
 
@@ -110,7 +110,7 @@ typedef struct{
 
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
-# 17 "main.c" 2
+# 20 "main.c" 2
 # 1 "game.h" 1
 
 
@@ -131,7 +131,7 @@ extern int overallHoff;
 void initGame();
 void updateGame();
 void drawGame();
-# 18 "main.c" 2
+# 21 "main.c" 2
 # 1 "gooseLib.h" 1
 
 typedef struct {
@@ -167,7 +167,7 @@ enum {DUCK, STAND, SWIM};
 void initGoose();
 void updateGoose();
 void drawGoose();
-# 19 "main.c" 2
+# 22 "main.c" 2
 # 1 "objectLib.h" 1
 
 typedef struct {
@@ -208,7 +208,7 @@ void updateObjects();
 void drawObjects();
 void drawCollision(OBJECT* o);
 void checkTasks();
-# 20 "main.c" 2
+# 23 "main.c" 2
 # 1 "humanLib.h" 1
 
 typedef struct {
@@ -253,7 +253,7 @@ void openBackGate();
 void turnSprinklerOff();
 void gardening();
 void performCheat();
-# 21 "main.c" 2
+# 24 "main.c" 2
 # 1 "startScreen.h" 1
 # 22 "startScreen.h"
 extern const unsigned short startScreenTiles[3024];
@@ -263,21 +263,21 @@ extern const unsigned short startScreenMap[1024];
 
 
 extern const unsigned short startScreenPal[256];
-# 22 "main.c" 2
+# 25 "main.c" 2
 # 1 "goose.h" 1
 # 21 "goose.h"
 extern const unsigned short gooseTiles[16384];
 
 
 extern const unsigned short goosePal[256];
-# 23 "main.c" 2
+# 26 "main.c" 2
 # 1 "gardener.h" 1
 # 21 "gardener.h"
 extern const unsigned short gardenerTiles[16384];
 
 
 extern const unsigned short gardenerPal[256];
-# 24 "main.c" 2
+# 27 "main.c" 2
 # 1 "garden.h" 1
 # 22 "garden.h"
 extern const unsigned short gardenTiles[20192];
@@ -287,7 +287,7 @@ extern const unsigned short gardenMap[4096];
 
 
 extern const unsigned short gardenPal[256];
-# 25 "main.c" 2
+# 28 "main.c" 2
 # 1 "pauseScreen.h" 1
 # 22 "pauseScreen.h"
 extern const unsigned short pauseScreenTiles[22816];
@@ -297,7 +297,7 @@ extern const unsigned short pauseScreenMap[2048];
 
 
 extern const unsigned short pauseScreenPal[256];
-# 26 "main.c" 2
+# 29 "main.c" 2
 # 1 "winScreen.h" 1
 # 22 "winScreen.h"
 extern const unsigned short winScreenTiles[18400];
@@ -307,7 +307,7 @@ extern const unsigned short winScreenMap[1024];
 
 
 extern const unsigned short winScreenPal[256];
-# 27 "main.c" 2
+# 30 "main.c" 2
 # 1 "instructionsScreen.h" 1
 # 22 "instructionsScreen.h"
 extern const unsigned short instructionsScreenTiles[944];
@@ -317,7 +317,7 @@ extern const unsigned short instructionsScreenMap[1024];
 
 
 extern const unsigned short instructionsScreenPal[256];
-# 28 "main.c" 2
+# 31 "main.c" 2
 # 1 "sprites.h" 1
 # 22 "sprites.h"
 extern const unsigned short spritesTiles[48];
@@ -327,7 +327,7 @@ extern const unsigned short spritesMap[1024];
 
 
 extern const unsigned short spritesPal[256];
-# 29 "main.c" 2
+# 32 "main.c" 2
 # 1 "TaskList.h" 1
 # 22 "TaskList.h"
 extern const unsigned short TaskListTiles[496];
@@ -337,14 +337,14 @@ extern const unsigned short TaskListMap[1024];
 
 
 extern const unsigned short TaskListPal[256];
-# 30 "main.c" 2
+# 33 "main.c" 2
 # 1 "taskSprites.h" 1
 # 21 "taskSprites.h"
 extern const unsigned short taskSpritesTiles[16384];
 
 
 extern const unsigned short taskSpritesPal[256];
-# 31 "main.c" 2
+# 34 "main.c" 2
 # 1 "sound.h" 1
 SOUND soundA;
 SOUND soundB;
@@ -361,35 +361,35 @@ void interruptHandler();
 void pauseSound();
 void unpauseSound();
 void stopSound();
-# 32 "main.c" 2
+# 35 "main.c" 2
 # 1 "menuSong.h" 1
 
 
 
 
 extern const signed char menuSong[1805505];
-# 33 "main.c" 2
+# 36 "main.c" 2
 # 1 "gardenSong.h" 1
 
 
 
 
 extern const signed char gardenSong[1373015];
-# 34 "main.c" 2
+# 37 "main.c" 2
 # 1 "honk.h" 1
 
 
 
 
 extern const signed char honk[5742];
-# 35 "main.c" 2
+# 38 "main.c" 2
 # 1 "buttons.h" 1
 # 21 "buttons.h"
 extern const unsigned short buttonsTiles[16384];
 
 
 extern const unsigned short buttonsPal[256];
-# 36 "main.c" 2
+# 39 "main.c" 2
 
 
 void initialize();

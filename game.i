@@ -279,7 +279,7 @@ void initGame() {
     initGoose();
     initHuman();
     initObjects();
-    tasks = 1;
+    tasks = 5;
     cheat = 0;
     voff = 0;
     hoff = 0;
