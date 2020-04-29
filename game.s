@@ -190,8 +190,7 @@ drawGame:
 	.word	voff
 	.word	hoff
 	.size	drawGame, .-drawGame
-	.comm	empty,64,4
-	.comm	stolenObject,64,4
+	.comm	stolenObject,4,4
 	.comm	overallHoff,4,4
 	.comm	gooseHoff,4,4
 	.comm	anicounter,4,4

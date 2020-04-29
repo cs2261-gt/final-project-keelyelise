@@ -88,9 +88,9 @@ void drawHuman() {
 void chase() {
     stepTimer++;
     human.anistate = WALKH;
-    if (goose.grabbing) {
-        if (stepTimer >= 2) {
-            stepTimer = 0;
+    if (stepTimer >= 2) {
+        stepTimer = 0;
+        if (goose.grabbing) {
             if (goose.worldCol > human.worldCol) {
                 human.worldCol++;
                 human.dir = RIGHTH;
@@ -99,65 +99,120 @@ void chase() {
                 human.worldCol--;
                 human.dir = LEFTH;
             }
-            if (goose.worldRow > human.worldRow) {
+            if ((goose.worldRow - 16) > human.worldRow) {
                 human.worldRow++;
                 human.dir = FORWARDH;
             }
-            if (goose.worldRow < human.worldRow) {
+            if ((goose.worldRow - 16) < human.worldRow) {
                 human.worldRow--;
                 human.dir = BACKH;
             }
-        }
-        if (collision(human.worldCol, human.worldRow, 32, 64, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
-            goose.grabbing = 0;
-            human.grabbing = 1;
-            human.action = RETURNOBJ;
-        }
-    } else {
-        if (stolenObject.worldCol > human.worldCol) {
-            human.worldCol++;
-        }
-        if (stolenObject.worldCol < human.worldCol) {
-            human.worldCol--;
-        }
-        if (stolenObject.worldRow > human.worldRow) {
-            human.worldRow++;
-        }
-        if (stolenObject.worldRow < human.worldRow) {
-            human.worldRow--;
-        }
-        if (collision(human.worldCol, human.worldRow, 32, 64, stolenObject.worldCol, stolenObject.worldRow, stolenObject.width, stolenObject.height)) {
-            human.grabbing = 1;
-            human.action = RETURNOBJ;
+            if (collision(human.worldCol, human.worldRow, 32, 64, goose.worldCol, goose.worldRow, goose.width, goose.height)) {
+                goose.grabbing = 0;
+                human.grabbing = 1;
+                human.action = RETURNOBJ;
+            }
+        } else {
+            if ((stolenObject -> worldCol) > human.worldCol) {
+                human.worldCol++;
+                human.dir = RIGHTH;
+            }
+            if ((stolenObject -> worldCol) < human.worldCol) {
+                human.worldCol--;
+                human.dir = LEFTH;
+            }
+            if ((stolenObject -> worldRow - 16) > human.worldRow) {
+                human.worldRow++;
+                human.dir = FORWARDH;
+            }
+            if ((stolenObject -> worldRow - 16) < human.worldRow) {
+                human.worldRow--;
+                human.dir = BACKH;
+            }
+            if (collision(human.worldCol, human.worldRow, 32, 64, (stolenObject -> worldCol), (stolenObject -> worldRow), (stolenObject -> width), (stolenObject -> height))) {
+                human.grabbing = 1;
+                stolenObject -> grabbed = 1;
+                human.action = RETURNOBJ;
+            }
         }
     }
 }
 
 void returnObject() {
     //if the human has the object and is returning it
-    if (human.grabbing) {
-        if (stolenObject.permCol > human.worldCol) {
+    if (human.grabbing && (stolenObject -> type != HAT) && (stolenObject -> type != KEYS)) {
+        if ((stolenObject -> permCol) > human.worldCol) {
             human.worldCol++;
+            human.dir = RIGHTH;
         }
-        if (stolenObject.permCol < human.worldCol) {
+        if ((stolenObject -> permCol) < human.worldCol) {
             human.worldCol--;
+            human.dir = LEFTH;
         }
-        if (stolenObject.permRow > human.worldRow) {
+        if ((stolenObject -> permRow) > human.worldRow) {
             human.worldRow++;
+            human.dir = FORWARDH;
         }
-        if (stolenObject.permRow < human.worldRow) {
+        if ((stolenObject -> permRow) < human.worldRow) {
             human.worldRow--;
+            human.dir = BACKH;
         }
-        if ((human.worldCol == stolenObject.permCol) && (human.worldRow == stolenObject.permRow)) {
+        if ((human.worldCol == (stolenObject -> permCol)) && (human.worldRow == (stolenObject -> permRow))) {
             human.grabbing = 0;
+            stolenObject -> grabbed = 0;
+            stolenObject -> worldRow = (stolenObject -> permRow);
+            stolenObject -> worldCol = (stolenObject -> permCol);
+            stolenObject -> screenRow = (stolenObject -> worldRow) - voff;
+            stolenObject -> screenCol = (stolenObject -> worldCol) - gooseHoff;
         }
     } else { //if the human has returned the object to where it belongs, return to gardening
-        if (human.worldRow != 70) {
-            if (70 > human.worldRow) {
+        if (human.grabbing && (stolenObject -> type == HAT) && (hatIndex == 3)) {
+            if ((stolenObject -> permCol) > human.worldCol) {
+                human.worldCol++;
+                human.dir = RIGHTH;
+            }
+            if ((stolenObject -> permCol) < human.worldCol) {
+                human.worldCol--;
+                human.dir = LEFTH;
+            }
+            if ((stolenObject -> permRow) > human.worldRow) {
                 human.worldRow++;
                 human.dir = FORWARDH;
             }
-            if (70 < human.worldRow) {
+            if ((stolenObject -> permRow) < human.worldRow) {
+                human.worldRow--;
+                human.dir = BACKH;
+            }
+            if ((human.worldCol == (stolenObject -> permCol)) && (human.worldRow == (stolenObject -> permRow))) {
+                human.grabbing = 0;
+                stolenObject -> grabbed = 0;
+                stolenObject -> worldRow = (stolenObject -> permRow);
+                stolenObject -> worldCol = (stolenObject -> permCol);
+                stolenObject -> screenRow = (stolenObject -> worldRow) - voff;
+                stolenObject -> screenCol = (stolenObject -> worldCol) - gooseHoff;
+            }
+        } else if (human.grabbing && stolenObject -> type == HAT) {
+            human.grabbing = 0;
+            stolenObject -> grabbed = 0;
+            stolenObject -> worldRow = human.worldRow - 1;
+            stolenObject -> worldCol = human.worldCol + 8;
+            stolenObject -> screenRow = (stolenObject -> worldRow) - voff;
+            stolenObject -> screenCol = (stolenObject -> worldCol) - gooseHoff;
+            hatIndex = 2;
+        } else if (human.grabbing && stolenObject -> type == KEYS) {
+            human.grabbing = 0;
+            stolenObject -> grabbed = 0;
+            stolenObject -> worldRow = human.worldRow + 40;
+            stolenObject -> worldCol = human.worldCol + 19;
+            stolenObject -> screenRow = (stolenObject -> worldRow) - voff;
+            stolenObject -> screenCol = (stolenObject -> worldCol) - gooseHoff;
+            keyIndex = 9;
+        } else if (human.worldRow != 80) {
+            if (80 > human.worldRow) {
+                human.worldRow++;
+                human.dir = FORWARDH;
+            }
+            if (80 < human.worldRow) {
                 human.worldRow--;
                 human.dir = BACKH;
             }
@@ -174,6 +229,7 @@ void openFrontGate() {
         stepTimer = 0;   
         if (human.worldCol > 422) {
             human.worldCol--;
+
             if (human.worldRow > 70) {
                 human.worldRow -= 1;
             } else if (human.worldRow < 70) {
@@ -188,6 +244,7 @@ void openFrontGate() {
         } else if (human.worldCol >= 422) {
             tasks = 4;
             objects[10].spriteCol = 28;
+            objects[10].spriteRow = 4;
             objects[10].worldRow = 44;
             human.action = CHASE;
         }
@@ -201,17 +258,23 @@ void openBackGate() {
 void gardening() {
     //move the gardener to the gardening position
     if (human.worldCol != 440) {
+        human.anistate = WALKH;
+        human.state = STANDH;
         if (440 > human.worldCol) {
             human.worldCol++;
+            human.dir = RIGHTH;
         }
         if (440 < human.worldCol) {
             human.worldCol--;
+            human.dir = LEFTH;
         }
-        if (100 > human.worldRow) {
+        if (80 > human.worldRow) {
             human.worldRow++;
+            human.dir = FORWARDH;
         }
-        if (100 < human.worldRow) {
+        if (80 < human.worldRow) {
             human.worldRow--;
+            human.dir = BACKH;
         }
     }
     //if the goose collides with the human's detection bubble and either the gardener is standing or the goose has honked
@@ -221,8 +284,10 @@ void gardening() {
             //if the goose is holding something, the gardener chases the goose
             if (goose.grabbing) {
                 human.workTimer = 0;
-                if ((stolenObject.type == FERTILIZER) && (tasks == 5)) {
-                    human.action = OPENFRONT;
+                if ((tasks == 5)) {
+                    if (((stolenObject -> type) == FERTILIZER) || ((stolenObject -> type) == APPLE) || ((stolenObject -> type) == SANDWICH)) {
+                        human.action = OPENFRONT;
+                    }
                 } else {
                     human.action = CHASE;
                 }   
@@ -271,6 +336,11 @@ void gardening() {
         //gardening animation logic
         human.anistate = WALKH;
         if (human.workTimer == 0) {
+            if (hatIndex == 50) {
+                if (tasks == 3) {
+                    human.action = REPLACE;
+                }
+            }
             human.state = STANDH;
             human.worldRow += (walkDir);
             if (walkDir > 0) {
@@ -291,11 +361,6 @@ void gardening() {
                 savedDir = FORWARDH;
                 human.workTimer++;
             }
-            if (hatIndex == 50) {
-                if (tasks == 3) {
-                    human.action = REPLACE;
-                }
-            }
         } else {
             human.state = KNEELH;
             human.dir = savedDir;
@@ -315,26 +380,43 @@ void replaceHat() {
     human.state = STANDH;
     human.anistate = WALKH;
     human.dir = RIGHTH;
-    if (human.worldCol < 870) {
-        human.worldCol++;
-        if (human.worldCol > 760) {
-            if (human.worldRow > 180) {
-                human.worldRow--;
-            } else if (human.worldRow < 180) {
-                human.worldRow++;
-            }
-        } else {
-            if (human.worldRow > 136) {
-                human.worldRow--;
-            } else if (human.worldRow < 136) {
-                human.worldRow++;
+    if (tasks == 3) {
+        if (human.worldCol < 870) {
+            human.worldCol++;
+            if (human.worldCol > 760) {
+                if (human.worldRow > 180) {
+                    human.worldRow--;
+                } else if (human.worldRow < 180) {
+                    human.worldRow++;
+                }
+            } else {
+                if (human.worldRow > 136) {
+                    human.worldRow--;
+                } else if (human.worldRow < 136) {
+                    human.worldRow++;
+                }
             }
         }
-    }
-    if ((human.worldCol == 870) && (human.worldRow == 180)) {
-        hatIndex = 3;
-        objects[hatIndex].worldRow = human.worldRow - 2;
-        objects[hatIndex].worldCol = human.worldCol + 8;
-        human.action = GARDENING;
+        if ((human.worldCol == 870) && (human.worldRow == 180)) {
+            hatIndex = 3;
+            objects[hatIndex].worldRow = human.worldRow - 2;
+            objects[hatIndex].worldCol = human.worldCol + 8;
+            objects[2].permCol = 916;
+            objects[2].permRow = 196;
+            tasks = 2;
+        }
+    } else {
+        human.dir = LEFTH;
+        human.anistate = WALKH;
+        if (human.worldRow > 136) {
+            human.worldRow--;
+        } else if (human.worldRow < 136) {
+            human.worldRow++;
+        }
+        if (human.worldCol > 580) {
+            human.worldCol--;
+        } else {
+            human.action = GARDENING;
+        }
     }
 }

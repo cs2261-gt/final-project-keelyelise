@@ -198,9 +198,11 @@ typedef struct {
 
 extern OBJECT objects[14];
 extern int shadowCount;
-extern OBJECT stolenObject;
-extern OBJECT empty;
+extern OBJECT * stolenObject;
 extern int sprinklerOn;
+extern int sprinklerTimer;
+extern int hatIndex;
+extern int keyIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -237,12 +239,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, OPENFRONT, OPENBACK, CHEAT, GARDENING, REPLACE};
 
 
 void initHuman();
@@ -250,10 +256,9 @@ void updateHuman();
 void drawHuman();
 void chase();
 void returnObject();
-void sweat();
+void replaceHat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();
 # 7 "game.c" 2
@@ -270,8 +275,7 @@ int sb;
 int anicounter;
 int gooseHoff;
 int overallHoff;
-OBJECT stolenObject;
-OBJECT empty;
+OBJECT * stolenObject;
 
 
 
@@ -297,11 +301,11 @@ void updateGame() {
 
     if (hoff > 256 && sb < 30) {
         hoff -= 256;
-        sb += 1;
+        sb++;
         (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
     } else if (hoff <= 0 && sb > 28) {
         hoff += 256;
-        sb -= 1;
+        sb--;
         (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((sb)<<8) | (1<<14) | (1<<7);
     }
     if (gooseHoff > 512) {

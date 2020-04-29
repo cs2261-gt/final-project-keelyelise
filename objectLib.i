@@ -65,11 +65,11 @@ typedef struct {
 
 extern OBJECT objects[14];
 extern int shadowCount;
-extern OBJECT stolenObject;
-extern OBJECT empty;
+extern OBJECT * stolenObject;
 extern int sprinklerOn;
 extern int sprinklerTimer;
 extern int hatIndex;
+extern int keyIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -258,9 +258,9 @@ typedef struct{
 
 int collision(int colA, int rowA, int widthA, int heightA, int colB, int rowB, int widthB, int heightB);
 # 6 "objectLib.c" 2
-# 1 "tempCollision.h" 1
-# 20 "tempCollision.h"
-extern const unsigned short tempCollisionBitmap[262144];
+# 1 "gardenCollision.h" 1
+# 20 "gardenCollision.h"
+extern const unsigned short gardenCollisionBitmap[262144];
 # 7 "objectLib.c" 2
 # 1 "sound.h" 1
 SOUND soundA;
@@ -291,6 +291,7 @@ int shadowCount;
 int sprinklerOn;
 int sprinklerTimer;
 int hatIndex;
+int keyIndex;
 
 
 void initObjects() {
@@ -299,6 +300,7 @@ void initObjects() {
     sprinklerOn = 0;
     sprinklerTimer = 0;
     hatIndex = 2;
+    keyIndex = 9;
 
 
     objects[0].type = FERTILIZER;
@@ -336,8 +338,7 @@ void initObjects() {
     objects[2].height = 8;
 
     objects[2].worldRow = human.worldRow - 1;
-
-    objects[2].worldCol = human.worldCol + 18;
+    objects[2].worldCol = human.worldCol + 8;
     objects[2].permRow = human.worldRow - 1;
     objects[2].permCol = human.worldCol - 8;
     objects[2].level = 1;
@@ -353,8 +354,8 @@ void initObjects() {
 
     objects[3].worldRow = 196;
     objects[3].worldCol = 918;
-    objects[3].permRow = 918;
-    objects[3].permCol = 196;
+    objects[3].permRow = 196;
+    objects[3].permCol = 918;
     objects[3].level = 1;
     objects[3].shape = (1<<14);
     objects[3].size = (0<<14);
@@ -368,8 +369,8 @@ void initObjects() {
 
     objects[4].worldRow = 58;
     objects[4].worldCol = 430;
-    objects[4].permRow = 120;
-    objects[4].permCol = 500;
+    objects[4].permRow = 58;
+    objects[4].permCol = 430;
     objects[4].level = 0;
     objects[4].shape = (1<<14);
     objects[4].size = (0<<14);
@@ -384,12 +385,12 @@ void initObjects() {
     objects[5].worldRow = 125;
     objects[5].worldCol = 219;
     objects[5].permRow = 125;
-    objects[5].permCol = 215;
+    objects[5].permCol = 219;
     objects[5].level = 1;
     objects[5].shape = (0<<14);
     objects[5].size = (0<<14);
-    objects[5].spriteCol = 27;
-    objects[5].spriteRow = 2;
+    objects[5].spriteCol = 31;
+    objects[5].spriteRow = 3;
 
 
     objects[6].type = THERMOS;
@@ -418,8 +419,8 @@ void initObjects() {
     objects[7].level = 1;
     objects[7].shape = (0<<14);
     objects[7].size = (0<<14);
-    objects[7].spriteCol = 27;
-    objects[7].spriteRow = 3;
+    objects[7].spriteCol = 29;
+    objects[7].spriteRow = 1;
 
 
     objects[8].type = JAM;
@@ -464,7 +465,7 @@ void initObjects() {
     objects[10].shape = (2<<14);
     objects[10].size = (3<<14);
     objects[10].spriteCol = 24;
-    objects[10].spriteRow = 4;
+    objects[10].spriteRow = 2;
 
 
     objects[11].type = BACKGATE;
@@ -473,13 +474,13 @@ void initObjects() {
 
     objects[11].worldRow = 0;
     objects[11].worldCol = 670;
-    objects[11].permRow = 0;
+    objects[11].permRow = -8;
     objects[11].permCol = 670;
-    objects[11].level = 0;
+    objects[11].level = -8;
     objects[11].shape = (2<<14);
     objects[11].size = (3<<14);
     objects[11].spriteCol = 24;
-    objects[11].spriteRow = 5;
+    objects[11].spriteRow = 3;
 
 
     objects[12].type = BREAD;
@@ -501,10 +502,10 @@ void initObjects() {
     objects[13].width = 8;
     objects[13].height = 8;
 
-    objects[13].worldRow = 220;
-    objects[13].worldCol = 900;
-    objects[13].permRow = 220;
-    objects[13].permCol = 900;
+    objects[13].worldRow = 240;
+    objects[13].worldCol = 910;
+    objects[13].permRow = 240;
+    objects[13].permCol = 910;
     objects[13].level = 0;
     objects[13].shape = (0<<14);
     objects[13].size = (0<<14);
@@ -526,19 +527,17 @@ void updateObjects() {
 
         if ((objects[i].grabbed == 0)) {
             int coll = collision(objects[i].worldCol, objects[i].worldRow, objects[i].width, objects[i].height, (goose.worldCol + goose.beakX - 5), (goose.worldRow + goose.beakY), beakWidth + 5, beakHeight);
-            if (coll) {
+            if (coll && (objects[i].type != FRONTGATE) && (objects[i].type != BACKGATE)) {
                 drawCollision(&(objects[i]));
-                if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8))))) {
-                    if (!(human.state == STAND && objects[i].type == KEYS)) {
-                        if (((~((*(volatile unsigned short *)0x04000130)) & ((1<<9)))) && (objects[i].level == 0)) {
-                            goose.grabbing = 1;
-                            objects[i].grabbed = 1;
-                            stolenObject = objects[i];
-                        } else if ((goose.state == STAND) && (objects[i].level == 1)) {
-                            goose.grabbing = 1;
-                            objects[i].grabbed = 1;
-                            stolenObject = objects[i];
-                        }
+                if ((!(~(oldButtons)&((1<<8))) && (~buttons & ((1<<8)))) && !goose.grabbing) {
+                    if (((~((*(volatile unsigned short *)0x04000130)) & ((1<<9)))) && (objects[i].level == 0)) {
+                        goose.grabbing = 1;
+                        objects[i].grabbed = 1;
+                        stolenObject = &(objects[i]);
+                    } else if ((goose.state == STAND) && (objects[i].level == 1)) {
+                        goose.grabbing = 1;
+                        objects[i].grabbed = 1;
+                        stolenObject = &(objects[i]);
                     }
                 }
             }
@@ -554,7 +553,7 @@ void updateObjects() {
                 if (objects[i].grabbed) {
                     hatIndex = 50;
                 }
-            } else if (i == 9) {
+            } else if (i == keyIndex) {
                 if (human.state == KNEELH) {
                     objects[i].worldRow = human.worldRow + 58;
                     objects[i].level = 0;
@@ -563,6 +562,9 @@ void updateObjects() {
                     objects[i].level = 1;
                 }
                 objects[i].worldCol = human.worldCol + 19;
+                if (objects[i].grabbed) {
+                    keyIndex = 51;
+                }
             }
             objects[i].screenRow = objects[i].worldRow - voff;
             objects[i].screenCol = objects[i].worldCol - gooseHoff;
@@ -574,6 +576,14 @@ void updateObjects() {
                 objects[i].worldCol = goose.worldCol + goose.beakX;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+                if (!gardenCollisionBitmap[((objects[i].worldRow)*(1024)+(objects[i].worldCol))] ||
+                        !gardenCollisionBitmap[(((objects[i].worldRow + objects[i].height))*(1024)+(objects[i].worldCol))] ||
+                        !gardenCollisionBitmap[((objects[i].worldRow)*(1024)+((objects[i].worldCol + objects[i].width)))] ||
+                        !gardenCollisionBitmap[(((objects[i].worldRow + objects[i].height))*(1024)+((objects[i].worldCol + objects[i].width)))]) {
+                    objects[i].level = 1;
+                } else {
+                    objects[i].level = 0;
+                }
             } else if (goose.grabbing) {
                 objects[i].hoff = gooseHoff;
                 if (goose.dir == LEFT) {
@@ -595,8 +605,8 @@ void updateObjects() {
 
 
 
-                objects[i].worldCol = human.worldCol;
-                objects[i].worldRow = human.worldRow;
+                objects[i].worldCol = human.worldCol + 4;
+                objects[i].worldRow = human.worldRow + 28;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
 
@@ -606,6 +616,14 @@ void updateObjects() {
                 objects[i].worldCol = human.worldCol;
                 objects[i].screenRow = objects[i].worldRow - voff;
                 objects[i].screenCol = objects[i].worldCol - objects[i].hoff;
+                if (!gardenCollisionBitmap[((objects[i].worldRow)*(1024)+(objects[i].worldCol))] ||
+                        !gardenCollisionBitmap[(((objects[i].worldRow + objects[i].height))*(1024)+(objects[i].worldCol))] ||
+                        !gardenCollisionBitmap[((objects[i].worldRow)*(1024)+((objects[i].worldCol + objects[i].width)))] ||
+                        !gardenCollisionBitmap[(((objects[i].worldRow + objects[i].height))*(1024)+((objects[i].worldCol + objects[i].width)))]) {
+                    objects[i].level = 1;
+                } else {
+                    objects[i].level = 0;
+                }
             }
 
         }
@@ -617,10 +635,8 @@ void updateObjects() {
             tasks = -1;
         } else if (tasks == 4 && (objects[i].type == SPRINKLER) && (objects[i].grabbed)) {
             sprinklerOn = 1;
-        } else if (tasks == 5 && objects[i].type == FERTILIZER && objects[i].grabbed && human.grabbing) {
+        } else if (tasks == 5 && human.grabbing) {
             tasks = 4;
-        } else if (tasks == 3 && objects[i].type == HAT && objects[i].grabbed) {
-            tasks = 2;
         }
     }
     int picnicCol = 38;
@@ -666,7 +682,7 @@ void drawObjects() {
         int sprinklerWorldCol = objects[1].worldCol - 12;
         int sprinklerScreenRow = sprinklerWorldRow - voff;
         int sprinklerScreenCol = sprinklerWorldCol - gooseHoff;
-        if (collision(sprinklerWorldCol, sprinklerWorldRow, 32, 32, human.worldCol, human.worldRow, 32, 64)) {
+        if ((tasks == 4) && collision(sprinklerWorldCol, sprinklerWorldRow, 32, 32, human.worldCol, human.worldRow, 32, 64)) {
             tasks = 3;
         }
         shadowOAM[14 + 2].attr0 = (0xFF & sprinklerScreenRow) | (0<<8) | (0<<14) | (0<<13);
@@ -677,7 +693,7 @@ void drawObjects() {
             shadowOAM[14 + 2].attr2 = ((1)<<12) | ((12)*32+(28));
         }
     } else {
-        shadowOAM[14 + 1].attr0 = (2<<8);
+        shadowOAM[14 + 2].attr0 = (2<<8);
     }
 }
 

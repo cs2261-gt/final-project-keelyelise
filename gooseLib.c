@@ -49,7 +49,8 @@ void updateGoose() {
         if ((goose.worldRow > 0)
         && gardenCollisionBitmap[OFFSET((goose.worldCol + 7), (goose.worldRow - goose.rdel + 15), WORLDWIDTH)] 
         && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 - 7), (goose.worldRow - goose.rdel + 15), WORLDWIDTH)]
-        && !collision(goose.worldCol, goose.worldRow - 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + 16), (goose.worldRow - goose.rdel + 15), WORLDWIDTH)]
+        && !collision(goose.worldCol, goose.worldRow - 1, 32, 32, human.worldCol + 7, human.worldRow, 15, 64)) {
             goose.worldRow -= goose.rdel;
             goose.dir = BACK;
             goose.anistate = WALK;
@@ -65,8 +66,9 @@ void updateGoose() {
         }
     } else if (BUTTON_HELD(BUTTON_DOWN)) {
         if ((goose.worldRow < (WORLDHEIGHT - goose.height))
-        && gardenCollisionBitmap[OFFSET((goose.worldCol + 7), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)] 
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + 7), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]
         && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 - 7), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]
+        && gardenCollisionBitmap[OFFSET((goose.worldCol + 16), (goose.worldRow + goose.height - 1 + goose.rdel), WORLDWIDTH)]
         && !collision(goose.worldCol, goose.worldRow + 1, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             goose.worldRow += goose.rdel;
             goose.dir = FORWARD;
@@ -107,7 +109,26 @@ void updateGoose() {
         && gardenCollisionBitmap[OFFSET((goose.worldCol + goose.width - 1 + goose.cdel - 9), (goose.worldRow + goose.height - 1), WORLDWIDTH)]
         && !collision(goose.worldCol + 1, goose.worldRow, 32, 32, human.worldCol + 6, human.worldRow, 16, 64)) {
             if (tasks < 5 || goose.worldCol < 390) {
-                if ((tasks == 1) && (goose.worldRow <= 8) && (goose.worldCol >= 640) && (stolenObject.type == KEYS) && (goose.grabbing)) {
+                if ((tasks == 1) && (goose.worldRow <= 8) && (goose.worldCol >= 640) && ((stolenObject -> type) == KEYS) && (goose.grabbing)) {
+                    gateOpen = 1;
+                    goose.worldCol += goose.cdel;
+                    goose.dir = RIGHT;
+                    goose.anistate = WALK;
+                    if (goose.state == DUCK) {
+                        goose.beakY = 14;
+                        goose.beakX = 22;
+                    } else {
+                        goose.beakX = 13;
+                    }
+                    if ((hoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (overallHoff < (WORLDWIDTH - SCREENWIDTH - 1)) && (goose.screenCol > (SCREENWIDTH / 2))) {
+                        hoff++;
+                        gooseHoff++;
+                        overallHoff++;
+                    }
+                    if (goose.worldCol > 675) {
+                        tasks = 0;
+                    }
+                } else if ((tasks == -1) && (goose.worldRow <= 8) && (goose.worldCol >= 640) && ((stolenObject -> type) == BREAD) && (goose.grabbing)) {
                     gateOpen = 1;
                     goose.worldCol += goose.cdel;
                     goose.dir = RIGHT;

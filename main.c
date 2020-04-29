@@ -119,6 +119,10 @@ void initialize() {
 
     //Add background palette to memory
     DMANow(3, startScreenPal, PALETTE, 256);
+    
+    //Add game sprite palette and tiles to memory
+    DMANow(3, buttonsPal, SPRITEPALETTE, 256);
+    DMANow(3, buttonsTiles, &CHARBLOCK[4], buttonsTilesLen / 2);
 
     //Setup sounds and interrupts
     setupSounds();
@@ -136,11 +140,7 @@ void goToStart() {
 
     //Add start screen tiles and map to memory
     DMANow(3, startScreenTiles, &CHARBLOCK[0], startScreenTilesLen / 2);
-    DMANow(3, startScreenMap, &SCREENBLOCK[28], 512 * 2);
-
-    //Add game sprite palette and tiles to memory
-    DMANow(3, buttonsPal, SPRITEPALETTE, 256);
-    DMANow(3, buttonsTiles, &CHARBLOCK[4], buttonsTilesLen / 2);
+    DMANow(3, startScreenMap, &SCREENBLOCK[28], startScreenMapLen / 2);
 
     playSoundA(menuSong, MENUSONGLEN, 1);
 
@@ -183,6 +183,7 @@ void start() {
     if (BUTTON_PRESSED(BUTTON_START)) {
         if (option == 0) {
             initGame();
+
             stopSound();
             playSoundA(gardenSong, GARDENSONGLEN, 1);
             goToGame();
@@ -201,7 +202,7 @@ void goToInstructions() {
     REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
     //Add instructions background tiles and map to memory
     DMANow(3, instructionsScreenTiles, &CHARBLOCK[0], instructionsScreenTilesLen / 2);
-    DMANow(3, instructionsScreenMap, &SCREENBLOCK[28], 512 * 2);
+    DMANow(3, instructionsScreenMap, &SCREENBLOCK[28], instructionsScreenMapLen / 2);
     state = INSTRUCTIONS;
 }
 
@@ -254,7 +255,7 @@ void instructions() {
         shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
     } else if (buttonTimer >= 150) {
         shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(0, 20);
-        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
+        shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 2);
     } else if (buttonTimer >= 75) {
         shadowOAM[6].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(4, 20);
         shadowOAM[7].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(12, 0);
@@ -350,6 +351,7 @@ void instructions() {
 }
 
 void goToGame() {
+    REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(sb) | BG_8BPP | BG_SIZE_WIDE;
     REG_DISPCTL = MODE0 | BG0_ENABLE | SPRITE_ENABLE;
 
     hideSprites();
@@ -357,7 +359,7 @@ void goToGame() {
     
     //Add game background tiles and map to memory
     DMANow(3, gardenTiles, &CHARBLOCK[0], gardenTilesLen / 2);
-    DMANow(3, gardenMap, &SCREENBLOCK[28], 512 * 32);
+    DMANow(3, gardenMap, &SCREENBLOCK[28], gardenMapLen / 2);
 
     //Add color palette back to memory
     DMANow(3, gardenPal, PALETTE, 256);
@@ -393,7 +395,7 @@ void goToPause() {
     REG_DISPCTL = MODE0 | BG1_ENABLE;
     //Add pause tiles and map to meory
     DMANow(3, pauseScreenTiles, &CHARBLOCK[0], pauseScreenTilesLen / 2);
-    DMANow(3, pauseScreenMap, &SCREENBLOCK[28], 512 * 2);
+    DMANow(3, pauseScreenMap, &SCREENBLOCK[28], pauseScreenMapLen / 2);
 
     //Add color palette
     DMANow(3, pauseScreenPal, PALETTE, 256);
@@ -417,21 +419,36 @@ void pause() {
 
 void goToWin() {
     REG_BG1CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(28) | BG_8BPP | BG_SIZE_SMALL;
-    REG_DISPCTL = MODE0 | BG1_ENABLE;
+    REG_DISPCTL = MODE0 | BG1_ENABLE | SPRITE_ENABLE;
     //Add win background tiles and map to memory
     DMANow(3, winScreenTiles, &CHARBLOCK[0], winScreenTilesLen / 2);
-    DMANow(3, winScreenMap, &SCREENBLOCK[28], 512 * 2);
+    DMANow(3, winScreenMap, &SCREENBLOCK[28], winScreenMapLen / 2);
 
     //Add color palette to memory
     DMANow(3, winScreenPal, PALETTE, 256);
+
+    //Add game sprite palette and tiles to memory
+    DMANow(3, buttonsPal, SPRITEPALETTE, 256);
+    DMANow(3, buttonsTiles, &CHARBLOCK[4], buttonsTilesLen / 2);
     
     stopSound();
     playSoundA(menuSong, MENUSONGLEN, 1);
+
+    hideSprites();
+    DMANow(3, shadowOAM, OAM, 512);
 
     state = WIN;
 }
 
 void win() {
+    shadowOAM[0].attr0 = 128 | ATTR0_4BPP | ATTR0_REGULAR | ATTR0_WIDE;
+    shadowOAM[0].attr1 = 96 | ATTR1_LARGE;
+    shadowOAM[0].attr2 = ATTR2_PALROW(2) | ATTR2_TILEID(8, 22);
+
+    //Add shadowOAM to OAM
+    waitForVBlank();
+    DMANow(3, shadowOAM, OAM, 512);
+
     if (BUTTON_PRESSED(BUTTON_START)) {
         goToStart();
     }

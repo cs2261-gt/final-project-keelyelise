@@ -11,8 +11,133 @@
 	.file	"humanLib.c"
 	.text
 	.align	2
-	.global	initHuman
 	.arch armv4t
+	.syntax unified
+	.arm
+	.fpu softvfp
+	.type	chase.part.0, %function
+chase.part.0:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+	mov	r2, #0
+	push	{r4, r5, r6, lr}
+	ldr	r5, .L19
+	ldr	r1, [r5, #24]
+	ldr	r3, .L19+4
+	ldr	r4, .L19+8
+	cmp	r1, r2
+	str	r2, [r3]
+	ldr	r0, [r4, #4]
+	sub	sp, sp, #16
+	beq	.L2
+	ldr	r3, [r5, #4]
+	cmp	r3, r0
+	movgt	r2, #3
+	addgt	r0, r0, #1
+	strgt	r2, [r4, #40]
+	strgt	r0, [r4, #4]
+	cmp	r3, r0
+	movlt	r2, #2
+	strlt	r2, [r4, #40]
+	ldr	r2, [r5]
+	ldr	r1, [r4]
+	sub	ip, r2, #16
+	sublt	r0, r0, #1
+	strlt	r0, [r4, #4]
+	cmp	ip, r1
+	movgt	ip, #0
+	addgt	r1, r1, #1
+	strgt	ip, [r4, #40]
+	sub	ip, r2, #15
+	strgt	r1, [r4]
+	cmp	ip, r1
+	movle	ip, #1
+	strle	ip, [r4, #40]
+	add	ip, r5, #16
+	ldm	ip, {ip, lr}
+	suble	r1, r1, #1
+	str	r2, [sp, #4]
+	str	r3, [sp]
+	mov	r2, #32
+	mov	r3, #64
+	str	lr, [sp, #12]
+	str	ip, [sp, #8]
+	ldr	r6, .L19+12
+	strle	r1, [r4]
+	mov	lr, pc
+	bx	r6
+	cmp	r0, #0
+	beq	.L1
+	mov	r3, #1
+	mov	r2, #0
+	str	r3, [r4, #60]
+	str	r2, [r5, #24]
+	str	r3, [r4, #56]
+.L1:
+	add	sp, sp, #16
+	@ sp needed
+	pop	{r4, r5, r6, lr}
+	bx	lr
+.L2:
+	ldr	r5, .L19+16
+	ldr	r3, [r5]
+	ldr	r2, [r3, #8]
+	cmp	r2, r0
+	movgt	r1, #3
+	addgt	r0, r0, #1
+	strgt	r1, [r4, #40]
+	strgt	r0, [r4, #4]
+	cmp	r2, r0
+	movlt	r1, #2
+	ldr	ip, [r3, #4]
+	strlt	r1, [r4, #40]
+	ldr	r1, [r4]
+	sub	lr, ip, #16
+	sublt	r0, r0, #1
+	strlt	r0, [r4, #4]
+	cmp	lr, r1
+	movgt	lr, #0
+	addgt	r1, r1, #1
+	strgt	lr, [r4, #40]
+	sub	lr, ip, #15
+	strgt	r1, [r4]
+	cmp	lr, r1
+	movle	lr, #1
+	strle	lr, [r4, #40]
+	ldr	lr, [r3, #32]
+	str	lr, [sp, #12]
+	ldr	r3, [r3, #28]
+	suble	r1, r1, #1
+	stm	sp, {r2, ip}
+	str	r3, [sp, #8]
+	mov	r2, #32
+	mov	r3, #64
+	ldr	r6, .L19+12
+	strle	r1, [r4]
+	mov	lr, pc
+	bx	r6
+	cmp	r0, #0
+	movne	r3, #1
+	ldrne	r2, [r5]
+	strne	r3, [r4, #60]
+	strne	r3, [r2, #40]
+	strne	r3, [r4, #56]
+	add	sp, sp, #16
+	@ sp needed
+	pop	{r4, r5, r6, lr}
+	bx	lr
+.L20:
+	.align	2
+.L19:
+	.word	goose
+	.word	stepTimer
+	.word	human
+	.word	collision
+	.word	stolenObject
+	.size	chase.part.0, .-chase.part.0
+	.align	2
+	.global	initHuman
 	.syntax unified
 	.arm
 	.fpu softvfp
@@ -30,19 +155,19 @@ initHuman:
 	mov	r1, #40
 	mov	ip, #20
 	mov	r0, #5
-	ldr	r3, .L4
+	ldr	r3, .L23
 	str	r6, [r3]
-	ldr	r3, .L4+4
+	ldr	r3, .L23+4
 	str	r2, [r3]
-	ldr	r3, .L4+8
+	ldr	r3, .L23+8
 	str	r2, [r3]
-	ldr	r3, .L4+12
+	ldr	r3, .L23+12
 	str	r2, [r3]
-	ldr	r3, .L4+16
+	ldr	r3, .L23+16
 	str	r2, [r3]
-	ldr	r3, .L4+20
+	ldr	r3, .L23+20
 	str	r2, [r3]
-	ldr	r3, .L4+24
+	ldr	r3, .L23+24
 	str	r5, [r3, #4]
 	str	r4, [r3, #20]
 	str	lr, [r3, #24]
@@ -58,9 +183,9 @@ initHuman:
 	str	r1, [r3, #16]
 	pop	{r4, r5, r6, lr}
 	bx	lr
-.L5:
+.L24:
 	.align	2
-.L4:
+.L23:
 	.word	walkDir
 	.word	hatTimer
 	.word	aniTimer
@@ -79,40 +204,40 @@ drawHuman:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	ldr	r0, .L20
+	ldr	r0, .L39
 	ldr	r3, [r0, #32]
 	cmp	r3, #1
 	str	lr, [sp, #-4]!
-	beq	.L7
-	ldr	ip, .L20+4
-.L8:
+	beq	.L26
+	ldr	ip, .L39+4
+.L27:
 	ldr	r3, [r0, #4]
 	add	r2, r3, #255
 	cmp	r3, #0
 	movlt	r3, r2
-	ldr	r2, .L20+8
+	ldr	r2, .L39+8
 	asr	r3, r3, #8
 	ldr	r1, [r2]
 	add	r3, r3, #28
 	cmp	r1, r3
 	ldr	r2, [r0, #36]
-	beq	.L10
+	beq	.L29
 	add	r1, r1, #1
 	cmp	r1, r3
-	beq	.L10
+	beq	.L29
 	mov	r3, #512
-	ldr	r1, .L20+12
+	ldr	r1, .L39+12
 	lsl	r2, r2, #3
 	strh	r3, [r1, r2]	@ movhi
-	b	.L12
-.L10:
+	b	.L31
+.L29:
 	ldrb	r3, [r0, #8]	@ zero_extendqisi2
 	mvn	r3, r3, lsl #17
 	mvn	r3, r3, lsr #17
-	ldr	r1, .L20+12
+	ldr	r1, .L39+12
 	lsl	r2, r2, #3
 	strh	r3, [r1, r2]	@ movhi
-.L12:
+.L31:
 	ldr	r3, [r0, #12]
 	lsl	r3, r3, #23
 	lsr	r3, r3, #23
@@ -125,19 +250,19 @@ drawHuman:
 	ldr	r3, [r0, #28]
 	cmp	lr, #0
 	add	r2, r2, r3, lsl #1
-	bne	.L13
+	bne	.L32
 	add	r2, r2, #128
 	lsl	r2, r2, #2
 	strh	r2, [r1, #4]	@ movhi
-.L6:
+.L25:
 	ldr	lr, [sp], #4
 	bx	lr
-.L13:
+.L32:
 	cmp	lr, #1
 	addeq	r2, r2, #132
 	lsleq	r2, r2, #2
 	strheq	r2, [r1, #4]	@ movhi
-	beq	.L6
+	beq	.L25
 	cmp	lr, #2
 	addeq	r2, r2, #192
 	addne	r2, r2, #196
@@ -145,10 +270,10 @@ drawHuman:
 	strh	r2, [r1, #4]	@ movhi
 	ldr	lr, [sp], #4
 	bx	lr
-.L7:
-	ldr	ip, .L20+16
+.L26:
+	ldr	ip, .L39+16
 	ldr	r2, [ip]
-	ldr	r3, .L20+20
+	ldr	r3, .L39+20
 	add	r2, r2, #1
 	smull	lr, r1, r3, r2
 	asr	r3, r2, #31
@@ -157,17 +282,17 @@ drawHuman:
 	sub	r3, r2, r3, lsl #2
 	cmp	r3, #0
 	str	r3, [ip]
-	ldr	ip, .L20+4
-	bne	.L8
+	ldr	ip, .L39+4
+	bne	.L27
 	ldr	r3, [ip]
 	adds	r3, r3, #1
 	and	r3, r3, #1
 	rsbmi	r3, r3, #0
 	str	r3, [ip]
-	b	.L8
-.L21:
+	b	.L27
+.L40:
 	.align	2
-.L20:
+.L39:
 	.word	human
 	.word	aninum
 	.word	sb
@@ -185,112 +310,22 @@ chase:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	mov	r1, #1
-	push	{r4, r5, r6, lr}
-	ldr	r2, .L39
-	ldr	r5, .L39+4
+	@ link register save eliminated.
+	mov	r0, #1
+	ldr	r2, .L43
 	ldr	r3, [r2]
-	ldr	r0, [r5, #24]
-	ldr	r4, .L39+8
-	add	r3, r3, r1
-	cmp	r0, #0
-	str	r1, [r4, #32]
-	str	r3, [r2]
-	ldr	r0, [r4, #4]
-	ldr	r1, [r4]
-	sub	sp, sp, #16
-	beq	.L23
-	cmp	r3, #1
-	ldr	ip, [r5]
-	ldr	r3, [r5, #4]
-	ble	.L24
-	mov	lr, #0
+	ldr	r1, .L43+4
+	add	r3, r3, r0
 	cmp	r3, r0
-	str	lr, [r2]
-	movgt	r2, #3
-	addgt	r0, r0, #1
-	strgt	r2, [r4, #40]
-	strgt	r0, [r4, #4]
-	cmp	r0, r3
-	movgt	r2, #2
-	subgt	r0, r0, #1
-	strgt	r2, [r4, #40]
-	strgt	r0, [r4, #4]
-	cmp	r1, ip
-	movlt	r2, #0
-	addlt	r1, r1, #1
-	strlt	r1, [r4]
-	strlt	r2, [r4, #40]
-	cmp	ip, r1
-	movlt	r2, #1
-	sublt	r1, r1, #1
-	strlt	r1, [r4]
-	strlt	r2, [r4, #40]
-.L24:
-	add	r2, r5, #16
-	ldm	r2, {r2, lr}
-	ldr	r6, .L39+12
-	stm	sp, {r3, ip}
-	str	r2, [sp, #8]
-	mov	r3, #64
-	mov	r2, #32
-	str	lr, [sp, #12]
-	mov	lr, pc
-	bx	r6
-	cmp	r0, #0
-	beq	.L22
-	mov	r3, #1
-	mov	r2, #0
-	str	r3, [r4, #60]
-	str	r2, [r5, #24]
-	str	r3, [r4, #56]
-.L22:
-	add	sp, sp, #16
-	@ sp needed
-	pop	{r4, r5, r6, lr}
-	bx	lr
-.L23:
-	ldr	r3, .L39+16
-	ldr	r2, [r3, #8]
-	cmp	r2, r0
-	addgt	r0, r0, #1
-	ldr	ip, [r3, #4]
-	strgt	r0, [r4, #4]
-	cmp	r2, r0
-	sublt	r0, r0, #1
-	strlt	r0, [r4, #4]
-	add	r3, r3, #28
-	cmp	ip, r1
-	ldm	r3, {r3, lr}
-	addgt	r1, r1, #1
-	strgt	r1, [r4]
-	cmp	ip, r1
-	sublt	r1, r1, #1
-	stm	sp, {r2, ip}
-	str	r3, [sp, #8]
-	mov	r2, #32
-	mov	r3, #64
-	str	lr, [sp, #12]
-	ldr	r5, .L39+12
-	strlt	r1, [r4]
-	mov	lr, pc
-	bx	r5
-	cmp	r0, #0
-	movne	r3, #1
-	strne	r3, [r4, #60]
-	strne	r3, [r4, #56]
-	add	sp, sp, #16
-	@ sp needed
-	pop	{r4, r5, r6, lr}
-	bx	lr
-.L40:
+	str	r3, [r2]
+	str	r0, [r1, #32]
+	bxle	lr
+	b	chase.part.0
+.L44:
 	.align	2
-.L39:
+.L43:
 	.word	stepTimer
-	.word	goose
 	.word	human
-	.word	collision
-	.word	stolenObject
 	.size	chase, .-chase
 	.align	2
 	.global	returnObject
@@ -302,54 +337,176 @@ returnObject:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
-	@ link register save eliminated.
-	ldr	r3, .L50
-	ldr	r1, [r3, #60]
-	cmp	r1, #0
+	ldr	r3, .L72
+	ldr	r2, [r3, #60]
+	cmp	r2, #0
+	push	{r4, r5, r6, lr}
 	ldr	r2, [r3]
-	beq	.L42
-	ldr	ip, .L50+4
-	ldr	r1, [r3, #4]
-	ldr	r0, [ip, #24]
-	cmp	r0, r1
-	addgt	r1, r1, #1
-	strgt	r1, [r3, #4]
-	ldr	ip, [ip, #20]
-	cmp	r1, r0
-	subgt	r1, r1, #1
-	strgt	r1, [r3, #4]
-	cmp	r2, ip
-	addlt	r2, r2, #1
-	strlt	r2, [r3]
-	cmp	ip, r2
-	sublt	r2, r2, #1
-	strlt	r2, [r3]
-	cmp	r0, r1
-	bxne	lr
-	ldr	r2, [r3]
-	cmp	ip, r2
-	moveq	r2, #0
-	streq	r2, [r3, #60]
-	bx	lr
-.L42:
-	cmp	r2, #70
-	beq	.L48
-	cmp	r2, #69
+	beq	.L46
+	ldr	r1, .L72+4
+	ldr	r0, [r1]
+	ldr	r1, [r0]
+	cmp	r1, #2
+	cmpne	r1, #9
+	movne	ip, #1
+	moveq	ip, #0
+	bne	.L68
+	cmp	r1, #2
+	beq	.L69
+	cmp	r1, #9
+	beq	.L70
+.L46:
+	cmp	r2, #80
+	beq	.L61
+	cmp	r2, #79
+	movle	r1, #0
 	movgt	r1, #1
 	addle	r2, r2, #1
 	subgt	r2, r2, #1
 	str	r2, [r3]
 	str	r1, [r3, #40]
+.L45:
+	pop	{r4, r5, r6, lr}
 	bx	lr
-.L48:
+.L68:
+	ldr	ip, [r0, #24]
+	ldr	r1, [r3, #4]
+	cmp	ip, r1
+	movgt	lr, #3
+	addgt	r1, r1, #1
+	strgt	lr, [r3, #40]
+	strgt	r1, [r3, #4]
+	cmp	ip, r1
+	movlt	lr, #2
+	strlt	lr, [r3, #40]
+	ldr	lr, [r0, #20]
+	sublt	r1, r1, #1
+	strlt	r1, [r3, #4]
+	cmp	lr, r2
+	movgt	r4, #0
+	addgt	r2, r2, #1
+	strgt	r2, [r3]
+	strgt	r4, [r3, #40]
+	cmp	lr, r2
+	movlt	r4, #1
+	sublt	r2, r2, #1
+	strlt	r2, [r3]
+	strlt	r4, [r3, #40]
+	cmp	ip, r1
+	bne	.L45
+	ldr	r2, [r3]
+	cmp	lr, r2
+	bne	.L45
+	mov	r4, #0
+	ldr	r1, .L72+8
+	ldr	r2, .L72+12
+	ldr	r1, [r1]
+	ldr	r2, [r2]
+	sub	r1, lr, r1
+	sub	r2, ip, r2
+	str	r4, [r3, #60]
+	str	r1, [r0, #12]
+	str	r4, [r0, #40]
+	str	lr, [r0, #4]
+	str	ip, [r0, #8]
+	str	r2, [r0, #16]
+	b	.L45
+.L61:
 	mov	r2, #5
+	pop	{r4, r5, r6, lr}
 	str	r2, [r3, #56]
 	bx	lr
-.L51:
+.L70:
+	ldr	r4, .L72+12
+	ldr	lr, .L72+8
+	ldr	r5, [r4]
+	ldr	r4, [lr]
+	ldr	lr, [r3, #4]
+	str	ip, [r3, #60]
+	add	lr, lr, #19
+	add	r2, r2, #40
+	ldr	r3, .L72+16
+	sub	r5, lr, r5
+	sub	r4, r2, r4
+	stmib	r0, {r2, lr}
+	str	r5, [r0, #16]
+	str	r4, [r0, #12]
+	str	ip, [r0, #40]
+	str	r1, [r3]
+	pop	{r4, r5, r6, lr}
+	bx	lr
+.L69:
+	ldr	r6, .L72+20
+	ldr	r4, [r6]
+	cmp	r4, #3
+	ldr	lr, [r3, #4]
+	beq	.L71
+	ldr	r5, .L72+8
+	ldr	r4, .L72+12
+	ldr	r5, [r5]
+	ldr	r4, [r4]
+	add	lr, lr, #8
+	sub	r2, r2, #1
+	sub	r5, r2, r5
+	sub	r4, lr, r4
+	str	ip, [r3, #60]
+	str	r1, [r6]
+	stmib	r0, {r2, lr}
+	str	r5, [r0, #12]
+	str	r4, [r0, #16]
+	str	ip, [r0, #40]
+	pop	{r4, r5, r6, lr}
+	bx	lr
+.L71:
+	ldr	r1, [r0, #24]
+	cmp	r1, lr
+	addgt	lr, lr, #1
+	strgt	r4, [r3, #40]
+	strgt	lr, [r3, #4]
+	cmp	lr, r1
+	movgt	ip, #2
+	strgt	ip, [r3, #40]
+	ldr	ip, [r0, #20]
+	subgt	lr, lr, #1
+	strgt	lr, [r3, #4]
+	cmp	ip, r2
+	movgt	r4, #0
+	addgt	r2, r2, #1
+	strgt	r2, [r3]
+	strgt	r4, [r3, #40]
+	cmp	ip, r2
+	movlt	r4, #1
+	sublt	r2, r2, #1
+	strlt	r2, [r3]
+	strlt	r4, [r3, #40]
+	cmp	r1, lr
+	bne	.L45
+	ldr	r2, [r3]
+	cmp	ip, r2
+	bne	.L45
+	mov	r4, #0
+	ldr	lr, .L72+8
+	ldr	r2, .L72+12
+	ldr	lr, [lr]
+	ldr	r2, [r2]
+	sub	lr, ip, lr
+	sub	r2, r1, r2
+	str	r4, [r3, #60]
+	str	lr, [r0, #12]
+	str	r4, [r0, #40]
+	str	ip, [r0, #4]
+	str	r1, [r0, #8]
+	str	r2, [r0, #16]
+	b	.L45
+.L73:
 	.align	2
-.L50:
+.L72:
 	.word	human
 	.word	stolenObject
+	.word	voff
+	.word	gooseHoff
+	.word	keyIndex
+	.word	hatIndex
 	.size	returnObject, .-returnObject
 	.align	2
 	.global	openFrontGate
@@ -362,9 +519,9 @@ openFrontGate:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	mov	r0, #1
-	ldr	r1, .L63
+	ldr	r1, .L85
 	ldr	r3, [r1]
-	ldr	r2, .L63+4
+	ldr	r2, .L85+4
 	add	r3, r3, r0
 	cmp	r3, r0
 	str	r3, [r1]
@@ -372,52 +529,53 @@ openFrontGate:
 	bxle	lr
 	mov	r0, #0
 	ldr	r3, [r2, #4]
-	ldr	ip, .L63+8
+	ldr	ip, .L85+8
 	cmp	r3, ip
 	str	r0, [r1]
-	ble	.L55
+	ble	.L77
 	ldr	r1, [r2]
 	sub	r3, r3, #1
 	cmp	r1, #70
 	str	r3, [r2, #4]
-	ble	.L56
+	ble	.L78
 	sub	r1, r1, #1
 	str	r1, [r2]
 	bx	lr
-.L55:
+.L77:
 	bxne	lr
 	ldr	r3, [r2]
 	cmp	r3, #70
-	beq	.L58
+	beq	.L80
 	subgt	r3, r3, #1
 	addle	r3, r3, #1
 	str	r3, [r2]
 	bx	lr
-.L56:
+.L78:
 	addne	r1, r1, #1
 	strne	r1, [r2]
 	bx	lr
-.L58:
+.L80:
 	push	{r4, lr}
-	mov	ip, #28
-	mov	r4, #4
-	mov	r1, #44
-	ldr	lr, .L63+12
-	ldr	r3, .L63+16
-	str	r4, [lr]
+	mov	r1, #4
+	mov	lr, #28
+	mov	ip, #44
+	ldr	r3, .L85+12
+	ldr	r4, .L85+16
+	str	lr, [r3, #688]
+	str	r1, [r4]
 	str	r0, [r2, #56]
-	str	ip, [r3, #688]
-	str	r1, [r3, #644]
+	str	r1, [r3, #692]
+	str	ip, [r3, #644]
 	pop	{r4, lr}
 	bx	lr
-.L64:
+.L86:
 	.align	2
-.L63:
+.L85:
 	.word	stepTimer
 	.word	human
 	.word	422
-	.word	tasks
 	.word	objects
+	.word	tasks
 	.size	openFrontGate, .-openFrontGate
 	.align	2
 	.global	openBackGate
@@ -443,21 +601,30 @@ gardening:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, r5, r6, lr}
-	ldr	r4, .L104
+	ldr	r4, .L130
 	ldr	r3, [r4, #4]
 	cmp	r3, #440
 	ldr	r1, [r4]
 	sub	sp, sp, #16
-	beq	.L67
-	addlt	r3, r3, #1
+	beq	.L89
+	mov	r2, #0
+	mov	r0, #1
+	str	r2, [r4, #28]
+	movlt	r2, #3
+	movge	r2, #2
+	addlt	r3, r3, r0
 	subge	r3, r3, #1
-	cmp	r1, #99
-	addle	r1, r1, #1
+	cmp	r1, #79
+	str	r0, [r4, #32]
 	str	r3, [r4, #4]
-	strle	r1, [r4]
-	bgt	.L101
-.L67:
-	ldr	r5, .L104+4
+	str	r2, [r4, #40]
+	bgt	.L92
+	mov	r2, #0
+	add	r1, r1, #1
+	str	r1, [r4]
+	str	r2, [r4, #40]
+.L89:
+	ldr	r5, .L130+4
 	ldr	r2, [r5, #20]
 	ldr	lr, [r5, #16]
 	str	r2, [sp, #12]
@@ -467,74 +634,76 @@ gardening:
 	ldr	r0, [r4, #16]
 	add	r2, r4, #20
 	sub	r1, r1, r0
-	ldr	r6, .L104+8
+	ldr	r6, .L130+8
 	sub	r0, r3, r0
 	ldm	r2, {r2, r3}
 	mov	lr, pc
 	bx	r6
 	cmp	r0, #0
-	beq	.L71
+	beq	.L93
 	ldr	r3, [r4, #28]
 	cmp	r3, #0
-	bne	.L102
-.L72:
-	mov	r2, #0
-	ldr	r3, [r5, #24]
-	cmp	r3, r2
-	str	r2, [r4, #28]
-	streq	r3, [r4, #32]
-	beq	.L76
-	ldr	r3, .L104+12
+	bne	.L127
+.L94:
+	mov	r3, #0
+	ldr	r2, [r5, #24]
+	cmp	r2, r3
+	str	r3, [r4, #28]
+	streq	r2, [r4, #32]
+	beq	.L98
+	ldr	r2, .L130+12
+	ldr	r2, [r2]
+	cmp	r2, #5
+	str	r3, [r4, #48]
+	strne	r3, [r4, #56]
+	bne	.L98
+	ldr	r3, .L130+16
 	ldr	r3, [r3]
-	cmp	r3, r2
-	str	r2, [r4, #48]
-	bne	.L75
-	ldr	r3, .L104+16
 	ldr	r3, [r3]
-	cmp	r3, #5
+	bic	r2, r3, #2
+	cmp	r3, #0
+	cmpne	r2, #5
 	moveq	r3, #2
 	streq	r3, [r4, #56]
-	beq	.L76
-.L75:
-	mov	r3, #0
-	str	r3, [r4, #56]
-.L76:
+.L98:
 	ldr	r3, [r4]
 	ldr	r2, [r5]
 	cmp	r2, r3
 	movgt	r3, #0
 	strgt	r3, [r4, #40]
-	bgt	.L66
+	bgt	.L88
 	movlt	r3, #1
 	strlt	r3, [r4, #40]
-	blt	.L66
+	blt	.L88
 	ldr	r3, [r4, #4]
 	ldr	r2, [r5, #4]
 	cmp	r2, r3
 	movgt	r3, #3
 	movle	r3, #2
 	str	r3, [r4, #40]
-.L66:
+.L88:
 	add	sp, sp, #16
 	@ sp needed
 	pop	{r4, r5, r6, lr}
 	bx	lr
-.L101:
-	cmp	r1, #100
+.L92:
+	cmp	r1, #80
+	movne	r2, #1
 	subne	r1, r1, #1
 	strne	r1, [r4]
-	b	.L67
-.L102:
-	ldr	r3, .L104+20
+	strne	r2, [r4, #40]
+	b	.L89
+.L127:
+	ldr	r3, .L130+20
 	ldr	r3, [r3]
 	cmp	r3, #0
-	bgt	.L72
+	bgt	.L94
 	mov	r1, #1
 	ldr	r3, [r4, #48]
 	cmp	r3, #0
 	str	r1, [r4, #32]
-	bne	.L81
-	ldr	r0, .L104+24
+	bne	.L103
+	ldr	r0, .L130+24
 	ldr	r2, [r0]
 	cmp	r2, #0
 	movgt	ip, #0
@@ -548,95 +717,97 @@ gardening:
 	streq	r1, [r0]
 	streq	r1, [r4, #40]
 	streq	r1, [r4, #48]
-	beq	.L66
+	beq	.L88
 	cmp	r2, #136
 	mvneq	r2, #0
 	streq	r3, [r4, #40]
 	streq	r1, [r4, #48]
 	streq	r2, [r0]
-	b	.L66
-.L71:
-	mov	r1, #1
+	b	.L88
+.L93:
+	mov	r2, #1
 	ldr	r3, [r4, #48]
 	cmp	r3, #0
-	str	r1, [r4, #32]
-	bne	.L85
-	ldr	r0, .L104+24
-	ldr	ip, [r4]
-	ldr	r2, [r0]
-	cmp	r2, #0
-	add	r2, r2, ip
-	ldr	ip, .L104+28
-	strgt	r3, [r4, #40]
-	strgt	r3, [ip]
-	strle	r1, [r4, #40]
-	strle	r1, [ip]
-	cmp	r2, #6
-	str	r3, [r4, #28]
-	str	r2, [r4]
-	beq	.L103
-	cmp	r2, #136
-	bne	.L89
-	mov	r3, #0
-	mvn	r1, #0
-	mov	r2, #1
-	str	r1, [r0]
-	str	r3, [r4, #40]
-	str	r3, [ip]
-	str	r2, [r4, #48]
-.L89:
-	ldr	r3, .L104+32
+	str	r2, [r4, #32]
+	bne	.L107
+	ldr	r3, .L130+28
 	ldr	r3, [r3]
 	cmp	r3, #50
-	bne	.L66
-	ldr	r3, .L104+16
-	ldr	r3, [r3]
-	cmp	r3, #3
-	moveq	r3, #6
-	streq	r3, [r4, #56]
-	b	.L66
-.L85:
-	ldr	r2, .L104+28
+	beq	.L128
+.L108:
+	mov	r2, #0
+	ldr	r1, .L130+24
+	ldr	r3, [r1]
+	cmp	r3, r2
+	str	r2, [r4, #28]
+	movle	r2, #1
+	ldr	r0, [r4]
+	add	r3, r3, r0
+	ldr	r0, .L130+32
+	cmp	r3, #6
+	str	r3, [r4]
+	str	r2, [r4, #40]
+	str	r2, [r0]
+	beq	.L129
+	cmp	r3, #136
+	bne	.L88
+	mov	r3, #0
+	mvn	ip, #0
+	mov	r2, #1
+	str	ip, [r1]
+	str	r3, [r4, #40]
+	str	r3, [r0]
+	str	r2, [r4, #48]
+	b	.L88
+.L107:
+	ldr	r1, .L130+32
 	add	r3, r3, #1
-	ldr	r2, [r2]
+	ldr	r1, [r1]
 	cmp	r3, #249
 	str	r3, [r4, #48]
-	str	r1, [r4, #28]
-	str	r2, [r4, #40]
-	ble	.L66
-.L90:
+	str	r2, [r4, #28]
+	str	r1, [r4, #40]
+	ble	.L88
+.L112:
 	mov	r3, #0
 	str	r3, [r4, #48]
 	add	sp, sp, #16
 	@ sp needed
 	pop	{r4, r5, r6, lr}
 	bx	lr
-.L103:
+.L129:
 	mov	r3, #1
-	str	r3, [r0]
+	str	r3, [r1]
 	str	r3, [r4, #40]
-	str	r3, [ip]
+	str	r3, [r0]
 	str	r3, [r4, #48]
-	b	.L89
-.L81:
+	b	.L88
+.L128:
+	ldr	r3, .L130+12
+	ldr	r3, [r3]
+	cmp	r3, #3
+	moveq	r3, #6
+	streq	r3, [r4, #56]
+	b	.L108
+.L103:
 	add	r3, r3, #1
 	cmp	r3, #249
 	str	r3, [r4, #48]
 	str	r1, [r4, #28]
-	ble	.L66
-	b	.L90
-.L105:
+	ble	.L88
+	b	.L112
+.L131:
 	.align	2
-.L104:
+.L130:
 	.word	human
 	.word	goose
 	.word	collision
-	.word	stolenObject
 	.word	tasks
+	.word	stolenObject
 	.word	honkTimer
 	.word	walkDir
-	.word	savedDir
 	.word	hatIndex
+	.word	savedDir
 	.size	gardening, .-gardening
 	.align	2
 	.global	performCheat
@@ -661,72 +832,96 @@ replaceHat:
 	@ Function supports interworking.
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
+	mov	r2, #3
 	mov	ip, #0
 	mov	r0, #1
-	mov	r1, #3
-	ldr	r3, .L118
-	str	lr, [sp, #-4]!
-	ldr	r2, [r3, #4]
-	ldr	lr, .L118+4
-	cmp	r2, lr
+	ldr	r1, .L149
+	push	{r4, lr}
+	ldr	lr, [r1]
+	ldr	r3, .L149+4
+	cmp	lr, r2
+	str	r2, [r3, #40]
 	str	ip, [r3, #28]
 	str	r0, [r3, #32]
-	str	r1, [r3, #40]
-	bgt	.L108
-	add	r2, r2, r0
-	cmp	r2, #760
-	str	r2, [r3, #4]
+	ldr	r2, [r3, #4]
+	beq	.L147
+	mov	r0, #2
 	ldr	r1, [r3]
-	ble	.L109
-	cmp	r1, #180
-	subgt	r1, r1, #1
-	strgt	r1, [r3]
-	bgt	.L108
-	beq	.L111
-	add	r1, r1, #1
-	str	r1, [r3]
-.L108:
-	ldr	r1, .L118+8
-	cmp	r2, r1
-	beq	.L117
-.L107:
-	ldr	lr, [sp], #4
-	bx	lr
-.L117:
-	ldr	r2, [r3]
-	cmp	r2, #180
-	bne	.L107
-.L115:
-	mov	lr, #3
-	mov	ip, #178
-	mov	r1, #5
-	ldr	r0, .L118+12
-	ldr	r2, .L118+16
-	str	lr, [r0]
-	ldr	r0, .L118+20
-	str	ip, [r2, #196]
-	str	r0, [r2, #200]
-	str	r1, [r3, #56]
-	ldr	lr, [sp], #4
-	bx	lr
-.L109:
 	cmp	r1, #136
 	subgt	r1, r1, #1
+	str	r0, [r3, #40]
 	strgt	r1, [r3]
-	bgt	.L107
+	ble	.L148
+.L143:
+	cmp	r2, #580
+	movle	r2, #5
+	subgt	r2, r2, #1
+	strgt	r2, [r3, #4]
+	strle	r2, [r3, #56]
+.L133:
+	pop	{r4, lr}
+	bx	lr
+.L148:
 	addne	r1, r1, #1
 	strne	r1, [r3]
-	b	.L107
-.L111:
-	ldr	r1, .L118+8
-	cmp	r2, r1
-	bne	.L107
-	b	.L115
-.L119:
+	b	.L143
+.L147:
+	add	r0, r0, #868
+	cmp	r2, r0
+	bgt	.L135
+	add	r2, r2, #1
+	cmp	r2, #760
+	str	r2, [r3, #4]
+	ldr	r0, [r3]
+	ble	.L136
+	cmp	r0, #180
+	subgt	r0, r0, #1
+	strgt	r0, [r3]
+	bgt	.L135
+	beq	.L138
+	add	r0, r0, #1
+	str	r0, [r3]
+.L135:
+	ldr	r0, .L149+8
+	cmp	r2, r0
+	bne	.L133
+	ldr	r3, [r3]
+	cmp	r3, #180
+	bne	.L133
+.L145:
+	mov	r3, #2
+	mov	r4, #3
+	mov	ip, #178
+	mov	r0, #916
+	mov	r2, #196
+	str	r3, [r1]
+	ldr	lr, .L149+12
+	ldr	r3, .L149+16
+	ldr	r1, .L149+20
+	str	r4, [lr]
+	str	ip, [r3, #196]
+	str	r1, [r3, #200]
+	str	r0, [r3, #152]
+	str	r2, [r3, #148]
+	b	.L133
+.L136:
+	cmp	r0, #136
+	subgt	r0, r0, #1
+	strgt	r0, [r3]
+	bgt	.L133
+	addne	r0, r0, #1
+	strne	r0, [r3]
+	b	.L133
+.L138:
+	ldr	r3, .L149+8
+	cmp	r2, r3
+	bne	.L133
+	b	.L145
+.L150:
 	.align	2
-.L118:
+.L149:
+	.word	tasks
 	.word	human
-	.word	869
 	.word	870
 	.word	hatIndex
 	.word	objects
@@ -743,26 +938,26 @@ updateHuman:
 	@ args = 0, pretend = 0, frame = 0
 	@ frame_needed = 0, uses_anonymous_args = 0
 	push	{r4, lr}
-	ldr	r4, .L133
+	ldr	r4, .L166
 	ldr	r3, [r4, #56]
 	cmp	r3, #5
-	beq	.L128
+	beq	.L161
 	cmp	r3, #0
-	beq	.L129
+	beq	.L162
 	cmp	r3, #1
-	beq	.L130
+	beq	.L163
 	cmp	r3, #2
-	beq	.L131
+	beq	.L164
 	cmp	r3, #6
-	beq	.L132
-.L122:
-	ldr	r3, .L133+4
+	beq	.L165
+.L153:
+	ldr	r3, .L166+4
 	ldr	r3, [r3]
 	cmn	r3, #1
 	moveq	r3, #4
-	ldr	r2, .L133+8
+	ldr	r2, .L166+8
 	streq	r3, [r4, #56]
-	ldr	r3, .L133+12
+	ldr	r3, .L166+12
 	ldr	r0, [r2]
 	ldr	r1, [r3]
 	ldr	r2, [r4]
@@ -773,28 +968,37 @@ updateHuman:
 	str	r3, [r4, #12]
 	pop	{r4, lr}
 	bx	lr
-.L129:
-	bl	chase
-	b	.L122
-.L128:
+.L162:
+	mov	r1, #1
+	ldr	r2, .L166+16
+	ldr	r3, [r2]
+	add	r3, r3, r1
+	cmp	r3, r1
+	str	r3, [r2]
+	str	r1, [r4, #32]
+	ble	.L153
+	bl	chase.part.0
+	b	.L153
+.L161:
 	bl	gardening
-	b	.L122
-.L130:
+	b	.L153
+.L163:
 	bl	returnObject
-	b	.L122
-.L131:
+	b	.L153
+.L164:
 	bl	openFrontGate
-	b	.L122
-.L132:
+	b	.L153
+.L165:
 	bl	replaceHat
-	b	.L122
-.L134:
+	b	.L153
+.L167:
 	.align	2
-.L133:
+.L166:
 	.word	human
 	.word	tasks
 	.word	voff
 	.word	gooseHoff
+	.word	stepTimer
 	.size	updateHuman, .-updateHuman
 	.comm	savedDir,4,4
 	.comm	stepTimer,4,4

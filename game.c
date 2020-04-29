@@ -17,8 +17,7 @@ int sb;
 int anicounter;
 int gooseHoff;
 int overallHoff;
-OBJECT stolenObject;
-OBJECT empty;
+OBJECT * stolenObject;
 
 
 //Methods
@@ -44,11 +43,11 @@ void updateGame() {
     //Logic for extra wide map
     if (hoff > 256 && sb < 30) {
         hoff -= 256;
-        sb += 1;
+        sb++;
         REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
     } else if (hoff <= 0 && sb > 28) {
         hoff += 256;
-        sb -= 1;
+        sb--;
         REG_BG0CNT = BG_CHARBLOCK(0) | BG_SCREENBLOCK(sb) | BG_SIZE_WIDE | BG_8BPP;
     }
     if (gooseHoff > 512) {

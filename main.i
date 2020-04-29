@@ -195,9 +195,11 @@ typedef struct {
 
 extern OBJECT objects[14];
 extern int shadowCount;
-extern OBJECT stolenObject;
-extern OBJECT empty;
+extern OBJECT * stolenObject;
 extern int sprinklerOn;
+extern int sprinklerTimer;
+extern int hatIndex;
+extern int keyIndex;
 
 
 enum {FERTILIZER, SPRINKLER, HAT, SUNHAT, CARROT, SANDWICH, THERMOS, APPLE, JAM, KEYS, FRONTGATE, BACKGATE, BREAD, PEN};
@@ -234,12 +236,16 @@ typedef struct {
 extern HUMAN human;
 extern int walkDir;
 extern int hatTimer;
+extern int aniTimer;
+extern int aninum;
+extern int stepTimer;
+extern int savedDir;
 
 
 enum {FORWARDH, BACKH, LEFTH, RIGHTH};
 enum {IDLEH, WALKH};
 enum {STANDH, KNEELH};
-enum {CHASE, RETURNOBJ, SWEAT, OPENFRONT, OPENBACK, CHEAT, SPRINKLEROFF, GARDENING};
+enum {CHASE, RETURNOBJ, OPENFRONT, OPENBACK, CHEAT, GARDENING, REPLACE};
 
 
 void initHuman();
@@ -247,10 +253,9 @@ void updateHuman();
 void drawHuman();
 void chase();
 void returnObject();
-void sweat();
+void replaceHat();
 void openFrontGate();
 void openBackGate();
-void turnSprinklerOff();
 void gardening();
 void performCheat();
 # 24 "main.c" 2
@@ -280,7 +285,7 @@ extern const unsigned short gardenerPal[256];
 # 27 "main.c" 2
 # 1 "garden.h" 1
 # 22 "garden.h"
-extern const unsigned short gardenTiles[20192];
+extern const unsigned short gardenTiles[19712];
 
 
 extern const unsigned short gardenMap[4096];
@@ -475,6 +480,10 @@ void initialize() {
     DMANow(3, startScreenPal, ((unsigned short *)0x5000000), 256);
 
 
+    DMANow(3, buttonsPal, ((unsigned short *)0x5000200), 256);
+    DMANow(3, buttonsTiles, &((charblock *)0x6000000)[4], 32768 / 2);
+
+
     setupSounds();
  setupInterrupts();
 
@@ -490,11 +499,7 @@ void goToStart() {
 
 
     DMANow(3, startScreenTiles, &((charblock *)0x6000000)[0], 6048 / 2);
-    DMANow(3, startScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
-
-
-    DMANow(3, buttonsPal, ((unsigned short *)0x5000200), 256);
-    DMANow(3, buttonsTiles, &((charblock *)0x6000000)[4], 32768 / 2);
+    DMANow(3, startScreenMap, &((screenblock *)0x6000000)[28], 2048 / 2);
 
     playSoundA(menuSong, 1805505, 1);
 
@@ -537,6 +542,7 @@ void start() {
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
         if (option == 0) {
             initGame();
+
             stopSound();
             playSoundA(gardenSong, 1373015, 1);
             goToGame();
@@ -555,7 +561,7 @@ void goToInstructions() {
     (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
 
     DMANow(3, instructionsScreenTiles, &((charblock *)0x6000000)[0], 1888 / 2);
-    DMANow(3, instructionsScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+    DMANow(3, instructionsScreenMap, &((screenblock *)0x6000000)[28], 2048 / 2);
     state = INSTRUCTIONS;
 }
 
@@ -608,7 +614,7 @@ void instructions() {
         shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
     } else if (buttonTimer >= 150) {
         shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(0));
-        shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
+        shadowOAM[7].attr2 = ((2)<<12) | ((2)*32+(12));
     } else if (buttonTimer >= 75) {
         shadowOAM[6].attr2 = ((2)<<12) | ((20)*32+(4));
         shadowOAM[7].attr2 = ((2)<<12) | ((0)*32+(12));
@@ -704,14 +710,15 @@ void instructions() {
 }
 
 void goToGame() {
+    (*(volatile unsigned short*)0x4000008) = ((0)<<2) | ((sb)<<8) | (1<<7) | (1<<14);
     (*(unsigned short *)0x4000000) = 0 | (1<<8) | (1<<12);
 
     hideSprites();
     DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
 
-    DMANow(3, gardenTiles, &((charblock *)0x6000000)[0], 40384 / 2);
-    DMANow(3, gardenMap, &((screenblock *)0x6000000)[28], 512 * 32);
+    DMANow(3, gardenTiles, &((charblock *)0x6000000)[0], 39424 / 2);
+    DMANow(3, gardenMap, &((screenblock *)0x6000000)[28], 8192 / 2);
 
 
     DMANow(3, gardenPal, ((unsigned short *)0x5000000), 256);
@@ -747,7 +754,7 @@ void goToPause() {
     (*(unsigned short *)0x4000000) = 0 | (1<<9);
 
     DMANow(3, pauseScreenTiles, &((charblock *)0x6000000)[0], 45632 / 2);
-    DMANow(3, pauseScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+    DMANow(3, pauseScreenMap, &((screenblock *)0x6000000)[28], 4096 / 2);
 
 
     DMANow(3, pauseScreenPal, ((unsigned short *)0x5000000), 256);
@@ -771,21 +778,36 @@ void pause() {
 
 void goToWin() {
     (*(volatile unsigned short*)0x400000A) = ((0)<<2) | ((28)<<8) | (1<<7) | (0<<14);
-    (*(unsigned short *)0x4000000) = 0 | (1<<9);
+    (*(unsigned short *)0x4000000) = 0 | (1<<9) | (1<<12);
 
     DMANow(3, winScreenTiles, &((charblock *)0x6000000)[0], 36800 / 2);
-    DMANow(3, winScreenMap, &((screenblock *)0x6000000)[28], 512 * 2);
+    DMANow(3, winScreenMap, &((screenblock *)0x6000000)[28], 2048 / 2);
 
 
     DMANow(3, winScreenPal, ((unsigned short *)0x5000000), 256);
 
+
+    DMANow(3, buttonsPal, ((unsigned short *)0x5000200), 256);
+    DMANow(3, buttonsTiles, &((charblock *)0x6000000)[4], 32768 / 2);
+
     stopSound();
     playSoundA(menuSong, 1805505, 1);
+
+    hideSprites();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
 
     state = WIN;
 }
 
 void win() {
+    shadowOAM[0].attr0 = 128 | (0<<13) | (0<<8) | (1<<14);
+    shadowOAM[0].attr1 = 96 | (3<<14);
+    shadowOAM[0].attr2 = ((2)<<12) | ((22)*32+(8));
+
+
+    waitForVBlank();
+    DMANow(3, shadowOAM, ((OBJ_ATTR*)(0x7000000)), 512);
+
     if ((!(~(oldButtons)&((1<<3))) && (~buttons & ((1<<3))))) {
         goToStart();
     }
