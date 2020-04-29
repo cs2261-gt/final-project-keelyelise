@@ -1,19 +1,4 @@
-/*
 
-The art is now done. I made an animated instruction screen that shows what
-each button controls in the game. I have added songs and sound effects (such
-as the honk and a pen writing noise for when the pen is picked up to indicate 
-that the goose wrote something on the task list). The task list now says what 
-specific items are needed for the picnic. The goose can also now fully complete 
-the task list and win the game. The hat and the keys are both located in the 
-grass behind the bench. I am still having a few issues with my background tiles 
-for the garden and win screen, but for the most part they are displaying. All 
-that I have left to finish is fixing these tiles and fixing the human interaction
-with the goose. For now, I show him walking back and forth, and he is animated.
-I also think I might find a different song for the win state, because the music 
-doesn't quite match the feel of winning. 
-
-*/
 
 
 #include "myLib.h"
